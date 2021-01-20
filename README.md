@@ -18,7 +18,7 @@ In the erc20 directory, run `yarn` or `npm install`.
 
 In the erc20 directory, run `yarn build` or `npm run build`.
 
-You can find your contract abi in the build directory. You can upload them to [acala evm playground](https://acala-evm.vercel.app/#/upload) for testing.
+You can find your contract abi in the build directory. You can upload these abi files to [acala evm playground](https://acala-evm.vercel.app/#/upload) for testing.
 
 ### Run test cases
 
