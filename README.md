@@ -24,4 +24,4 @@ You can find your contract abi in the build directory. You can upload them to [a
 
 In the erc20 directory, run `yarn test` or `npm run test`. 
 
-The test cases are largely compatible with [ethers.js](https://docs.ethers.io/v5/) and [waffle](https://ethereum-waffle.readthedocs.io/en/latest/)
+The test cases are compatible with [ethers.js](https://docs.ethers.io/v5/) and [waffle](https://ethereum-waffle.readthedocs.io/en/latest/)
