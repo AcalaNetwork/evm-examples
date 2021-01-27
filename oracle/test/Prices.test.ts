@@ -71,9 +71,6 @@ const feedValues = async (token: string, price: number) => {
   });
 }
 
-const DOT = 0x0200;
-const XBTC = 0x0300;
-
 describe("Prices", () => {
   let prices: Contract;
 
@@ -88,15 +85,23 @@ describe("Prices", () => {
 
   it("getPrice works", async () => {
     await feedValues('XBTC', 34_500);
-    expect(await prices.getPrice(XBTC)).to.equal(34_500);
+    expect(await prices.getPrice('0x0000000000000000000000000000000000000803')).to.equal(34_500);
 
     await feedValues('XBTC', 33_800);
-    expect(await prices.getPrice(XBTC)).to.equal(33_800);
+    expect(await prices.getPrice('0x0000000000000000000000000000000000000803')).to.equal(33_800);
 
     await feedValues('DOT', 15);
-    expect(await prices.getPrice(DOT)).to.equal(15);
+    expect(await prices.getPrice('0x0000000000000000000000000000000000000802')).to.equal(15);
 
     await feedValues('DOT', 16);
-    expect(await prices.getPrice(DOT)).to.equal(16);
+    expect(await prices.getPrice('0x0000000000000000000000000000000000000802')).to.equal(16);
   });
+
+  it('ignores invalid address', async () => {
+    // system contract addresses start with 12 zero bytes
+    await expect(prices.getPrice('0x0000000000000000000000010000000000000000')).to.be.revertedWith("Oracle: Not a system contract");
+    await expect(prices.getPrice('0x1000000000000000000000000000000000000000')).to.be.revertedWith("Oracle: Not a system contract");
+    // not MultiCurrency token
+    await expect(prices.getPrice('0x0000000000000000000000000000000000000806')).to.be.reverted;
+  })
 });

@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.6.0;
 
-import "./Oracle.sol";
+import "./IOracle.sol";
 
 contract Prices {
-    Oracle oracle = Oracle(0x0000000000000000000000000000000000000807);
+    IOracle oracle = IOracle(0x0000000000000000000000000000000000000807);
 
-    function getPrice(uint256 currencyId) public view returns (uint256) {
-        (uint256 price, uint256 timestamp) = oracle.getPrice(currencyId);
+    function getPrice(address token) public view returns (uint256) {
+        (uint256 price, uint256 timestamp) = oracle.getPrice(token);
         return price;
     }
 }
