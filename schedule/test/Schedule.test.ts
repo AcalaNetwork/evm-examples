@@ -58,6 +58,16 @@ const getWallets = async () => {
   return wallets as any[];
 };
 
+const next_block = async (block_number: number) => {
+  return new Promise((resolve) => {
+    provider.api.tx.system.remark(block_number.toString(16)).signAndSend(testPairs.alice, (result) => {
+      if (result.status.isInBlock) {
+        resolve();
+      }
+    });
+  });
+}
+
 const SCHEDULE_CALL_ADDRESS = '0x0000000000000000000000000000000000000808';
 const SCHEDULE_CALL_ABI = [
   "function scheduleCall(address contract_address, uint256 value, uint256 gas_limit, uint256 storage_limit, uint256 min_delay, bytes calldata input_data) public returns (uint256, uint256)",
@@ -95,8 +105,8 @@ describe("Schedule", () => {
     const target_block_number = Number(await provider.api.query.system.number()) + 4;
     console.log("target_block_number", target_block_number);
 
-    const erc20 = new ethers.Contract(ACA_ERC20_ADDRESS, ERC20_ABI);
-    const tx = await erc20.populateTransaction.transfer(walletTo.address, 10000);
+    const erc20 = new ethers.Contract(ACA_ERC20_ADDRESS, ERC20_ABI, walletTo as any);
+    const tx = await erc20.populateTransaction.transfer(walletTo.address, 1_000_000);
     console.log(tx, ethers.utils.hexlify(tx.data));
 
     await schedule.scheduleCall(ACA_ERC20_ADDRESS, 0, 300000, 10000, 1, ethers.utils.hexlify(tx.data));
@@ -105,9 +115,13 @@ describe("Schedule", () => {
     //  .withArgs(wallet.address, ACA_ERC20_ADDRESS, target_block_number, 0);
 
     let current_block_number = Number(await provider.api.query.system.number());
+    let balance = await erc20.balanceOf(walletTo.address);
     while (current_block_number < target_block_number) {
-      await provider.api.tx.system.remark(current_block_number.toString(16)).signAndSend(testPairs.alice);
+      await next_block(current_block_number);
       current_block_number = Number(await provider.api.query.system.number());
     }
+
+    let new_balance = await erc20.balanceOf(walletTo.address);
+    expect(new_balance.eq(balance.add(1_000_000))).to.be.ok;
   });
 });
