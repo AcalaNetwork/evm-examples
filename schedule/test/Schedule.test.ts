@@ -60,7 +60,7 @@ const SCHEDULE_CALL_ABI = [
   "function scheduleCall(address contract_address, uint256 value, uint256 gas_limit, uint256 storage_limit, uint256 min_delay, bytes calldata input_data) public returns (uint256, uint256)",
 ]
 
-const ACA_ERC20_ADDRESS = '0x0000000000000000000000000000000000000800';
+const DOT_ERC20_ADDRESS = '0x0000000000000000000000000000000000000802';
 const ERC20_ABI = [
   // Read-Only Functions
   "function balanceOf(address owner) view returns (uint256)",
@@ -91,14 +91,11 @@ describe("Schedule", () => {
   it("ScheduleCall works", async () => {
     const target_block_number = Number(await provider.api.query.system.number()) + 4;
 
-    const erc20 = new ethers.Contract(ACA_ERC20_ADDRESS, ERC20_ABI, walletTo as any);
+    const erc20 = new ethers.Contract(DOT_ERC20_ADDRESS, ERC20_ABI, walletTo as any);
     const tx = await erc20.populateTransaction.transfer(walletTo.getAddress(), 1_000_000);
     console.log(tx, ethers.utils.hexlify(tx.data as string));
 
-    await schedule.scheduleCall(ACA_ERC20_ADDRESS, 0, 300000, 10000, 1, ethers.utils.hexlify(tx.data as string));
-    //await expect(schedule.scheduleCall(ACA_ERC20_ADDRESS, 0, 300000, 10000, 1, ethers.utils.hexlify(tx.data)))
-    //  .to.emit(schedule, "LocalScheduledCall")
-    //  .withArgs(wallet.address, ACA_ERC20_ADDRESS, target_block_number, 0);
+    await schedule.scheduleCall(DOT_ERC20_ADDRESS, 0, 300000, 10000, 1, ethers.utils.hexlify(tx.data as string));
 
     let current_block_number = Number(await provider.api.query.system.number());
     let balance = await erc20.balanceOf(await walletTo.getAddress());
@@ -112,41 +109,37 @@ describe("Schedule", () => {
   });
 
   it("works with RecurringPayment", async () => {
+    const transferTo = await ethers.Wallet.createRandom().getAddress();
     const inital_block_number = Number(await provider.api.query.system.number());
 
-    const initalWalletBal = await provider.getBalance(wallet.address);
-    const initalWalletToBal = await provider.getBalance(walletTo.address);
+    const recurringPayment = await deployContract(wallet as any, RecurringPayment, [3, 4, 1000, transferTo], { value: 5000, gasLimit: 2_000_000 });
 
-    const recurringPayment = await deployContract(wallet as any, RecurringPayment, [3, 4, 1000, walletTo.address], { value: 4000 });
-
-    expect(await provider.getBalance(recurringPayment.address)).to.equal(4000);
+    expect((await provider.getBalance(transferTo)).toNumber()).to.equal(0);
 
     let current_block_number = Number(await provider.api.query.system.number());
 
-    while (current_block_number < (inital_block_number + 3)) {
+    while (current_block_number < (inital_block_number + 5)) {
       await next_block(current_block_number);
       current_block_number = Number(await provider.api.query.system.number());
     }
 
-    expect(await provider.getBalance(recurringPayment.address)).to.equal(3000);
-    expect(await provider.getBalance(walletTo.address)).to.equal(initalWalletToBal.add(1000));
+    expect((await provider.getBalance(transferTo)).toNumber()).to.equal(1000);
 
     current_block_number = Number(await provider.api.query.system.number());
-    while (current_block_number < (inital_block_number + 9)) {
+    while (current_block_number < (inital_block_number + 14)) {
       await next_block(current_block_number);
       current_block_number = Number(await provider.api.query.system.number());
     }
 
-    expect(await provider.getBalance(recurringPayment.address)).to.equal(1000);
-    expect(await provider.getBalance(walletTo.address)).to.equal(initalWalletToBal.add(3000));
+    expect((await provider.getBalance(transferTo)).toNumber()).to.equal(3000);
 
     current_block_number = Number(await provider.api.query.system.number());
-    while (current_block_number < (inital_block_number + 12)) {
+    while (current_block_number < (inital_block_number + 17)) {
       await next_block(current_block_number);
       current_block_number = Number(await provider.api.query.system.number());
     }
 
-    expect(await provider.getBalance(recurringPayment.address)).to.equal(0);
-    expect(await provider.getBalance(walletTo.address)).to.equal(initalWalletToBal.add(4000));
+    expect((await provider.getBalance(recurringPayment.address)).toNumber()).to.equal(0);
+    expect((await provider.getBalance(transferTo)).toNumber()).to.equal(5000);
   });
 });
