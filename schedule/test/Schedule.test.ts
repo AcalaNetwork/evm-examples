@@ -101,13 +101,13 @@ describe("Schedule", () => {
     //  .withArgs(wallet.address, ACA_ERC20_ADDRESS, target_block_number, 0);
 
     let current_block_number = Number(await provider.api.query.system.number());
-    let balance = await erc20.balanceOf(walletTo.getAddress());
+    let balance = await erc20.balanceOf(await walletTo.getAddress());
     while (current_block_number < target_block_number) {
       await next_block(current_block_number);
       current_block_number = Number(await provider.api.query.system.number());
     }
 
-    let new_balance = await erc20.balanceOf(walletTo.getAddress());
+    let new_balance = await erc20.balanceOf(await walletTo.getAddress());
     expect(new_balance.eq(balance.add(1_000_000))).to.be.ok;
   });
 });
