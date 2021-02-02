@@ -4,7 +4,6 @@ import { deployContract, solidity } from "ethereum-waffle";
 import { evmChai } from "@acala-network/bodhi/evmChai";
 import BasicToken from "../build/BasicToken.json";
 import { Wallet, Provider } from "@acala-network/bodhi";
-import { options } from "@acala-network/api";
 import { WsProvider } from "@polkadot/api";
 import { WalletSigningKey } from "@acala-network/bodhi";
 import { createTestPairs } from "@polkadot/keyring/testingPairs";

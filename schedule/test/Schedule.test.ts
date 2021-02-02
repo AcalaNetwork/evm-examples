@@ -1,12 +1,14 @@
 import { expect, use } from "chai";
 import { ethers, Contract } from "ethers";
+import { deployContract, solidity } from "ethereum-waffle";
 import { evmChai } from "@acala-network/bodhi/evmChai";
 import { Wallet, Provider } from "@acala-network/bodhi";
-import { options } from "@acala-network/api";
 import { WsProvider } from "@polkadot/api";
 import { WalletSigningKey } from "@acala-network/bodhi";
 import { createTestPairs } from "@polkadot/keyring/testingPairs";
+import RecurringPayment from "../build/RecurringPayment.json";
 
+use(solidity);
 use(evmChai);
 
 const PRIVATES = [
@@ -23,7 +25,7 @@ const PRIVATES = [
 ];
 
 const provider = new Provider({
-  provider: new WsProvider("ws://127.0.0.1:9494"),
+  provider: new WsProvider("ws://127.0.0.1:9944"),
 });
 
 const testPairs = createTestPairs();
@@ -103,7 +105,6 @@ describe("Schedule", () => {
 
   it("ScheduleCall works", async () => {
     const target_block_number = Number(await provider.api.query.system.number()) + 4;
-    console.log("target_block_number", target_block_number);
 
     const erc20 = new ethers.Contract(ACA_ERC20_ADDRESS, ERC20_ABI, walletTo as any);
     const tx = await erc20.populateTransaction.transfer(walletTo.address, 1_000_000);
@@ -123,5 +124,44 @@ describe("Schedule", () => {
 
     let new_balance = await erc20.balanceOf(walletTo.address);
     expect(new_balance.eq(balance.add(1_000_000))).to.be.ok;
+  });
+
+  it("works with RecurringPayment", async () => {
+    const inital_block_number = Number(await provider.api.query.system.number());
+
+    const initalWalletBal = await provider.getBalance(wallet.address);
+    const initalWalletToBal = await provider.getBalance(walletTo.address);
+
+    const recurringPayment = await deployContract(wallet as any, RecurringPayment, [3, 4, 1000, walletTo.address], { value: 4000 });
+
+    expect(await provider.getBalance(recurringPayment.address)).to.equal(4000);
+
+    let current_block_number = Number(await provider.api.query.system.number());
+
+    while (current_block_number < (inital_block_number + 3)) {
+      await next_block(current_block_number);
+      current_block_number = Number(await provider.api.query.system.number());
+    }
+
+    expect(await provider.getBalance(recurringPayment.address)).to.equal(3000);
+    expect(await provider.getBalance(walletTo.address)).to.equal(initalWalletToBal.add(1000));
+
+    current_block_number = Number(await provider.api.query.system.number());
+    while (current_block_number < (inital_block_number + 9)) {
+      await next_block(current_block_number);
+      current_block_number = Number(await provider.api.query.system.number());
+    }
+
+    expect(await provider.getBalance(recurringPayment.address)).to.equal(1000);
+    expect(await provider.getBalance(walletTo.address)).to.equal(initalWalletToBal.add(3000));
+
+    current_block_number = Number(await provider.api.query.system.number());
+    while (current_block_number < (inital_block_number + 12)) {
+      await next_block(current_block_number);
+      current_block_number = Number(await provider.api.query.system.number());
+    }
+
+    expect(await provider.getBalance(recurringPayment.address)).to.equal(0);
+    expect(await provider.getBalance(walletTo.address)).to.equal(initalWalletToBal.add(4000));
   });
 });
