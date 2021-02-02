@@ -108,7 +108,7 @@ describe("Schedule", () => {
     }
 
     let new_balance = await erc20.balanceOf(await walletTo.getAddress());
-    expect(new_balance.eq(balance.add(1_000_000))).to.be.ok;
+    expect(new_balance.toString()).to.equal(balance.add(1_000_000).toString());
   });
 
   it("works with RecurringPayment", async () => {
