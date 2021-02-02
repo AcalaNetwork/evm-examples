@@ -29,7 +29,7 @@ contract RecurringPayment {
             to.transfer(amount);
             
             remainingCount--;
-            scheduler.scheduleCall(address(this), 0, 50000, 100, _period, abi.encodeWithSignature("pay()"));
+            scheduler.scheduleCall(address(this), 0, 50000, 100, period, abi.encodeWithSignature("pay()"));
         }
     }
 }
