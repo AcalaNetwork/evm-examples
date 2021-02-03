@@ -1,5 +1,12 @@
 # Acala EVM Examples
 
+ETHDenver Workshop Link: https://www.crowdcast.io/e/acala-ethdenver-2021
+
+This workshop is for learning to use Acala EVM. It demonstrates how to deploy a simple ERC20 contract, a complex project like Uniswap, and use the on-chain scheduler function to build a recurring payment DApp.
+
+Read more about Acala EVM [here](https://wiki.acala.network/learn/basics/acala-evm)
+Developer Guide [here](https://wiki.acala.network/build/development-guide/smart-contracts/get-started-evm)
+
 ## Start a development chain
 
 ### Use Docker
