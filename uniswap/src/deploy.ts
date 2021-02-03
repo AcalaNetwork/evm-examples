@@ -1,4 +1,4 @@
-import { Contract, ContractFactory, BigNumber, providers } from "ethers";
+import { Contract, ContractFactory, BigNumber } from "ethers";
 import UniswapFactory from "../artifacts/UniswapV2Factory.json";
 import UniswapRouter from "../artifacts/UniswapV2Router02.json";
 import IERC20 from "../artifacts/IERC20.json";
