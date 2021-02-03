@@ -24,9 +24,9 @@
     "@polkadot/api" "^3.6.4"
     "@polkadot/rpc-core" "^3.6.4"
 
-"@acala-network/bodhi@0.2.2-15":
-  version "0.2.2-15"
-  resolved "https://registry.yarnpkg.com/@acala-network/bodhi/-/bodhi-0.2.2-15.tgz#1a73e1a55b2e6611643e4e34464e1647e8300aa8"
+"@acala-network/bodhi@0.2.2-16":
+  version "0.2.2-16"
+  resolved "https://registry.yarnpkg.com/@acala-network/bodhi/-/bodhi-0.2.2-16.tgz#1a73e1a55b2e6611643e4e34464e1647e8300aa8"
   integrity sha512-q6MU0HMjXRrhjM2WTZbYpG1lS5TYQWpuw2EdQgaC1t/55pq6L1i4veIn9E2A/KJvVAcGD4CbS0wsdSlVBCxTBA==
   dependencies:
     "@acala-network/api" "^0.6.2-11"
