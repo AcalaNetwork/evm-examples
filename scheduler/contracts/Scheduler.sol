@@ -12,5 +12,8 @@ abstract contract Scheduler {
     )
     virtual
     public
-    returns (uint256, uint256); // Returns a task id that can be used to cancel or reschedule call.
+    returns (bool); // Returns a boolean value indicating whether the operation succeeded.
+
+    function cancelCall(bytes memory task_id) virtual public returns (bool);
+    function rescheduleCall(uint256 min_delay, bytes memory task_id) virtual public returns (bool);
 }
