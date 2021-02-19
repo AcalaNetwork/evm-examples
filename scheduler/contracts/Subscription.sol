@@ -39,13 +39,13 @@ contract Subscription {
     balanceOf[msg.sender] += msg.value;
   }
 
-  function wthdrawFunds() public {
-    require(balanceOf[msg.sender] > 0, "No funds to withdraw");
-    msg.sender.transfer(balanceOf[msg.sender]);
-  }
-
   function unsubscribe() public {
     monthsSubscribed[msg.sender] = 0;
+
+    if (balanceOf[msg.sender] > 0) {
+      msg.sender.transfer(balanceOf[msg.sender]);
+      balanceOf[msg.sender] = 0;
+    }
   }
 
   function pay(address _subscriber) public {
