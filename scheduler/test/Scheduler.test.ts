@@ -6,6 +6,7 @@ import { TestAccountSigningKey, Provider, Signer } from "@acala-network/bodhi";
 import { WsProvider } from "@polkadot/api";
 import { createTestPairs } from "@polkadot/keyring/testingPairs";
 import RecurringPayment from "../build/RecurringPayment.json";
+import Subscription from "../build/Subscription.json";
 
 use(evmChai);
 
@@ -83,10 +84,11 @@ const ERC20_ABI = [
 describe("Schedule", () => {
   let wallet: Signer;
   let walletTo: Signer;
+  let subscriber: Signer
   let schedule: Contract;
 
   before(async () => {
-    [wallet, walletTo] = await getWallets();
+    [wallet, walletTo, subscriber] = await getWallets();
     schedule = await new ethers.Contract(SCHEDULE_CALL_ADDRESS, SCHEDULE_CALL_ABI, wallet as any);
   });
 
@@ -200,5 +202,52 @@ describe("Schedule", () => {
 
     expect((await provider.getBalance(recurringPayment.address)).toNumber()).to.equal(0);
     expect((await provider.getBalance(transferTo)).toNumber()).to.equal(5000);
+  });
+
+  it("works with Subscription", async () => {
+    const period = 10;
+    const subPrice = 1000;
+
+    const subscription = await deployContract(wallet as any, Subscription, [subPrice, period], { value: 5000, gasLimit: 2_000_000 });
+
+    expect((await subscription.balanceOf(subscriber.getAddress())).toNumber()).to.equal(0);
+    expect((await subscription.subTokensOf(subscriber.getAddress())).toNumber()).to.equal(0);
+    expect((await subscription.monthsSubscribed(subscriber.getAddress())).toNumber()).to.equal(0);
+    
+    const subscriberContract = subscription.connect(subscriber as any);
+    await subscriberContract.subscribe({ value: 10_000, gasLimit: 2_000_000 });
+
+    expect((await subscription.balanceOf(subscriber.getAddress())).toNumber()).to.equal(10_000 - subPrice);
+    expect((await subscription.subTokensOf(subscriber.getAddress())).toNumber()).to.equal(1);
+    expect((await subscription.monthsSubscribed(subscriber.getAddress())).toNumber()).to.equal(1);
+
+    let current_block_number = Number(await provider.api.query.system.number());
+    for (let i = 0; i < period; i++) {
+      await next_block(current_block_number);
+      current_block_number = Number(await provider.api.query.system.number());
+    }
+
+    expect((await subscription.balanceOf(subscriber.getAddress())).toNumber()).to.equal(10_000 - (subPrice * 2));
+    expect((await subscription.subTokensOf(subscriber.getAddress())).toNumber()).to.equal(3);
+    expect((await subscription.monthsSubscribed(subscriber.getAddress())).toNumber()).to.equal(2);
+
+    current_block_number = Number(await provider.api.query.system.number());
+    for (let i = 0; i < period + 1; i++) {
+      await next_block(current_block_number);
+      current_block_number = Number(await provider.api.query.system.number());
+    }
+
+    expect((await subscription.balanceOf(subscriber.getAddress())).toNumber()).to.equal(10_000 - (subPrice * 3));
+    expect((await subscription.subTokensOf(subscriber.getAddress())).toNumber()).to.equal(6);
+    expect((await subscription.monthsSubscribed(subscriber.getAddress())).toNumber()).to.equal(3);
+
+    await subscriberContract.unsubscribe({ gasLimit: 2_000_000 });
+
+    current_block_number = Number(await provider.api.query.system.number());
+    await next_block(current_block_number);
+
+    expect((await subscription.balanceOf(subscriber.getAddress())).toNumber()).to.equal(0);
+    expect((await subscription.subTokensOf(subscriber.getAddress())).toNumber()).to.equal(6);
+    expect((await subscription.monthsSubscribed(subscriber.getAddress())).toNumber()).to.equal(0);
   });
 });
