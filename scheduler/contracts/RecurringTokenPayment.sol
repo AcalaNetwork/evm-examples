@@ -9,7 +9,7 @@ contract RecurringTokenPayment {
     using SafeERC20 for IERC20;
     using SafeMath for uint;
 
-    Scheduler constant scheduler = Scheduler(0x0000000000000000000000000000000000000902);
+    Scheduler constant scheduler = Scheduler(0x0000000000000000000000000000000000000802);
 
     function schedule(IERC20 _token, uint _period, uint _count, uint _amount, address _to) payable public {
         require(_count > 0, "invalid _count");

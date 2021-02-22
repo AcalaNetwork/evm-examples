@@ -55,7 +55,7 @@ const next_block = async (block_number: number) => {
   });
 }
 
-const SCHEDULE_CALL_ADDRESS = '0x0000000000000000000000000000000000000902';
+const SCHEDULE_CALL_ADDRESS = '0x0000000000000000000000000000000000000802';
 const SCHEDULE_CALL_ABI = [
   "function scheduleCall(address contract_address, uint256 value, uint256 gas_limit, uint256 storage_limit, uint256 min_delay, bytes memory input_data) public returns (bool)",
   "function cancelCall(bytes memory task_id) public returns (bool)",
@@ -66,7 +66,7 @@ const SCHEDULE_CALL_ABI = [
    "event RescheduledCall(address indexed sender, bytes task_id)",
 ]
 
-const DOT_ERC20_ADDRESS = '0x0000000000000000000000000000000000000802';
+const DOT_ERC20_ADDRESS = '0x0000000000000000000000000000000001000002';
 const ERC20_ABI = [
   // Read-Only Functions
   "function balanceOf(address owner) view returns (uint256)",
