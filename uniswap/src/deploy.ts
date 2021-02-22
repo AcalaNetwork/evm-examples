@@ -4,8 +4,8 @@ import UniswapRouter from "../artifacts/UniswapV2Router02.json";
 import IERC20 from "../artifacts/IERC20.json";
 import setup from "./setup"
 
-const ACA = "0x0000000000000000000000000000000000000800";
-const DOT = "0x0000000000000000000000000000000000000802";
+const ACA = "0x0000000000000000000000000000000001000000";
+const DOT = "0x0000000000000000000000000000000001000002";
 
 const dollar = BigNumber.from('1000000000000000000');
 
