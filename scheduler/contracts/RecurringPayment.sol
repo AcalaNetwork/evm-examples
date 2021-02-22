@@ -7,7 +7,7 @@ contract RecurringPayment {
     uint remainingCount;
     uint amount;
     address payable to;
-    Scheduler constant scheduler = Scheduler(0x0000000000000000000000000000000000000808);
+    Scheduler constant scheduler = Scheduler(0x0000000000000000000000000000000000000902);
 
     constructor(uint _period, uint _count, uint _amount, address payable _to) public payable {
         require(msg.value >= _count * _amount);

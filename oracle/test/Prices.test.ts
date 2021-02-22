@@ -11,7 +11,7 @@ use(solidity);
 use(evmChai);
 
 const provider = new Provider({
-  provider: new WsProvider("ws://127.0.0.1:9944"),
+  provider: new WsProvider("ws://127.0.0.1:9494"),
 });
 
 const testPairs = createTestPairs();
