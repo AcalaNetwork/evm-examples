@@ -12,7 +12,7 @@ contract Subscription {
   mapping (address => uint) public subTokensOf;
   mapping (address => uint) public monthsSubscribed;
 
-  Scheduler constant scheduler = Scheduler(0x0000000000000000000000000000000000000808);
+  Scheduler constant scheduler = Scheduler(0x0000000000000000000000000000000000000802);
 
   constructor(uint _subscriptionPrice, uint _subscriptionPeriod) public payable {
     owner = msg.sender;
