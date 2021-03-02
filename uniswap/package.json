@@ -18,6 +18,7 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
-    "@acala-network/bodhi": "0.2.2-17"
+    "@acala-network/bodhi": "0.2.2-17",
+    "@acala-network/contracts": "^1.0.2"
   }
 }

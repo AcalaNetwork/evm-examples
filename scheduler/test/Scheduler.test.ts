@@ -7,6 +7,7 @@ import { WsProvider } from "@polkadot/api";
 import { createTestPairs } from "@polkadot/keyring/testingPairs";
 import RecurringPayment from "../build/RecurringPayment.json";
 import Subscription from "../build/Subscription.json";
+import ADDRESS from "@acala-network/contracts/utils/Address";
 
 use(evmChai);
 
@@ -56,7 +57,6 @@ const next_block = async (block_number: number) => {
   });
 }
 
-const SCHEDULE_CALL_ADDRESS = '0x0000000000000000000000000000000000000802';
 const SCHEDULE_CALL_ABI = [
   "function scheduleCall(address contract_address, uint256 value, uint256 gas_limit, uint256 storage_limit, uint256 min_delay, bytes memory input_data) public returns (bool)",
   "function cancelCall(bytes memory task_id) public returns (bool)",
@@ -67,7 +67,6 @@ const SCHEDULE_CALL_ABI = [
    "event RescheduledCall(address indexed sender, bytes task_id)",
 ]
 
-const DOT_ERC20_ADDRESS = '0x0000000000000000000000000000000001000002';
 const ERC20_ABI = [
   // Read-Only Functions
   "function balanceOf(address owner) view returns (uint256)",
@@ -89,7 +88,7 @@ describe("Schedule", () => {
 
   before(async () => {
     [wallet, walletTo, subscriber] = await getWallets();
-    schedule = await new ethers.Contract(SCHEDULE_CALL_ADDRESS, SCHEDULE_CALL_ABI, wallet as any);
+    schedule = await new ethers.Contract(ADDRESS.Schedule, SCHEDULE_CALL_ABI, wallet as any);
   });
 
   after(async () => {
@@ -99,11 +98,11 @@ describe("Schedule", () => {
   it("ScheduleCall works", async () => {
     const target_block_number = Number(await provider.api.query.system.number()) + 4;
 
-    const erc20 = new ethers.Contract(DOT_ERC20_ADDRESS, ERC20_ABI, walletTo as any);
+    const erc20 = new ethers.Contract(ADDRESS.DOT, ERC20_ABI, walletTo as any);
     const tx = await erc20.populateTransaction.transfer(walletTo.getAddress(), 1_000_000);
     console.log(tx, ethers.utils.hexlify(tx.data as string));
 
-    await schedule.scheduleCall(DOT_ERC20_ADDRESS, 0, 300000, 10000, 1, ethers.utils.hexlify(tx.data as string));
+    await schedule.scheduleCall(ADDRESS.DOT, 0, 300000, 10000, 1, ethers.utils.hexlify(tx.data as string));
 
     let current_block_number = Number(await provider.api.query.system.number());
     let balance = await erc20.balanceOf(await walletTo.getAddress());
@@ -117,19 +116,19 @@ describe("Schedule", () => {
   });
 
   it("CancelCall works", async () => {
-    const erc20 = new ethers.Contract(DOT_ERC20_ADDRESS, ERC20_ABI, walletTo as any);
+    const erc20 = new ethers.Contract(ADDRESS.DOT, ERC20_ABI, walletTo as any);
     const tx = await erc20.populateTransaction.transfer(walletTo.getAddress(), 1_000_000);
     console.log(tx, ethers.utils.hexlify(tx.data as string));
 
     let iface = new ethers.utils.Interface(SCHEDULE_CALL_ABI);
 
     let current_block_number = Number(await provider.api.query.system.number());
-    await schedule.scheduleCall(DOT_ERC20_ADDRESS, 0, 300000, 10000, 2, ethers.utils.hexlify(tx.data as string));
+    await schedule.scheduleCall(ADDRESS.DOT, 0, 300000, 10000, 2, ethers.utils.hexlify(tx.data as string));
 
     let block_hash = await provider.api.query.system.blockHash(current_block_number);
     const data = await provider.api.derive.tx.events(block_hash);
-    //let event = data.events.filter(item => item.event.data.some(data => data.address == SCHEDULE_CALL_ADDRESS));
-    let event = data.events.filter(item => item.event.data.some(data => data.address == SCHEDULE_CALL_ADDRESS && data.topics[0]=='0xf50ab0aa329811f23150e5490fc00ea0baf136a55280b7e88703b4753d4097ce'));
+    //let event = data.events.filter(item => item.event.data.some(data => data.address == ADDRESS.Schedule));
+    let event = data.events.filter(item => item.event.data.some(data => data.address == ADDRESS.Schedule && data.topics[0]=='0xf50ab0aa329811f23150e5490fc00ea0baf136a55280b7e88703b4753d4097ce'));
     console.log("event:", event.toString());
     if (event.length > 0) {
       let log = {
@@ -144,18 +143,18 @@ describe("Schedule", () => {
   });
 
   it("RescheduleCall works", async () => {
-    const erc20 = new ethers.Contract(DOT_ERC20_ADDRESS, ERC20_ABI, walletTo as any);
+    const erc20 = new ethers.Contract(ADDRESS.DOT, ERC20_ABI, walletTo as any);
     const tx = await erc20.populateTransaction.transfer(walletTo.getAddress(), 1_000_000);
     console.log(tx, ethers.utils.hexlify(tx.data as string));
 
     let iface = new ethers.utils.Interface(SCHEDULE_CALL_ABI);
 
     let current_block_number = Number(await provider.api.query.system.number());
-    await schedule.scheduleCall(DOT_ERC20_ADDRESS, 0, 300000, 10000, 4, ethers.utils.hexlify(tx.data as string));
+    await schedule.scheduleCall(ADDRESS.DOT, 0, 300000, 10000, 4, ethers.utils.hexlify(tx.data as string));
 
     let block_hash = await provider.api.query.system.blockHash(current_block_number);
     const data = await provider.api.derive.tx.events(block_hash);
-    let event = data.events.filter(item => item.event.data.some(data => data.address == SCHEDULE_CALL_ADDRESS && data.topics[0]=='0xf50ab0aa329811f23150e5490fc00ea0baf136a55280b7e88703b4753d4097ce'));
+    let event = data.events.filter(item => item.event.data.some(data => data.address == ADDRESS.Schedule && data.topics[0]=='0xf50ab0aa329811f23150e5490fc00ea0baf136a55280b7e88703b4753d4097ce'));
     console.log("event:", event.toString());
     if (event.length > 0) {
       let log = {

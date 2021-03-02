@@ -3,13 +3,14 @@ pragma solidity ^0.6.0;
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
 import "@openzeppelin/contracts/math/SafeMath.sol";
-import "./Scheduler.sol";
+import "@acala-network/contracts/schedule/ISchedule.sol";
+import "@acala-network/contracts/utils/Address.sol";
 
-contract RecurringTokenPayment {
+contract RecurringTokenPayment is ADDRESS {
     using SafeERC20 for IERC20;
     using SafeMath for uint;
 
-    Scheduler constant scheduler = Scheduler(0x0000000000000000000000000000000000000802);
+    ISchedule scheduler = ISchedule(ADDRESS.Schedule);
 
     function schedule(IERC20 _token, uint _period, uint _count, uint _amount, address _to) payable public {
         require(_count > 0, "invalid _count");

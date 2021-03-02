@@ -1,8 +1,9 @@
 pragma solidity ^0.6.0;
 
-import "./Scheduler.sol";
+import "@acala-network/contracts/schedule/ISchedule.sol";
+import "@acala-network/contracts/utils/Address.sol";
 
-contract Subscription {
+contract Subscription is ADDRESS {
   address payable public owner;
 
   uint public subscriptionPrice;
@@ -12,7 +13,7 @@ contract Subscription {
   mapping (address => uint) public subTokensOf;
   mapping (address => uint) public monthsSubscribed;
 
-  Scheduler constant scheduler = Scheduler(0x0000000000000000000000000000000000000802);
+  ISchedule scheduler = ISchedule(ADDRESS.Schedule);
 
   constructor(uint _subscriptionPrice, uint _subscriptionPeriod) public payable {
     owner = msg.sender;
