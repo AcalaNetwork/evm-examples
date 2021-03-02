@@ -57,28 +57,8 @@ const next_block = async (block_number: number) => {
   });
 }
 
-const SCHEDULE_CALL_ABI = [
-  "function scheduleCall(address contract_address, uint256 value, uint256 gas_limit, uint256 storage_limit, uint256 min_delay, bytes memory input_data) public returns (bool)",
-  "function cancelCall(bytes memory task_id) public returns (bool)",
-  "function rescheduleCall(uint256 min_delay, bytes memory task_id) public returns (bool)",
-
-   "event ScheduledCall(address indexed sender, address indexed contract_address, bytes task_id)",
-   "event CanceledCall(address indexed sender, bytes task_id)",
-   "event RescheduledCall(address indexed sender, bytes task_id)",
-]
-
-const ERC20_ABI = [
-  // Read-Only Functions
-  "function balanceOf(address owner) view returns (uint256)",
-  "function decimals() view returns (uint8)",
-  "function symbol() view returns (string)",
-
-  // Authenticated Functions
-  "function transfer(address to, uint256 amount) public returns (bool)",
-
-  // Events
-  "event Transfer(address indexed from, address indexed to, uint256 amount)",
-];
+const SCHEDULE_CALL_ABI = require("@acala-network/contracts/build/contracts/Schedule.json").abi;
+const ERC20_ABI = require("@acala-network/contracts/build/contracts/ERC20.json").abi;
 
 describe("Schedule", () => {
   let wallet: Signer;
