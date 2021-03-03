@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.5.0;
+pragma solidity ^0.6.0;
 
 import "@acala-network/contracts/oracle/IOracle.sol";
 import "@acala-network/contracts/utils/Address.sol";
