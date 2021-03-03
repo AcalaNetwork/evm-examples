@@ -1,13 +1,14 @@
 pragma solidity ^0.6.0;
 
-import "./Scheduler.sol";
+import "@acala-network/contracts/schedule/ISchedule.sol";
+import "@acala-network/contracts/utils/Address.sol";
 
-contract RecurringPayment {
+contract RecurringPayment is ADDRESS {
     uint period;
     uint remainingCount;
     uint amount;
     address payable to;
-    Scheduler constant scheduler = Scheduler(0x0000000000000000000000000000000000000802);
+    ISchedule scheduler = ISchedule(ADDRESS.Schedule);
 
     constructor(uint _period, uint _count, uint _amount, address payable _to) public payable {
         require(msg.value >= _count * _amount);
