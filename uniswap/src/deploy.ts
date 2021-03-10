@@ -5,7 +5,7 @@ import IERC20 from "../artifacts/IERC20.json";
 import setup from "./setup";
 import ADDRESS from "@acala-network/contracts/utils/Address";
 
-const dollar = BigNumber.from('1000000000000000000');
+const dollar = BigNumber.from('10000000000000');
 
 const main = async () => {
     const { wallet, provider } = await setup();
