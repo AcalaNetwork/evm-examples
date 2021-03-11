@@ -108,7 +108,7 @@ describe("Schedule", () => {
     let block_hash = await provider.api.query.system.blockHash(current_block_number);
     const data = await provider.api.derive.tx.events(block_hash);
     //let event = data.events.filter(item => item.event.data.some(data => data.address == ADDRESS.Schedule));
-    let event = data.events.filter(item => item.event.data.some(data => data.address == ADDRESS.Schedule && data.topics[0]=='0xf50ab0aa329811f23150e5490fc00ea0baf136a55280b7e88703b4753d4097ce'));
+    let event = data.events.filter(item => item.event.data.some(data => data.address == ADDRESS.Schedule && data.topics[0] == iface.getEventTopic(iface.getEvent("ScheduledCall"))));
     console.log("event:", event.toString());
     if (event.length > 0) {
       let log = {
@@ -134,7 +134,7 @@ describe("Schedule", () => {
 
     let block_hash = await provider.api.query.system.blockHash(current_block_number);
     const data = await provider.api.derive.tx.events(block_hash);
-    let event = data.events.filter(item => item.event.data.some(data => data.address == ADDRESS.Schedule && data.topics[0]=='0xf50ab0aa329811f23150e5490fc00ea0baf136a55280b7e88703b4753d4097ce'));
+    let event = data.events.filter(item => item.event.data.some(data => data.address == ADDRESS.Schedule && data.topics[0]== iface.getEventTopic(iface.getEvent("ScheduledCall"))));
     console.log("event:", event.toString());
     if (event.length > 0) {
       let log = {
