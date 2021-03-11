@@ -108,7 +108,7 @@ describe("Schedule", () => {
     let block_hash = await provider.api.query.system.blockHash(current_block_number);
     const data = await provider.api.derive.tx.events(block_hash);
     //let event = data.events.filter(item => item.event.data.some(data => data.address == ADDRESS.Schedule));
-    let event = data.events.filter(item => item.event.data.some(data => data.address == ADDRESS.Schedule && data.topics[0]=='0xf50ab0aa329811f23150e5490fc00ea0baf136a55280b7e88703b4753d4097ce'));
+    let event = data.events.filter(item => item.event.data.some(data => data.address == ADDRESS.Schedule && data.topics[0] == iface.getEventTopic(iface.getEvent("ScheduledCall"))));
     console.log("event:", event.toString());
     if (event.length > 0) {
       let log = {
@@ -134,7 +134,7 @@ describe("Schedule", () => {
 
     let block_hash = await provider.api.query.system.blockHash(current_block_number);
     const data = await provider.api.derive.tx.events(block_hash);
-    let event = data.events.filter(item => item.event.data.some(data => data.address == ADDRESS.Schedule && data.topics[0]=='0xf50ab0aa329811f23150e5490fc00ea0baf136a55280b7e88703b4753d4097ce'));
+    let event = data.events.filter(item => item.event.data.some(data => data.address == ADDRESS.Schedule && data.topics[0]== iface.getEventTopic(iface.getEvent("ScheduledCall"))));
     console.log("event:", event.toString());
     if (event.length > 0) {
       let log = {
@@ -149,12 +149,14 @@ describe("Schedule", () => {
   });
 
   it("works with RecurringPayment", async () => {
+    const erc20 = new ethers.Contract(ADDRESS.ACA, ERC20_ABI, walletTo as any);
     const transferTo = await ethers.Wallet.createRandom().getAddress();
     const inital_block_number = Number(await provider.api.query.system.number());
 
     const recurringPayment = await deployContract(wallet as any, RecurringPayment, [3, 4, 1000, transferTo], { value: 5000, gasLimit: 2_000_000 });
 
-    expect((await provider.getBalance(transferTo)).toNumber()).to.equal(0);
+    //expect((await provider.getBalance(transferTo)).toNumber()).to.equal(0);
+    expect((await erc20.balanceOf(transferTo)).toNumber()).to.equal(0);
 
     let current_block_number = Number(await provider.api.query.system.number());
 
@@ -163,7 +165,8 @@ describe("Schedule", () => {
       current_block_number = Number(await provider.api.query.system.number());
     }
 
-    expect((await provider.getBalance(transferTo)).toNumber()).to.equal(1000);
+    //expect((await provider.getBalance(transferTo)).toNumber()).to.equal(1000);
+    expect((await erc20.balanceOf(transferTo)).toNumber()).to.equal(1000);
 
     current_block_number = Number(await provider.api.query.system.number());
     while (current_block_number < (inital_block_number + 14)) {
@@ -171,7 +174,8 @@ describe("Schedule", () => {
       current_block_number = Number(await provider.api.query.system.number());
     }
 
-    expect((await provider.getBalance(transferTo)).toNumber()).to.equal(3000);
+    //expect((await provider.getBalance(transferTo)).toNumber()).to.equal(3000);
+    expect((await erc20.balanceOf(transferTo)).toNumber()).to.equal(3000);
 
     current_block_number = Number(await provider.api.query.system.number());
     while (current_block_number < (inital_block_number + 17)) {
@@ -179,8 +183,10 @@ describe("Schedule", () => {
       current_block_number = Number(await provider.api.query.system.number());
     }
 
-    expect((await provider.getBalance(recurringPayment.address)).toNumber()).to.equal(0);
-    expect((await provider.getBalance(transferTo)).toNumber()).to.equal(5000);
+    //expect((await provider.getBalance(recurringPayment.address)).toNumber()).to.equal(0);
+    //expect((await provider.getBalance(transferTo)).toNumber()).to.equal(5000);
+    expect((await erc20.balanceOf(recurringPayment.address)).toNumber()).to.equal(0);
+    expect((await erc20.balanceOf(transferTo)).toNumber()).to.equal(5000);
   });
 
   it("works with Subscription", async () => {
