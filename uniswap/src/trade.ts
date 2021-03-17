@@ -22,28 +22,20 @@ const main = async () => {
     await tokenACA.approve(router.address, dollar.mul(100));
     await tokenDOT.approve(router.address, dollar.mul(100));
 
-    const tradingPairAddress = await factory.getPair(ADDRESS.ACA, ADDRESS.DOT);
-    let lpAcaAmount = await tokenACA.balanceOf(tradingPairAddress);
-    let lpDotAmount = await tokenDOT.balanceOf(tradingPairAddress);
-    const acaAmountBefore = await tokenACA.balanceOf(deployerAddress)
-    const dotAmountBefore = await tokenDOT.balanceOf(deployerAddress)
-
     // before
+    const acaAmountBefore = await tokenACA.balanceOf(deployerAddress);
+    const dotAmountBefore = await tokenDOT.balanceOf(deployerAddress);
 
-    console.log('------ before -------')
     console.log({
         acaAmountBefore: acaAmountBefore.toString(),
         dotAmountBefore: dotAmountBefore.toString(),
-        liquidityPoolAcaAmount: lpAcaAmount.toString(),
-        liquidityPoolDotAmount: lpDotAmount.toString(),
     });
 
     // trade
 
     const path = [ADDRESS.DOT, ADDRESS.ACA];
-    const buyAmount = BigNumber.from('100000000000');
+    const buyAmount = dollar;
 
-    console.log('------ trade -------')
     console.log('Trade', {
         path,
         buyAmount: buyAmount.toString(),
@@ -52,20 +44,20 @@ const main = async () => {
     await router.swapExactTokensForTokens(buyAmount, 0, path, deployerAddress, 10000000000);
 
     // check
-    
+    const tradingPairAddress = await factory.getPair(ADDRESS.ACA, ADDRESS.DOT);
     const tradingPair = new Contract(tradingPairAddress, IERC20.abi, wallet);
     const lpTokenAmount = await tradingPair.balanceOf(deployerAddress);
-    lpAcaAmount = await tokenACA.balanceOf(tradingPairAddress);
-    lpDotAmount = await tokenDOT.balanceOf(tradingPairAddress);
+    const lpAcaAmount = await tokenACA.balanceOf(tradingPairAddress);
+    const lpDotAmount = await tokenDOT.balanceOf(tradingPairAddress);
     const acaAmountAfter = await tokenACA.balanceOf(deployerAddress);
     const dotAmountAfter = await tokenDOT.balanceOf(deployerAddress);
     
-    console.log('------ after -------')
     console.log({
-        acaAmountAfter: acaAmountAfter.toString(),
+        tradingPair: tradingPairAddress,
         lpTokenAmount: lpTokenAmount.toString(),
         liquidityPoolAcaAmount: lpAcaAmount.toString(),
         liquidityPoolDotAmount: lpDotAmount.toString(),
+        acaAmountAfter: acaAmountAfter.toString(),
         dotAmountAfter: dotAmountAfter.toString(),
     });
 
