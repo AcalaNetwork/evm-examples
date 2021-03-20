@@ -16,7 +16,7 @@ contract RecurringTokenPayment is ADDRESS {
         require(_count > 0, "invalid _count");
         _token.safeTransferFrom(msg.sender, address(this), _count.mul(_amount));
         
-        scheduler.scheduleCall(address(this), 0, 50000, 100, _period, abi.encodeWithSignature("pay(address,uint256,uint256,uint256,address)", _token, _period, _count, _amount, _to));
+        scheduler.scheduleCall(address(this), 0, 100000, 100, _period, abi.encodeWithSignature("pay(address,uint256,uint256,uint256,address)", _token, _period, _count, _amount, _to));
     }
 
     function pay(IERC20 _token, uint _period, uint _count, uint _amount, address _to) public {
@@ -25,7 +25,7 @@ contract RecurringTokenPayment is ADDRESS {
         _token.safeTransfer(_to, _amount);
 
         if (_count > 0) {
-            scheduler.scheduleCall(address(this), 0, 50000, 100, _period, abi.encodeWithSignature("pay(address,uint256,uint256,uint256,address)", _token, _period, _count - 1, _amount, _to));
+            scheduler.scheduleCall(address(this), 0, 100000, 100, _period, abi.encodeWithSignature("pay(address,uint256,uint256,uint256,address)", _token, _period, _count - 1, _amount, _to));
         }
     }
 }

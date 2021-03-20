@@ -18,7 +18,7 @@ contract RecurringPayment is ADDRESS {
         amount = _amount;
         to = _to;
 
-        scheduler.scheduleCall(address(this), 0, 50000, 100, _period, abi.encodeWithSignature("pay()"));
+        scheduler.scheduleCall(address(this), 0, 100000, 100, _period, abi.encodeWithSignature("pay()"));
     }
 
     function pay() public {
@@ -30,7 +30,7 @@ contract RecurringPayment is ADDRESS {
             to.transfer(amount);
             
             remainingCount--;
-            scheduler.scheduleCall(address(this), 0, 50000, 100, period, abi.encodeWithSignature("pay()"));
+            scheduler.scheduleCall(address(this), 0, 100000, 100, period, abi.encodeWithSignature("pay()"));
         }
     }
 }
