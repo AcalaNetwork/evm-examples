@@ -36,8 +36,8 @@ contract Arbitrager is ADDRESS {
         require(msg.sender == address(this));
         ISchedule(ADDRESS.Schedule).scheduleCall(address(this), 0, 1000000, 5000, period, abi.encodeWithSignature("trigger()"));
 
-        (uint256 priceA,) = IOracle(ADDRESS.Oracle).getPrice(address(tokenA));
-        (uint256 priceB,) = IOracle(ADDRESS.Oracle).getPrice(address(tokenB));
+        uint256 priceA = IOracle(ADDRESS.Oracle).getPrice(address(tokenA));
+        uint256 priceB = IOracle(ADDRESS.Oracle).getPrice(address(tokenB));
 
         uint256 balA = tokenA.balanceOf(address(this));
         uint256 balB = tokenB.balanceOf(address(this));

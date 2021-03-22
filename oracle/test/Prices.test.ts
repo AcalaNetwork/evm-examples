@@ -4,7 +4,7 @@ import { WsProvider } from "@polkadot/api";
 import { createTestPairs } from "@polkadot/keyring/testingPairs";
 import { expect, use } from "chai";
 import { deployContract, solidity } from "ethereum-waffle";
-import { Contract } from "ethers";
+import { Contract, BigNumber } from "ethers";
 import Prices from "../build/Prices.json";
 import ADDRESS from "@acala-network/contracts/utils/Address";
 
@@ -72,26 +72,30 @@ describe("Prices", () => {
   });
 
   it("getPrice works", async () => {
-  console.log(ADDRESS.DOT);
-      await feedValues("XBTC", 34_500);
+      await feedValues("XBTC", BigNumber.from(34_500).mul(BigNumber.from(10).pow(8)).toString());
       expect(
         await prices.getPrice(ADDRESS.XBTC)
-      ).to.equal(34_500);
+      ).to.equal(BigNumber.from(34_500).mul(BigNumber.from(10).pow(18)).toString());
 
-      await feedValues("XBTC", 33_800);
+      await feedValues("XBTC", BigNumber.from(33_800).mul(BigNumber.from(10).pow(8)).toString());
       expect(
         await prices.getPrice(ADDRESS.XBTC)
-      ).to.equal(33_800);
+      ).to.equal(BigNumber.from(33_800).mul(BigNumber.from(10).pow(18)).toString());
 
-      await feedValues("DOT", 15);
+      await feedValues("DOT", BigNumber.from(15).mul(BigNumber.from(10).pow(10)).toString());
       expect(
         await prices.getPrice(ADDRESS.DOT)
-      ).to.equal(15);
+      ).to.equal(BigNumber.from(15).mul(BigNumber.from(10).pow(18)).toString());
 
-      await feedValues("DOT", 16);
+      await feedValues("DOT", BigNumber.from(16).mul(BigNumber.from(10).pow(10)).toString());
       expect(
         await prices.getPrice(ADDRESS.DOT)
-      ).to.equal(16);
+      ).to.equal(BigNumber.from(16).mul(BigNumber.from(10).pow(18)).toString());
+
+      expect(
+        await prices.getPrice(ADDRESS.AUSD)
+	// AUSD right shift the decimal point (18-12) places
+      ).to.equal(BigNumber.from(1).mul(BigNumber.from(10).pow(18 + 6)).toString());
   });
 
   it("ignores invalid address", async () => {

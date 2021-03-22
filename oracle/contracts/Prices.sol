@@ -8,7 +8,7 @@ contract Prices is ADDRESS {
     IOracle oracle = IOracle(ADDRESS.Oracle);
 
     function getPrice(address token) public view returns (uint256) {
-        (uint256 price, uint256 timestamp) = oracle.getPrice(token);
+        uint256 price = oracle.getPrice(token);
         return price;
     }
 }
