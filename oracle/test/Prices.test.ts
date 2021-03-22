@@ -94,7 +94,8 @@ describe("Prices", () => {
 
       expect(
         await prices.getPrice(ADDRESS.AUSD)
-      ).to.equal(BigNumber.from(1).mul(BigNumber.from(10).pow(18)).toString());
+	// AUSD right shift the decimal point (18-12) places
+      ).to.equal(BigNumber.from(1).mul(BigNumber.from(10).pow(18 + 6)).toString());
   });
 
   it("ignores invalid address", async () => {
