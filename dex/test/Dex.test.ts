@@ -4,7 +4,7 @@ import { WsProvider } from "@polkadot/api";
 import { createTestPairs } from "@polkadot/keyring/testingPairs";
 import { expect, use } from "chai";
 import { deployContract, solidity } from "ethereum-waffle";
-import { Contract, BigNumber } from "ethers";
+import { Contract, BigNumber, ethers } from "ethers";
 import Dex from "../build/Dex.json";
 import ADDRESS from "@acala-network/contracts/utils/Address";
 
@@ -47,17 +47,22 @@ const getWallets = async () => {
   return wallets;
 };
 
+const ERC20_ABI = require("@acala-network/contracts/build/contracts/ERC20.json").abi;
+
 describe("Dex", () => {
+  let wallet: Signer;
   let dex: Contract;
 
   before(async () => {
-    const [wallet] = await getWallets();
+    [wallet] = await getWallets();
     dex = await deployContract(wallet as any, Dex);
   });
 
   after(async () => {
     provider.api.disconnect()
   });
+
+  // Note: swap will change the pool, need to restart the node to test all the cases.
 
   it("getLiquidityPool works", async () => {
     const pool = await dex.getLiquidityPool(ADDRESS.XBTC, ADDRESS.AUSD);
@@ -99,8 +104,15 @@ describe("Dex", () => {
   });
 
   it("swapWithExactSupply works", async () => {
-    expect(await dex.swapWithExactSupply([ADDRESS.ACA, ADDRESS.AUSD], 1000, 1, { value: 5000, gasLimit: 2_000_000 })).to.be.ok;
-    expect(await dex.swapWithExactSupply([ADDRESS.ACA, ADDRESS.AUSD, ADDRESS.XBTC], 1000, 1, { value: 5000, gasLimit: 2_000_000 })).to.be.ok;
+    const swap = await deployContract(wallet as any, Dex);
+    const AUSD = new ethers.Contract(ADDRESS.AUSD, ERC20_ABI, wallet as any);
+    expect((await AUSD.balanceOf(swap.address)).toNumber()).to.equal(0);
+    expect(await swap.swapWithExactSupply([ADDRESS.ACA, ADDRESS.AUSD], 1000, 1, { value: 5000, gasLimit: 2_000_000 })).to.be.ok;
+    expect((await AUSD.balanceOf(swap.address)).toNumber()).to.equal(1996);
+    const XBTC = new ethers.Contract(ADDRESS.XBTC, ERC20_ABI, wallet as any);
+    expect((await XBTC.balanceOf(swap.address)).toNumber()).to.equal(0);
+    expect(await swap.swapWithExactSupply([ADDRESS.ACA, ADDRESS.AUSD, ADDRESS.XBTC], 1000, 1, { value: 5000, gasLimit: 2_000_000 })).to.be.ok;
+    expect((await XBTC.balanceOf(swap.address)).toNumber()).to.equal(3972);
   });
 
   it("swapWithExactSupply should not works", async () => {
@@ -112,8 +124,15 @@ describe("Dex", () => {
   });
 
   it("swapWithExactTarget works", async () => {
-    expect(await dex.swapWithExactTarget([ADDRESS.ACA, ADDRESS.AUSD], 1, 1000, { value: 5000, gasLimit: 2_000_000 })).to.be.ok;
-    expect(await dex.swapWithExactTarget([ADDRESS.ACA, ADDRESS.AUSD, ADDRESS.XBTC], 1, 1000, { value: 5000, gasLimit: 2_000_000 })).to.be.ok;
+    const swap = await deployContract(wallet as any, Dex);
+    const AUSD = new ethers.Contract(ADDRESS.AUSD, ERC20_ABI, wallet as any);
+    expect((await AUSD.balanceOf(swap.address)).toNumber()).to.equal(0);
+    expect(await swap.swapWithExactTarget([ADDRESS.ACA, ADDRESS.AUSD], 1, 1000, { value: 5000, gasLimit: 2_000_000 })).to.be.ok;
+    expect((await AUSD.balanceOf(swap.address)).toNumber()).to.equal(1);
+    const XBTC = new ethers.Contract(ADDRESS.XBTC, ERC20_ABI, wallet as any);
+    expect((await XBTC.balanceOf(swap.address)).toNumber()).to.equal(0);
+    expect(await swap.swapWithExactTarget([ADDRESS.ACA, ADDRESS.AUSD, ADDRESS.XBTC], 1, 1000, { value: 5000, gasLimit: 2_000_000 })).to.be.ok;
+    expect((await XBTC.balanceOf(swap.address)).toNumber()).to.equal(1);
   });
 
   it("swapWithExactTarget should not works", async () => {

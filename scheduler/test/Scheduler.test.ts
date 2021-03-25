@@ -198,7 +198,7 @@ describe("Schedule", () => {
     expect((await subscription.balanceOf(subscriber.getAddress())).toNumber()).to.equal(0);
     expect((await subscription.subTokensOf(subscriber.getAddress())).toNumber()).to.equal(0);
     expect((await subscription.monthsSubscribed(subscriber.getAddress())).toNumber()).to.equal(0);
-    
+
     const subscriberContract = subscription.connect(subscriber as any);
     await subscriberContract.subscribe({ value: 10_000, gasLimit: 2_000_000 });
 
