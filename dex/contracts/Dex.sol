@@ -26,4 +26,12 @@ contract Dex is ADDRESS {
     function swapWithExactTarget(address[] memory path, uint256 targetAmount, uint256 maxSupplyAmount) public payable returns (bool) {
         return dex.swapWithExactTarget(path, targetAmount, maxSupplyAmount);
     }
+
+    function addLiquidity(address tokenA, address tokenB, uint256 maxAmountA, uint256 maxAmountB) public payable returns (bool) {
+        return dex.addLiquidity(tokenA, tokenB, maxAmountA, maxAmountB);
+    }
+
+    function removeLiquidity(address tokenA, address tokenB, uint256 removeShare) public payable returns (bool) {
+        return dex.removeLiquidity(tokenA, tokenB, removeShare);
+    }
 }
