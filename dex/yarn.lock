@@ -37,10 +37,10 @@
     blakejs "^1.1.0"
     ethers "^5.0.21"
 
-"@acala-network/contracts@^1.0.13":
-  version "1.0.13"
-  resolved "https://registry.yarnpkg.com/@acala-network/contracts/-/contracts-1.0.13.tgz#a6daa4f64877e5212a999ecc53974047e5ecb6e4"
-  integrity sha512-UNz4/F5JFdd/Xe05piNLxx+eQMSm15omjLzrNeFv/crC7Y1pT6mpv3EDyZRjEIq/Hmc624+j1x4DKLcL9Tn6xA==
+"@acala-network/contracts@^1.0.14":
+  version "1.0.14"
+  resolved "https://registry.yarnpkg.com/@acala-network/contracts/-/contracts-1.0.14.tgz#d2a2acfd8e17fe56fb8efb0c88f30c657ccba7e7"
+  integrity sha512-Sgks7IlSXMl+6VKDnV6uGj5iwjwpUPVXBEG+RjS2SbBL4RXGYB5mIDievQCVdKkEXCUI3nN+NoQXulheDb5Alg==
 
 "@acala-network/type-definitions@^0.7.2-4":
   version "0.7.2-4"

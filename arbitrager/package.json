@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@acala-network/bodhi": "0.2.2-19",
-    "@acala-network/contracts": "^1.0.13",
+    "@acala-network/contracts": "^1.0.14",
     "@uniswap/v2-core": "^1.0.1",
     "@uniswap/v2-periphery": "^1.1.0-beta.0"
   }
