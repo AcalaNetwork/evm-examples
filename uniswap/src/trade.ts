@@ -5,7 +5,7 @@ import IERC20 from "../artifacts/IERC20.json";
 import setup from "./setup";
 import ADDRESS from "@acala-network/contracts/utils/Address";
 
-const ROUTER_ADDRESS = "0xf91036C890A4523618862e0a9aF3A4b732870c82";
+const ROUTER_ADDRESS = "0x0F622512AEc294a182F36706CA2c69044bd21bE2";
 
 const dollar = BigNumber.from('1000000000000');
 
