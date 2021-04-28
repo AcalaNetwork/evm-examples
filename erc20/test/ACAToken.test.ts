@@ -69,13 +69,11 @@ describe("ACAToken", () => {
 
   it("get token name", async () => {
     const name = await token.name();
-    console.log("0000:"+name);
     expect(name).to.equal("Acala");
   });
 
   it("get token symbol", async () => {
     const symbol = await token.symbol();
-    console.log("1111:"+symbol);
     expect(symbol).to.equal("ACA");
   });
 
