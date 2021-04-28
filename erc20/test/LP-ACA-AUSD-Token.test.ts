@@ -48,14 +48,14 @@ const getWallets = async () => {
 
 const ERC20_ABI = require("@acala-network/contracts/build/contracts/Token.json").abi;
 
-describe("ACAToken", () => {
+describe("LP ACA-AUSD Token", () => {
   let wallet: Signer;
   let walletTo: Signer;
   let token: Contract;
 
   before(async () => {
     [wallet, walletTo] = await getWallets();
-    token = new ethers.Contract(ADDRESS.ACA, ERC20_ABI, wallet as any);
+    token = new ethers.Contract(ADDRESS.LP_ACA_AUSD, ERC20_ABI, wallet as any);
   });
 
   after(async () => {
@@ -64,17 +64,17 @@ describe("ACAToken", () => {
 
   it("get currency id", async () => {
     const currency_id = await token.currencyId();
-    expect(currency_id).to.equal(0);
+    expect(currency_id).to.equal(BigNumber.from("0x0000000000000000000000010000000000000001000000000000000000000000"));
   });
 
   it("get token name", async () => {
     const name = await token.name();
-    expect(name).to.equal("Acala");
+    expect(name).to.equal("LP Acala-Acala Dollar");
   });
 
   it("get token symbol", async () => {
     const symbol = await token.symbol();
-    expect(symbol).to.equal("ACA");
+    expect(symbol).to.equal("LP_ACA_AUSD");
   });
 
   it("get token decimals", async () => {

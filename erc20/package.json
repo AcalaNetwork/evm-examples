@@ -7,11 +7,6 @@
     "test": "export NODE_ENV=test && mocha -r ts-node/register/transpile-only --timeout 50000 --no-warnings test/**/*.test.{js,ts}",
     "build": "waffle waffle.json"
   },
-  "resolutions": {
-    "@polkadot/types": "^4.5.1",
-    "@polkadot/api": "^4.5.1",
-    "@polkadot/api-derive": "^4.5.1"
-  },
   "devDependencies": {
     "@openzeppelin/contracts": "^3.0.0",
     "@types/chai": "^4.2.3",
@@ -24,7 +19,7 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
-    "@acala-network/bodhi": "0.3.6-0",
+    "@acala-network/bodhi": "0.3.6-1",
     "@acala-network/contracts": "^1.0.16"
   }
 }
