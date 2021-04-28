@@ -46,7 +46,7 @@ const getWallets = async () => {
   return wallets;
 };
 
-const ERC20_ABI = require("@acala-network/contracts/build/contracts/ERC20.json").abi;
+const ERC20_ABI = require("@acala-network/contracts/build/contracts/Token.json").abi;
 
 describe("ACAToken", () => {
   let wallet: Signer;
