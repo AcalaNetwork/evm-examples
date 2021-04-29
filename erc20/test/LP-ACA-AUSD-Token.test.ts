@@ -69,7 +69,7 @@ describe("LP ACA-AUSD Token", () => {
 
   it("get token name", async () => {
     const name = await token.name();
-    expect(name).to.equal("LP Acala-Acala Dollar");
+    expect(name).to.equal("LP Acala - Acala Dollar");
   });
 
   it("get token symbol", async () => {
