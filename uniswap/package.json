@@ -10,7 +10,8 @@
   "resolutions": {
     "@polkadot/types": "^4.5.1",
     "@polkadot/api": "^4.5.1",
-    "@polkadot/api-derive": "^4.5.1"
+    "@polkadot/api-derive": "^4.5.1",
+    "@open-web3/scanner": "0.9.4-1"
   },
   "devDependencies": {
     "@openzeppelin/contracts": "^3.0.0",

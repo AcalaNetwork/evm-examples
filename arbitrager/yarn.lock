@@ -753,10 +753,10 @@
   dependencies:
     "@open-web3/orml-type-definitions" "0.9.3"
 
-"@open-web3/scanner@^0.9.3":
-  version "0.9.3"
-  resolved "https://registry.yarnpkg.com/@open-web3/scanner/-/scanner-0.9.3.tgz#4687a49a7e9491bbb424c8ce75cac8e392d15c04"
-  integrity sha512-R+63Hu40H8ozukq9+bFxNfbKHvxviYAbvMQ7O6FE9bxkUZGNAPPPUupli3p/Cc8YWgN4fGpC2Y86ZgxZaaunAA==
+"@open-web3/scanner@0.9.4-1", "@open-web3/scanner@^0.9.3":
+  version "0.9.4-1"
+  resolved "https://registry.yarnpkg.com/@open-web3/scanner/-/scanner-0.9.4-1.tgz#3e660d93fee82fc6bb8b75580648e2578ee1791d"
+  integrity sha512-X+zwL8t/g71dxm3AuPnVyxz2hHCPuyvP9W3z0pVbUMEx/Uzspsire5soqjMD158GeFvFcMSzvVTg93x0n8z/fA==
 
 "@openzeppelin/contracts@^3.0.0":
   version "3.4.1"
