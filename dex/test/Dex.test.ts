@@ -65,10 +65,19 @@ describe("Dex", () => {
   });
 
   it("getLiquidityPool should not works", async () => {
-    // system contract addresses start with 12 zero bytes
     await expect(
       dex.getLiquidityPool(ADDRESS.ACA, "0x0000000000000000000001000000000000000000")
-    ).to.be.revertedWith("not a system contract");
+    ).to.be.reverted;
+  });
+
+  it("getLiquidityTokenAddress works", async () => {
+    expect(await dex.getLiquidityTokenAddress(ADDRESS.ACA, ADDRESS.AUSD)).to.equal(ADDRESS.LP_ACA_AUSD);
+  });
+
+  it("getLiquidityTokenAddress should not works", async () => {
+    await expect(
+      dex.getLiquidityTokenAddress(ADDRESS.ACA, "0x0000000000000000000001000000000000000000")
+    ).to.be.reverted;
   });
 
   it("getSwapTargetAmount works", async () => {
@@ -81,7 +90,7 @@ describe("Dex", () => {
     await expect(dex.getSwapTargetAmount([ADDRESS.ACA, ADDRESS.AUSD, ADDRESS.DOT, ADDRESS.RENBTC], 1000)).to.be.revertedWith("token path over the limit");
     await expect(
       dex.getSwapTargetAmount([ADDRESS.ACA, "0x0000000000000000000001000000000000000000"], 1000)
-    ).to.be.revertedWith("not a system contract");
+    ).to.be.reverted;
   });
 
   it("getSwapSupplyAmount works", async () => {
@@ -94,7 +103,7 @@ describe("Dex", () => {
     await expect(dex.getSwapSupplyAmount([ADDRESS.ACA, ADDRESS.AUSD, ADDRESS.DOT, ADDRESS.RENBTC], 1000)).to.be.revertedWith("token path over the limit");
     await expect(
       dex.getSwapSupplyAmount([ADDRESS.ACA, "0x0000000000000000000001000000000000000000"], 1000)
-    ).to.be.revertedWith("not a system contract");
+    ).to.be.reverted;
   });
 
   it("swapWithExactSupply works", async () => {
@@ -116,7 +125,7 @@ describe("Dex", () => {
     await expect(dex.swapWithExactSupply([ADDRESS.ACA, ADDRESS.AUSD, ADDRESS.ACA, ADDRESS.RENBTC], 1000, 1)).to.be.revertedWith("token path over the limit");
     await expect(
       dex.swapWithExactSupply([ADDRESS.ACA, "0x0000000000000000000001000000000000000000"], 1000, 1)
-    ).to.be.revertedWith("not a system contract");
+    ).to.be.reverted;
   });
 
   it("swapWithExactTarget works", async () => {
@@ -137,7 +146,7 @@ describe("Dex", () => {
     await expect(dex.swapWithExactTarget([ADDRESS.ACA, ADDRESS.AUSD, ADDRESS.ACA, ADDRESS.RENBTC], 1, 1000)).to.be.revertedWith("token path over the limit");
     await expect(
       dex.swapWithExactTarget([ADDRESS.ACA, "0x0000000000000000000001000000000000000000"], 1, 1000)
-    ).to.be.revertedWith("not a system contract");
+    ).to.be.reverted;
   });
 
   it("addLiquidity and removeLiquidity works", async () => {
@@ -158,12 +167,12 @@ describe("Dex", () => {
   it("addLiquidity should not works", async () => {
     await expect(
       dex.addLiquidity(ADDRESS.ACA, "0x0000000000000000000001000000000000000000", 1, 1000)
-    ).to.be.revertedWith("not a system contract");
+    ).to.be.reverted;
   });
 
   it("removeLiquidity should not works", async () => {
     await expect(
       dex.addLiquidity(ADDRESS.ACA, "0x0000000000000000000001000000000000000000", 1, 1000)
-    ).to.be.revertedWith("not a system contract");
+    ).to.be.reverted;
   });
 });

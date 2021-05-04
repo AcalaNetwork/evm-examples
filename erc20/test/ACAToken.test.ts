@@ -62,11 +62,6 @@ describe("ACAToken", () => {
     provider.api.disconnect();
   });
 
-  it("get currency id", async () => {
-    const currency_id = await token.currencyId();
-    expect(currency_id).to.equal(0);
-  });
-
   it("get token name", async () => {
     const name = await token.name();
     expect(name).to.equal("Acala");

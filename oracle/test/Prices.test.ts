@@ -99,13 +99,10 @@ describe("Prices", () => {
   });
 
   it("ignores invalid address", async () => {
-    // system contract addresses start with 12 zero bytes
-    await expect(
-      prices.getPrice("0x0000000000000000000000010000000000000000")
-    ).to.be.revertedWith("not a system contract");
+    // not system contract
     await expect(
       prices.getPrice("0x1000000000000000000000000000000000000000")
-    ).to.be.revertedWith("not a system contract");
+    ).to.be.reverted;
     // not MultiCurrency token
     await expect(prices.getPrice("0x0000000000000000000000000000000000000000"))
       .to.be.reverted;
