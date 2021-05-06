@@ -11,6 +11,10 @@ contract Dex is ADDRESS {
         return dex.getLiquidityPool(tokenA, tokenB);
     }
 
+    function getLiquidityTokenAddress(address tokenA, address tokenB) public view returns (address) {
+        return dex.getLiquidityTokenAddress(tokenA, tokenB);
+    }
+
     function getSwapTargetAmount(address[] memory path, uint256 supplyAmount) public view returns (uint256) {
         return dex.getSwapTargetAmount(path, supplyAmount);
     }

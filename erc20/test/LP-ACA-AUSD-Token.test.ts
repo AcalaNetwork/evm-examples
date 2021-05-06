@@ -70,11 +70,6 @@ describe("LP ACA-AUSD Token", () => {
     provider.api.disconnect();
   });
 
-  it("get currency id", async () => {
-    const currency_id = await token.currencyId();
-    expect(currency_id).to.equal(BigNumber.from("0x0000000000000000000000010000000000000001000000000000000000000000"));
-  });
-
   it("get token name", async () => {
     const name = await token.name();
     expect(name).to.equal("LP Acala - Acala Dollar");

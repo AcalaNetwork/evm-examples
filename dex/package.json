@@ -23,6 +23,6 @@
   },
   "dependencies": {
     "@acala-network/bodhi": "^0.3.6-1",
-    "@acala-network/contracts": "^1.0.18"
+    "@acala-network/contracts": "^1.0.19"
   }
 }
