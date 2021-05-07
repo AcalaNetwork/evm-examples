@@ -47,6 +47,16 @@ const getWallets = async () => {
   return wallets;
 };
 
+const transfer = async (contract: string, new_maintainer: string) => {
+  return new Promise((resolve) => {
+    provider.api.tx.evm.transferMaintainer(contract, new_maintainer).signAndSend(testPairs.alice.address, (result) => {
+      if (result.status.isInBlock) {
+        resolve(undefined);
+      }
+    });
+  });
+}
+
 describe("StateRent", () => {
   let wallet: Signer;
   let walletTo: Signer;
@@ -86,5 +96,11 @@ describe("StateRent", () => {
     // only through the evm dispatch call `transfer_maintainer`.
     await expect(stateRent.transferMaintainer(stateRent.address, await walletTo.getAddress())).to
       .be.reverted;
+
+    await transfer(stateRent.address, await walletTo.getAddress());
+
+    expect(
+      await stateRent.maintainerOf(stateRent.address)
+    ).to.equal(await walletTo.getAddress());
   });
 });
