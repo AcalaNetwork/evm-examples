@@ -72,30 +72,33 @@ describe("Prices", () => {
   });
 
   it("getPrice works", async () => {
-      await feedValues("RENBTC", BigNumber.from(34_500).mul(BigNumber.from(10).pow(8)).toString());
+      await feedValues("RENBTC", BigNumber.from(34_500).mul(BigNumber.from(10).pow(18)).toString());
       expect(
         await prices.getPrice(ADDRESS.RENBTC)
       ).to.equal(BigNumber.from(34_500).mul(BigNumber.from(10).pow(18)).toString());
 
-      await feedValues("RENBTC", BigNumber.from(33_800).mul(BigNumber.from(10).pow(8)).toString());
+      await feedValues("RENBTC", BigNumber.from(33_800).mul(BigNumber.from(10).pow(18)).toString());
       expect(
         await prices.getPrice(ADDRESS.RENBTC)
       ).to.equal(BigNumber.from(33_800).mul(BigNumber.from(10).pow(18)).toString());
 
-      await feedValues("DOT", BigNumber.from(15).mul(BigNumber.from(10).pow(10)).toString());
+      await feedValues("DOT", BigNumber.from(15).mul(BigNumber.from(10).pow(18)).toString());
       expect(
         await prices.getPrice(ADDRESS.DOT)
       ).to.equal(BigNumber.from(15).mul(BigNumber.from(10).pow(18)).toString());
 
-      await feedValues("DOT", BigNumber.from(16).mul(BigNumber.from(10).pow(10)).toString());
+      await feedValues("DOT", BigNumber.from(16).mul(BigNumber.from(10).pow(18)).toString());
       expect(
         await prices.getPrice(ADDRESS.DOT)
       ).to.equal(BigNumber.from(16).mul(BigNumber.from(10).pow(18)).toString());
 
       expect(
         await prices.getPrice(ADDRESS.AUSD)
-        // AUSD right shift the decimal point (18-12) places
-      ).to.equal(BigNumber.from(1).mul(BigNumber.from(10).pow(18 + 6)).toString());
+      ).to.equal(BigNumber.from(1).mul(BigNumber.from(10).pow(18)).toString());
+
+      expect(
+        await prices.getPrice(ADDRESS.KUSD)
+      ).to.equal(0);
   });
 
   it("ignores invalid address", async () => {
