@@ -2,7 +2,7 @@ import { expect, use } from "chai";
 import { ethers, Contract } from "ethers";
 import { deployContract, solidity } from "ethereum-waffle";
 import { evmChai } from "@acala-network/bodhi/evmChai";
-import { TestAccountSigningKey, Provider, Signer } from "@acala-network/bodhi";
+import { TestAccountSigningKey, TestProvider, Signer } from "@acala-network/bodhi";
 import { WsProvider } from "@polkadot/api";
 import { createTestPairs } from "@polkadot/keyring/testingPairs";
 import RecurringPayment from "../build/RecurringPayment.json";
@@ -11,41 +11,11 @@ import ADDRESS from "@acala-network/contracts/utils/Address";
 
 use(evmChai);
 
-const provider = new Provider({
+const provider = new TestProvider({
   provider: new WsProvider("ws://127.0.0.1:9944"),
 });
 
 const testPairs = createTestPairs();
-
-const getWallets = async () => {
-  const pairs = [
-    testPairs.alice,
-    testPairs.alice_stash,
-    testPairs.bob,
-    testPairs.bob_stash,
-  ];
-  const signingKey = new TestAccountSigningKey(provider.api.registry);
-
-  signingKey.addKeyringPair(Object.values(testPairs));
-
-  await provider.api.isReady;
-
-  let wallets: Signer[] = [];
-
-  for (const pair of pairs) {
-    const wallet = new Signer(provider, pair.address, signingKey);
-
-    const isClaimed = await wallet.isClaimed();
-
-    if (!isClaimed) {
-      await wallet.claimDefaultAccount();
-    }
-
-    wallets.push(wallet);
-  }
-
-  return wallets;
-};
 
 const next_block = async (block_number: number) => {
   return new Promise((resolve) => {
@@ -67,7 +37,7 @@ describe("Schedule", () => {
   let schedule: Contract;
 
   before(async () => {
-    [wallet, walletTo, subscriber] = await getWallets();
+    [wallet, walletTo, subscriber] = await provider.getWallets();
     schedule = await new ethers.Contract(ADDRESS.Schedule, SCHEDULE_CALL_ABI, wallet as any);
   });
 
