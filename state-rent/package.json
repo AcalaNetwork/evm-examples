@@ -19,8 +19,8 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
-    "@acala-network/api": "0.7.4-2",
-    "@acala-network/bodhi": "0.3.6-4",
-    "@acala-network/contracts": "^1.0.19"
+    "@acala-network/api": "0.7.4-8",
+    "@acala-network/bodhi": "0.3.6-6",
+    "@acala-network/contracts": "^1.0.21"
   }
 }
