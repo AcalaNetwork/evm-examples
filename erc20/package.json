@@ -8,8 +8,8 @@
     "build": "waffle waffle.json"
   },
   "resolutions": {
-    "@polkadot/api": "4.10.2-1",
-    "@polkadot/types": "4.10.2-1"
+    "@polkadot/api": "^4.13.1",
+    "@polkadot/types": "^4.13.1"
   },
   "devDependencies": {
     "@openzeppelin/contracts": "^3.0.0",
@@ -23,8 +23,8 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
-    "@acala-network/api": "0.7.4-9",
-    "@acala-network/bodhi": "0.3.6-6",
-    "@acala-network/contracts": "^1.0.21"
+    "@acala-network/api": "0.7.4-12",
+    "@acala-network/bodhi": "0.3.6-7",
+    "@acala-network/contracts": "^1.0.22"
   }
 }

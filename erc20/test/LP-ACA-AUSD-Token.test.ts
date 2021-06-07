@@ -29,7 +29,7 @@ describe("LP ACA-AUSD Token", () => {
     token = new ethers.Contract(ADDRESS.LP_ACA_AUSD, ERC20_ABI, wallet as any);
 
     let pool_1 = await dex.getLiquidityPool(ADDRESS.ACA, ADDRESS.AUSD);
-    expect(await dex.addLiquidity(ADDRESS.ACA, ADDRESS.AUSD, 100, 100, { gasLimit: 2_000_000 })).to.be.ok;
+    expect(await dex.addLiquidity(ADDRESS.ACA, ADDRESS.AUSD, 100, 100, 0, { gasLimit: 2_000_000 })).to.be.ok;
     let pool_2 = await dex.getLiquidityPool(ADDRESS.ACA, ADDRESS.AUSD);
     expect((pool_2[1] - pool_1[1])).to.equal(100);
   });

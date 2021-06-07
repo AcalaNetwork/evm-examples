@@ -124,23 +124,23 @@ describe("Dex", () => {
     let pool_1 = await dex.getLiquidityPool(ADDRESS.ACA, ADDRESS.AUSD);
     expect((pool_1[1] - pool_0[1])).to.equal(-1000);
 
-    expect(await dex.addLiquidity(ADDRESS.ACA, ADDRESS.AUSD, 100, 100, { value: 5000, gasLimit: 2_000_000 })).to.be.ok;
+    expect(await dex.addLiquidity(ADDRESS.ACA, ADDRESS.AUSD, 100, 100, 0, { value: 5000, gasLimit: 2_000_000 })).to.be.ok;
 
     let pool_2 = await dex.getLiquidityPool(ADDRESS.ACA, ADDRESS.AUSD);
     expect((pool_2[1] - pool_1[1])).to.equal(100);
 
-    expect(await dex.removeLiquidity(ADDRESS.ACA, ADDRESS.AUSD, 100, { value: 5000, gasLimit: 2_000_000 })).to.be.ok;
+    expect(await dex.removeLiquidity(ADDRESS.ACA, ADDRESS.AUSD, 100, 0, 0, { value: 5000, gasLimit: 2_000_000 })).to.be.ok;
   });
 
   it("addLiquidity should not works", async () => {
     await expect(
-      dex.addLiquidity(ADDRESS.ACA, "0x0000000000000000000001000000000000000000", 1, 1000)
+      dex.addLiquidity(ADDRESS.ACA, "0x0000000000000000000001000000000000000000", 1, 1000, 0)
     ).to.be.reverted;
   });
 
   it("removeLiquidity should not works", async () => {
     await expect(
-      dex.addLiquidity(ADDRESS.ACA, "0x0000000000000000000001000000000000000000", 1, 1000)
+      dex.addLiquidity(ADDRESS.ACA, "0x0000000000000000000001000000000000000000", 1, 1000, 0)
     ).to.be.reverted;
   });
 });
