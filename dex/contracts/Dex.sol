@@ -31,11 +31,11 @@ contract Dex is ADDRESS {
         return dex.swapWithExactTarget(path, targetAmount, maxSupplyAmount);
     }
 
-    function addLiquidity(address tokenA, address tokenB, uint256 maxAmountA, uint256 maxAmountB) public payable returns (bool) {
-        return dex.addLiquidity(tokenA, tokenB, maxAmountA, maxAmountB);
+    function addLiquidity(address tokenA, address tokenB, uint256 maxAmountA, uint256 maxAmountB, uint256 minShareIncrement) public payable returns (bool) {
+        return dex.addLiquidity(tokenA, tokenB, maxAmountA, maxAmountB, minShareIncrement);
     }
 
-    function removeLiquidity(address tokenA, address tokenB, uint256 removeShare) public payable returns (bool) {
-        return dex.removeLiquidity(tokenA, tokenB, removeShare);
+    function removeLiquidity(address tokenA, address tokenB, uint256 removeShare, uint256 minWithdrawnA, uint256 minWithdrawnB) public payable returns (bool) {
+        return dex.removeLiquidity(tokenA, tokenB, removeShare, minWithdrawnA, minWithdrawnB);
     }
 }
