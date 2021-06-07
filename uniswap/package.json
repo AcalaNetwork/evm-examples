@@ -7,6 +7,10 @@
     "deploy": "node -r ts-node/register/transpile-only src/deploy.ts",
     "trade": "node -r ts-node/register/transpile-only src/trade.ts"
   },
+  "resolutions": {
+    "@polkadot/api": "^4.13.1",
+    "@polkadot/types": "^4.13.1"
+  },
   "devDependencies": {
     "@openzeppelin/contracts": "^3.0.0",
     "@types/chai": "^4.2.3",
@@ -19,8 +23,8 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
-    "@acala-network/api": "0.7.4-8",
-    "@acala-network/bodhi": "0.3.6-6",
-    "@acala-network/contracts": "^1.0.21"
+    "@acala-network/api": "0.7.4-12",
+    "@acala-network/bodhi": "0.3.6-7",
+    "@acala-network/contracts": "^1.0.22"
   }
 }
