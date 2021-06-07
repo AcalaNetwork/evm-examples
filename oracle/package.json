@@ -7,6 +7,10 @@
     "test": "export NODE_ENV=test && mocha -r ts-node/register/transpile-only --timeout 50000 --no-warnings test/**/*.test.{js,ts}",
     "build": "waffle waffle.json"
   },
+  "resolutions": {
+    "@polkadot/api": "^4.13.1",
+    "@polkadot/types": "^4.13.1"
+  },
   "devDependencies": {
     "@openzeppelin/contracts": "^3.0.0",
     "@types/chai": "^4.2.3",
