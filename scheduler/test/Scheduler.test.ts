@@ -177,7 +177,7 @@ describe("Schedule", () => {
     expect((await subscription.monthsSubscribed(subscriber.getAddress())).toNumber()).to.equal(1);
 
     let current_block_number = Number(await provider.api.query.system.number());
-    for (let i = 0; i < period; i++) {
+    for (let i = 0; i < period + 1; i++) {
       await next_block(current_block_number);
       current_block_number = Number(await provider.api.query.system.number());
     }
