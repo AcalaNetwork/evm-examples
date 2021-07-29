@@ -14,7 +14,7 @@ Developer Guide [here](https://wiki.acala.network/build/development-guide/smart-
 You can use docker to run a development Acala Mandala chain
 
 ```bash
-$ docker run --rm -it -p 9944:9944 acala/acala-node:0.7.10 --dev --instant-sealing --ws-external -levm=trace
+$ docker run --rm -p 9944:9944 acala/mandala-node:latest --dev --ws-external --rpc-methods=unsafe --instant-sealing  -levm=trace
 ```
 
 ### Build & Run from source code
