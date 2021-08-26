@@ -1137,7 +1137,7 @@
   resolved "https://registry.yarnpkg.com/@open-web3/scanner/-/scanner-0.9.4-19.tgz#9c6dcb0506d313a15d0ec6f0174d935502807ff6"
   integrity sha512-5HO+RVrhTiN3AAdfmYYi6rvBKiM1wMA7qVF7qh5NwDQYLUfX0d4ELtjDZjWntwzuahnII178l7ZkH1Hp1V79sQ==
 
-"@openzeppelin/contracts@^3.0.0":
+"@openzeppelin/contracts@^3.4.0":
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/@openzeppelin/contracts/-/contracts-3.4.1.tgz#03c891fec7f93be0ae44ed74e57a122a38732ce7"
   integrity sha512-cUriqMauq1ylzP2TxePNdPqkwI7Le3Annh4K9rrpvKfSBB/bdW+Iu1ihBaTIABTAAJ85LmKL5SSPPL9ry8d1gQ==
