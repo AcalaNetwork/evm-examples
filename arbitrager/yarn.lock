@@ -273,13 +273,6 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.14.8":
-  version "7.14.8"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.14.8.tgz#7119a56f421018852694290b9f9148097391b446"
-  integrity sha512-twj3L8Og5SaCRCErB4x4ajbvBIVV77CGeFglHpeg5WC5FF8TZzBWXtTJ4MqaD9QszLYTtr+IsaAL2rEUevb+eg==
-  dependencies:
-    regenerator-runtime "^0.13.4"
-
 "@babel/runtime@^7.15.3":
   version "7.15.3"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.15.3.tgz#2e1c2880ca118e5b2f9988322bd8a7656a32502b"
@@ -1201,13 +1194,6 @@
     "@polkadot/util" "7.2.1"
     "@polkadot/util-crypto" "7.2.1"
 
-"@polkadot/networks@7.0.3":
-  version "7.0.3"
-  resolved "https://registry.yarnpkg.com/@polkadot/networks/-/networks-7.0.3.tgz#6d1d8bc284bc2158919feabc155ff0075e9af4d9"
-  integrity sha512-DH1lbj1I0ZFxdMtY95l9MY9xybUriTa1aQ22ER+/zj3ov4v4C9VAs+i0ssi+aKwrJ+yReyQBzMLOoSba1+pykg==
-  dependencies:
-    "@babel/runtime" "^7.14.8"
-
 "@polkadot/networks@7.2.1", "@polkadot/networks@^7.2.1":
   version "7.2.1"
   resolved "https://registry.yarnpkg.com/@polkadot/networks/-/networks-7.2.1.tgz#20c8d81fba4b48162bf360759d8d54c55d30128b"
@@ -1300,15 +1286,15 @@
     "@babel/runtime" "^7.15.3"
     "@polkadot/util" "^7.2.1"
 
-"@polkadot/types@5.6.1", "@polkadot/types@5.6.2-7", "@polkadot/types@^5.2.1", "@polkadot/types@^5.6.2-5":
-  version "5.2.1"
-  resolved "https://registry.yarnpkg.com/@polkadot/types/-/types-5.2.1.tgz#b772723d1f660c17c629520d4f7b4b8f95971774"
-  integrity sha512-X1dEXkTWTXLTQsMp1QY8ur58cm2/IA4RZ1ppyPkm170h26wOeCR6pstYu2cvj6Jp567c+Yq0P5qJa93VGfqxtw==
+"@polkadot/types@5.6.1", "@polkadot/types@5.6.2-7", "@polkadot/types@^5.6.1", "@polkadot/types@^5.6.2-5":
+  version "5.6.1"
+  resolved "https://registry.yarnpkg.com/@polkadot/types/-/types-5.6.1.tgz#008f858a90d5d4b42cd0e6d126c32c246a7c1c76"
+  integrity sha512-PYqhcuM67ZoQ7APgjjGr9baVfkxpeE37Kj1sjN5uOh743EbHy9tS+1IeeDbNkdeXUKDypy9MYtHPXVevzA3GaA==
   dependencies:
-    "@babel/runtime" "^7.14.8"
-    "@polkadot/util" "^7.0.3"
-    "@polkadot/util-crypto" "^7.0.3"
-    rxjs "^7.2.0"
+    "@babel/runtime" "^7.15.3"
+    "@polkadot/util" "^7.2.1"
+    "@polkadot/util-crypto" "^7.2.1"
+    rxjs "^7.3.0"
 
 "@polkadot/util-crypto@7.2.1", "@polkadot/util-crypto@^7.2.1":
   version "7.2.1"
@@ -1332,41 +1318,6 @@
     scryptsy "^2.1.0"
     tweetnacl "^1.0.3"
     xxhashjs "^0.2.2"
-
-"@polkadot/util-crypto@^7.0.3":
-  version "7.0.3"
-  resolved "https://registry.yarnpkg.com/@polkadot/util-crypto/-/util-crypto-7.0.3.tgz#2a69eec86a067f6f2fa36cfda9796eb91fc823e3"
-  integrity sha512-z386lw+0uBNGuBOQ7Ay0jF9f5WdKzbxYwnJarnsRDIxqzoAm51U+V9dqgyAbxKh95+pcxLnKs/1bTI2Uy564Fg==
-  dependencies:
-    "@babel/runtime" "^7.14.8"
-    "@polkadot/networks" "7.0.3"
-    "@polkadot/util" "7.0.3"
-    "@polkadot/wasm-crypto" "^4.1.2"
-    "@polkadot/x-randomvalues" "7.0.3"
-    base-x "^3.0.8"
-    base64-js "^1.5.1"
-    blakejs "^1.1.1"
-    bn.js "^4.11.9"
-    create-hash "^1.2.0"
-    elliptic "^6.5.4"
-    hash.js "^1.1.7"
-    js-sha3 "^0.8.0"
-    scryptsy "^2.1.0"
-    tweetnacl "^1.0.3"
-    xxhashjs "^0.2.2"
-
-"@polkadot/util@7.0.3", "@polkadot/util@^7.0.3":
-  version "7.0.3"
-  resolved "https://registry.yarnpkg.com/@polkadot/util/-/util-7.0.3.tgz#89887a18c0e39b2b1e22554974e9e02649db6018"
-  integrity sha512-2wrF+zCOg/3YTOF8mSMpaFEcRshiCKqhNK54A+EJ/qBS+olVw7Ghzjapxxt/pCmPzhJXXra9InT0QovZaqaW4g==
-  dependencies:
-    "@babel/runtime" "^7.14.8"
-    "@polkadot/x-textdecoder" "7.0.3"
-    "@polkadot/x-textencoder" "7.0.3"
-    "@types/bn.js" "^4.11.6"
-    bn.js "^4.11.9"
-    camelcase "^5.3.1"
-    ip-regex "^4.3.0"
 
 "@polkadot/util@7.2.1", "@polkadot/util@^7.2.1":
   version "7.2.1"
@@ -1414,27 +1365,12 @@
     "@types/node-fetch" "^2.5.12"
     node-fetch "^2.6.1"
 
-"@polkadot/x-global@7.0.3":
-  version "7.0.3"
-  resolved "https://registry.yarnpkg.com/@polkadot/x-global/-/x-global-7.0.3.tgz#755fa6e740f00d8e34133a3cd11fe5a34d234631"
-  integrity sha512-hot5xzhw9nexv9G/mwKoyf+my4I0lBc+DbeEWnjq3cy3e/NjwpTudhHvKQtVUz/RV2RsYnEyulXkJappjIO5MQ==
-  dependencies:
-    "@babel/runtime" "^7.14.8"
-
 "@polkadot/x-global@7.2.1", "@polkadot/x-global@^7.2.1":
   version "7.2.1"
   resolved "https://registry.yarnpkg.com/@polkadot/x-global/-/x-global-7.2.1.tgz#32207936b7f939a21da608f82ca20535f9148cda"
   integrity sha512-VNW+76TxEPqvBy3XMNV05mJRPRGZcYh3k5HjW4+asYeFunMahH4zjmCulhtD9SRI/TqdfHTiqDOqKNKe2xJcVg==
   dependencies:
     "@babel/runtime" "^7.15.3"
-
-"@polkadot/x-randomvalues@7.0.3":
-  version "7.0.3"
-  resolved "https://registry.yarnpkg.com/@polkadot/x-randomvalues/-/x-randomvalues-7.0.3.tgz#3559efabe8c2cac442b040e18c636f2dcec9064f"
-  integrity sha512-ETHr/e2iGEzaSkE8/GkUJfW0NBRhQj0PdOU+PfObkYz8iqJGtncmUOnu/LaZ0IJxLrhTASMcJv19KliJ0+kmMQ==
-  dependencies:
-    "@babel/runtime" "^7.14.8"
-    "@polkadot/x-global" "7.0.3"
 
 "@polkadot/x-randomvalues@7.2.1":
   version "7.2.1"
@@ -1444,14 +1380,6 @@
     "@babel/runtime" "^7.15.3"
     "@polkadot/x-global" "7.2.1"
 
-"@polkadot/x-textdecoder@7.0.3":
-  version "7.0.3"
-  resolved "https://registry.yarnpkg.com/@polkadot/x-textdecoder/-/x-textdecoder-7.0.3.tgz#eccf602afb85bb94406f99284a62d58a5c7142c8"
-  integrity sha512-YIE5UYcoeRjGLkWMnqLhboPLEewvqsIB0lR4rz95uTdXOjbQPIdYln5P3coUGlMWobvd/8iVTb2FsXxu6opSGg==
-  dependencies:
-    "@babel/runtime" "^7.14.8"
-    "@polkadot/x-global" "7.0.3"
-
 "@polkadot/x-textdecoder@7.2.1":
   version "7.2.1"
   resolved "https://registry.yarnpkg.com/@polkadot/x-textdecoder/-/x-textdecoder-7.2.1.tgz#c52074dba9943a12583f3f8672a49399f10e00f3"
@@ -1459,14 +1387,6 @@
   dependencies:
     "@babel/runtime" "^7.15.3"
     "@polkadot/x-global" "7.2.1"
-
-"@polkadot/x-textencoder@7.0.3":
-  version "7.0.3"
-  resolved "https://registry.yarnpkg.com/@polkadot/x-textencoder/-/x-textencoder-7.0.3.tgz#92125d2f58f6d6dc7337856e9f2a6edca0e38655"
-  integrity sha512-3BmcOnjdti85s2Y7jDzfM5VP+a3yPRYlX/9o3FkVoGwRHP28mx9Vch6Wu9Yimmd3OZvWd3/yIxTzua1GWC1f7w==
-  dependencies:
-    "@babel/runtime" "^7.14.8"
-    "@polkadot/x-global" "7.0.3"
 
 "@polkadot/x-textencoder@7.2.1":
   version "7.2.1"
