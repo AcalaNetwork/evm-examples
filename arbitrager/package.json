@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "@openzeppelin/contracts": "^3.0.0",
-    "@types/chai": "^4.2.3",
+    "@types/chai": "^4.2.21",
     "@types/mocha": "^5.2.7",
     "chai": "^4.2.0",
     "ethereum-waffle": "3.0.0",
