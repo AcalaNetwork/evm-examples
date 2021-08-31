@@ -116,7 +116,19 @@ the **Arbitrager** smart contract receives the following parameters:
 - Address of the Uniswap router
 - Address of the AUSD smart contract
 - Address of the DOT smart contract
-- Period to be passed to the **Scheduler**
+
+Address of the **Arbitrager** instance is displayed:
+
+```
+Arbitrager is deployed at: 0x2C35427755efCF0272617A300D361C3bd3AE40A8
+```
+
+The **Scheduler** is then called and the call to `trigger()` function is scheduled and the `task_id`
+of the call is saved and displayed:
+
+```
+task_id for managing Scheduler subscription is: 0x305363686564756c6543616c6c5c010000efc11ca128ad06d2df4089df8e168c7e7dc81e9800
+```
 
 The `period` parameter is used to set the minimum number of blocks the **Scheduler** has to wait
 before calling the `trigger()` function.
@@ -126,17 +138,23 @@ When the **Arbitrager** smart contract is deployed the following steps occur:
 1. It assigns the addresses passed to the constructor to the global variables
 2. It approves the Uniswap router to handle the tokens owned by the address that deployed the
 contract (in our case, that would be the *deployer*)
-3. It schedules the call of the `trigger()` function with the native **Scheduler** smart contract
 
-    - The period passed to the constructor is used to tell the **Scheduler** how many blocks should
-    pass from the call being scheduled to its execution
+Deploy script then schedules the call of the `trigger()` function with the native **Scheduler**
+smart contract
+
+    - The period passed to the scheduleTriggerCall is used to tell the **Scheduler** how many blocks
+    should pass from the call being scheduled to its execution
     - All other inputs are hadcoded in this example
     - To read more about how **Scheduler** works, please consult the [wiki](https://wiki.acala.network/build/development-guide/smart-contracts/advanced/use-on-chain-scheduler)
 
-After the **Arbitrager** is successfully deployed, the script transfers the tokens to its address.
-The deploy script then sets the prices of the tokens in order for the **Arbitrager** to be able to
-determine which token is should swap for which. The price of *AUSD* is set to *1000* and the price
-of *DOT* is set to *2000*.
+When the **Scheduler** call is configured, the deployer retrieves the *task_id* from the event
+emmited by **Scheduler** and saves it to a global variable within **Arbitrager** using `setTaskId()`
+function.
+
+After the **Arbitrager** is successfully deployed and configured, the script transfers the tokens to
+its address. The deploy script then sets the prices of the tokens in order for the **Arbitrager** to
+be able to determine which token is should swap for which. The price of *AUSD* is set to *1000* and
+the price of *DOT* is set to *2000*.
 
 The balances of AUSD and DOT tokens for the **Arbitrager** smart contract and for the liquidity pool
 are printed out:
@@ -192,3 +210,6 @@ can see that the `trigger()` has been called again:
   lpAmountDOT: '1002710000000000'
 }
 ```
+
+The end of the deployer script contains the examples how the `rescheduleCall()` and `cancelCall()`
+of the **Scheduler** are used, but they require further refinement at this point.
