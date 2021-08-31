@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "deploy": "node -r ts-node/register/transpile-only src/deploy.ts",
-    "build": "waffle waffle.json"
+    "build": "waffle waffle.json",
+    "test": "export NODE_ENV=test && mocha -r ts-node/register/transpile-only --timeout 50000 --no-warnings test/**/*.test.{js,ts}"
   },
   "resolutions": {
     "@polkadot/api": "^5.6.1",
