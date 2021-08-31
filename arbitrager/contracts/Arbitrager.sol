@@ -17,25 +17,22 @@ contract Arbitrager is ADDRESS {
     IUniswapV2Router01 public immutable router;
     IERC20 public immutable tokenA;
     IERC20 public immutable tokenB;
-    uint256 public immutable period;
+    uint256 public period;
+    bytes public schedulerTaskId;
 
     uint256 constant MAX_INT = uint256(-1);
-
-    bool private initialized;
 
     /// @notice Constructor sets the global variables and schedules execution of trigger with Scheduler
     /// @param factory_ address Address of the Uniswap Factory
     /// @param router_ address Address of the Uniswap V2 Router 01 smart contract
     /// @param tokenA_ address Address of the first token's smart contract 
     /// @param tokenB_ address Address of the second token's smart contract 
-    /// @param period_ uint The amount of time to elapse from deploying this contract to having Scheduler trigger the trigger() function
     /// @dev The constructor sets the approval of both tokens to maximum available value (2^256 - 1)
     constructor(
         address factory_,
         IUniswapV2Router01 router_,
         IERC20 tokenA_,
-        IERC20 tokenB_,
-        uint period_
+        IERC20 tokenB_
     )
         public
     {
@@ -44,28 +41,61 @@ contract Arbitrager is ADDRESS {
         router = router_;
         tokenA = tokenA_;
         tokenB = tokenB_;
-        period = period_;
 
         // Set approval amount for tokens at maximum possible value
         tokenA_.approve(address(router_), MAX_INT);
         tokenB_.approve(address(router_), MAX_INT);
     }
 
-    /// @notice The contract is charged by the Scheduler for handling fees and needs to be transferred first.
-    /// @dev It schedules another call with Scheduler using the initial period
-    function initialize() public {
-	require(!initialized, "Contract instance has already been initialized");
-        initialized = true;
+    /// @notice Call Scheduler smart contract and schedule a call of trigger() function
+    /// @param period_ uint The amount of time to elapse from deploying this contract to having Scheduler trigger the trigger() function
+    /// @return bool Signals successful execution of the function
+    /// @dev Scheduler is called with hardcoded values for now, with only period_ being dynamic
+    /// @dev This function should be protected by access control if used for purposes other than demo
+    function scheduleTriggerCall(uint period_) public returns(bool){
+        require(keccak256(schedulerTaskId) == keccak256(bytes("")), "The call is already scheduled!");
 
-        // Call Scheduler smart contract and schedule a call of trigger() function
-        ISchedule(ADDRESS.Schedule).scheduleCall(
-                                        address(this),
-                                        0,
-                                        1000000,
-                                        5000,
-                                        period,
-                                        abi.encodeWithSignature("trigger()")
-                                    );
+        period = period_;
+
+        require(ISchedule(ADDRESS.Schedule).scheduleCall(
+                                                address(this),
+                                                0,
+                                                1000000,
+                                                5000,
+                                                period_,
+                                                abi.encodeWithSignature("trigger()")
+                                            ));
+        return true;
+    }
+
+    /// @notice Sets the task_id that was assigned to the call to trigger with on-chain Scheduler
+    /// @param task_id_ bytes task_id assigned to the call to trigger() by the on-chain Scheduler
+    /// @return bool Signals successful execution of the function
+    /// @dev This function should be protected by access control if used for purposes other than demo
+    function setTaskId(bytes memory task_id_) public returns(bool) {
+        require(keccak256(schedulerTaskId) == keccak256(bytes("")), "task_id is already set!");
+
+        schedulerTaskId = task_id_;
+        return true;
+    }
+
+    /// @notice Sets a new min_delay for the call of trigger() function with the on-chain Scheduler
+    /// @param newPeriod uint New minimum amout of blocks before the Scheduler calls the trigger() function
+    /// @return bool Signals successful execution of the function
+    /// @dev This function should be protected by access control if used for purposes other than demo
+    function rescheduleTriggerCall(uint newPeriod) public returns(bool){
+        period = newPeriod;
+        require(ISchedule(ADDRESS.Schedule).rescheduleCall(newPeriod, schedulerTaskId));
+        return true;
+    }
+
+    /// @notice Cancels the call of trigger() function with the on-chain Scheduler
+    /// @return bool Signals successful execution of the function
+    /// @dev This function should be protected by access control if used for purposes other than demo
+    function cancelTriggerCall() public returns(bool){
+        require(ISchedule(ADDRESS.Schedule).cancelCall(schedulerTaskId));
+        delete schedulerTaskId;
+        return true;
     }
 
     /// @notice Calculates how many of which token to swap with the other token
