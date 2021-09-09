@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.6.0;
+pragma solidity ^0.8.0;
 
 import "@acala-network/contracts/state_rent/IStateRent.sol";
 import "@acala-network/contracts/utils/Address.sol";

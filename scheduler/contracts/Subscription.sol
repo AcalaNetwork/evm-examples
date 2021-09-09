@@ -33,7 +33,7 @@ contract Subscription is ADDRESS {
 
     owner.transfer(subscriptionPrice);
 
-    scheduler.scheduleCall(address(this), 0, 200000, 100, 10, abi.encodeWithSignature("pay(address)", msg.sender));
+    scheduler.scheduleCall(address(this), 0, 200000, 1000, 10, abi.encodeWithSignature("pay(address)", msg.sender));
   }
 
   function addFunds() public payable {
@@ -63,6 +63,6 @@ contract Subscription is ADDRESS {
     subTokensOf[_subscriber] += monthsSubscribed[_subscriber];
     owner.transfer(subscriptionPrice);
 
-    scheduler.scheduleCall(address(this), 0, 200000, 100, 10, abi.encodeWithSignature("pay(address)", _subscriber));
+    scheduler.scheduleCall(address(this), 0, 200000, 1000, 10, abi.encodeWithSignature("pay(address)", _subscriber));
   }
 }

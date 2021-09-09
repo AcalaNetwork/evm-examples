@@ -123,7 +123,7 @@ describe("Schedule", () => {
     const transferTo = await ethers.Wallet.createRandom().getAddress();
     const inital_block_number = Number(await provider.api.query.system.number());
 
-    const recurringPayment = await deployContract(wallet as any, RecurringPayment, [3, 4, 1000, transferTo], { value: 5000, gasLimit: 2_000_000 });
+    const recurringPayment = await deployContract(wallet as any, RecurringPayment, [3, 4, 1_000_000_000_000, transferTo], { value: 5_000_000_000_000, gasLimit: 2_000_000 });
 
     //expect((await provider.getBalance(transferTo)).toNumber()).to.equal(0);
     expect((await erc20.balanceOf(transferTo)).toNumber()).to.equal(0);
@@ -135,8 +135,8 @@ describe("Schedule", () => {
       current_block_number = Number(await provider.api.query.system.number());
     }
 
-    //expect((await provider.getBalance(transferTo)).toNumber()).to.equal(1000);
-    expect((await erc20.balanceOf(transferTo)).toNumber()).to.equal(1000);
+    //expect((await provider.getBalance(transferTo)).toNumber()).to.equal(1_000_000_000_000);
+    expect((await erc20.balanceOf(transferTo)).toNumber()).to.equal(1_000_000_000_000);
 
     current_block_number = Number(await provider.api.query.system.number());
     while (current_block_number < (inital_block_number + 14)) {
@@ -144,8 +144,8 @@ describe("Schedule", () => {
       current_block_number = Number(await provider.api.query.system.number());
     }
 
-    //expect((await provider.getBalance(transferTo)).toNumber()).to.equal(3000);
-    expect((await erc20.balanceOf(transferTo)).toNumber()).to.equal(3000);
+    //expect((await provider.getBalance(transferTo)).toNumber()).to.equal(3_000_000_000_000);
+    expect((await erc20.balanceOf(transferTo)).toNumber()).to.equal(3_000_000_000_000);
 
     current_block_number = Number(await provider.api.query.system.number());
     while (current_block_number < (inital_block_number + 17)) {
@@ -154,25 +154,25 @@ describe("Schedule", () => {
     }
 
     //expect((await provider.getBalance(recurringPayment.address)).toNumber()).to.equal(0);
-    //expect((await provider.getBalance(transferTo)).toNumber()).to.equal(5000);
+    //expect((await provider.getBalance(transferTo)).toNumber()).to.equal(5_000_000_000_000);
     expect((await erc20.balanceOf(recurringPayment.address)).toNumber()).to.equal(0);
-    expect((await erc20.balanceOf(transferTo)).toNumber()).to.equal(5000);
+    expect((await erc20.balanceOf(transferTo)).toNumber()).to.equal(5_000_000_000_000);
   });
 
   it("works with Subscription", async () => {
     const period = 10;
-    const subPrice = 1000;
+    const subPrice = 1_000_000_000_000;
 
-    const subscription = await deployContract(wallet as any, Subscription, [subPrice, period], { value: 5000, gasLimit: 2_000_000 });
+    const subscription = await deployContract(wallet as any, Subscription, [subPrice, period], { value: 5_000_000_000_000, gasLimit: 2_000_000 });
 
     expect((await subscription.balanceOf(subscriber.getAddress())).toNumber()).to.equal(0);
     expect((await subscription.subTokensOf(subscriber.getAddress())).toNumber()).to.equal(0);
     expect((await subscription.monthsSubscribed(subscriber.getAddress())).toNumber()).to.equal(0);
 
     const subscriberContract = subscription.connect(subscriber as any);
-    await subscriberContract.subscribe({ value: 10_000, gasLimit: 2_000_000 });
+    await subscriberContract.subscribe({ value: 10_000_000_000_000, gasLimit: 2_000_000 });
 
-    expect((await subscription.balanceOf(subscriber.getAddress())).toNumber()).to.equal(10_000 - subPrice);
+    expect((await subscription.balanceOf(subscriber.getAddress())).toNumber()).to.equal(10_000_000_000_000 - subPrice);
     expect((await subscription.subTokensOf(subscriber.getAddress())).toNumber()).to.equal(1);
     expect((await subscription.monthsSubscribed(subscriber.getAddress())).toNumber()).to.equal(1);
 
@@ -182,7 +182,7 @@ describe("Schedule", () => {
       current_block_number = Number(await provider.api.query.system.number());
     }
 
-    expect((await subscription.balanceOf(subscriber.getAddress())).toNumber()).to.equal(10_000 - (subPrice * 2));
+    expect((await subscription.balanceOf(subscriber.getAddress())).toNumber()).to.equal(10_000_000_000_000 - (subPrice * 2));
     expect((await subscription.subTokensOf(subscriber.getAddress())).toNumber()).to.equal(3);
     expect((await subscription.monthsSubscribed(subscriber.getAddress())).toNumber()).to.equal(2);
 
@@ -192,7 +192,7 @@ describe("Schedule", () => {
       current_block_number = Number(await provider.api.query.system.number());
     }
 
-    expect((await subscription.balanceOf(subscriber.getAddress())).toNumber()).to.equal(10_000 - (subPrice * 3));
+    expect((await subscription.balanceOf(subscriber.getAddress())).toNumber()).to.equal(10_000_000_000_000 - (subPrice * 3));
     expect((await subscription.subTokensOf(subscriber.getAddress())).toNumber()).to.equal(6);
     expect((await subscription.monthsSubscribed(subscriber.getAddress())).toNumber()).to.equal(3);
 
