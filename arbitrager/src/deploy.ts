@@ -1,4 +1,6 @@
+import { expect, use } from "chai";
 import { Contract, ContractFactory, BigNumber } from "ethers";
+import { evmChai } from "@acala-network/bodhi/evmChai";
 import ADDRESS from "@acala-network/contracts/utils/Address";
 
 import UniswapFactory from "../artifacts/UniswapV2Factory.json";
@@ -6,6 +8,8 @@ import UniswapRouter from "../artifacts/UniswapV2Router02.json";
 import Arbitrager from "../build/Arbitrager.json";
 import IERC20 from "../artifacts/IERC20.json";
 import setup from "./setup";
+
+use(evmChai);
 
 const main = async () => {
     const { wallet, provider, pair } = await setup();
@@ -26,8 +30,12 @@ const main = async () => {
         router: router.address,
     })
 
+    expect((await tokenAUSD.allowance(deployerAddress, router.address)).toString()).to.equal("0");
     await tokenAUSD.approve(router.address, BigNumber.from(10).pow(18));
+    expect((await tokenAUSD.allowance(deployerAddress, router.address)).toString()).to.equal("1000000000000000000");
+    expect((await tokenDOT.allowance(deployerAddress, router.address)).toString()).to.equal("0");
     await tokenDOT.approve(router.address, BigNumber.from(10).pow(18));
+    expect((await tokenDOT.allowance(deployerAddress, router.address)).toString()).to.equal("1000000000000000000");
 
     await router.addLiquidity(ADDRESS.AUSD, ADDRESS.DOT, BigNumber.from(10).pow(15), BigNumber.from(10).pow(15), 0, 0, deployerAddress, 10000000000);
 

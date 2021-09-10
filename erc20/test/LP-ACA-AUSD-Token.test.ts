@@ -29,9 +29,9 @@ describe("LP ACA-AUSD Token", () => {
     token = new ethers.Contract(ADDRESS.LP_ACA_AUSD, ERC20_ABI, wallet as any);
 
     let pool_1 = await dex.getLiquidityPool(ADDRESS.ACA, ADDRESS.AUSD);
-    expect(await dex.addLiquidity(ADDRESS.ACA, ADDRESS.AUSD, 100, 100, 0, { gasLimit: 2_000_000 })).to.be.ok;
+    expect(await dex.addLiquidity(ADDRESS.ACA, ADDRESS.AUSD, 1_000_000_000_000, 1_000_000_000_000, 0, { gasLimit: 2_000_000 })).to.be.ok;
     let pool_2 = await dex.getLiquidityPool(ADDRESS.ACA, ADDRESS.AUSD);
-    expect((pool_2[1] - pool_1[1])).to.equal(100);
+    expect((pool_2[1].sub(pool_1[1]))).to.equal(1_000_000_000_000);
   });
 
   after(async () => {
@@ -55,14 +55,14 @@ describe("LP ACA-AUSD Token", () => {
 
   it("Transfer adds amount to destination account", async () => {
     const balance = await token.balanceOf(await walletTo.getAddress());
-    await token.transfer(await walletTo.getAddress(), 7);
-    expect((await token.balanceOf(await walletTo.getAddress())).sub(balance)).to.equal(7);
+    await token.transfer(await walletTo.getAddress(), 700_000_000_000);
+    expect((await token.balanceOf(await walletTo.getAddress())).sub(balance)).to.equal(700_000_000_000);
   });
 
   it("Transfer emits event", async () => {
-    await expect(token.transfer(await walletTo.getAddress(), 7))
+    await expect(token.transfer(await walletTo.getAddress(), 700_000_000_000))
       .to.emit(token, "Transfer")
-      .withArgs(await wallet.getAddress(), await walletTo.getAddress(), 7);
+      .withArgs(await wallet.getAddress(), await walletTo.getAddress(), 700_000_000_000);
   });
 
   it("Can not transfer above the amount", async () => {

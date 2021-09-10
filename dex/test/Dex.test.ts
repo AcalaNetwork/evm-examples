@@ -76,16 +76,15 @@ describe("Dex", () => {
 
   it("swapWithExactSupply works", async () => {
     let pool_0 = await dex.getLiquidityPool(ADDRESS.ACA, ADDRESS.AUSD);
-    expect(await dex.swapWithExactSupply([ADDRESS.ACA, ADDRESS.AUSD], 1000, 1, { value: 5000, gasLimit: 2_000_000 })).to.be.ok;
+    expect(await dex.swapWithExactSupply([ADDRESS.ACA, ADDRESS.AUSD], 1_000_000_000_000, 1, { value: 1_000_000_000_000, gasLimit: 2_000_000 })).to.be.ok;
 
     let pool_1 = await dex.getLiquidityPool(ADDRESS.ACA, ADDRESS.AUSD);
-    expect((pool_1[0] - pool_0[0])).to.equal(1000);
+    expect((pool_1[0].sub(pool_0[0]))).to.equal(1_000_000_000_000);
 
     let pool_2 = await dex.getLiquidityPool(ADDRESS.ACA, ADDRESS.AUSD);
-    expect(await dex.swapWithExactSupply([ADDRESS.ACA, ADDRESS.AUSD, ADDRESS.ACA], 1000, 1, { value: 5000, gasLimit: 2_000_000 })).to.be.ok;
+    expect(await dex.swapWithExactSupply([ADDRESS.ACA, ADDRESS.AUSD, ADDRESS.ACA], 1_000_000_000_000, 1, { value: 1_000_000_000_000, gasLimit: 2_000_000 })).to.be.ok;
     let pool_3 = await dex.getLiquidityPool(ADDRESS.ACA, ADDRESS.AUSD);
-    //expect((pool_3[0] - pool_2[0])).to.equal(4);
-    //expect((pool_3[0] - pool_2[0])).to.equal(5);
+    //expect((pool_3[0].sub(pool_2[0]))).to.equal(2000992990);
   });
 
   it("swapWithExactSupply should not works", async () => {
@@ -98,15 +97,15 @@ describe("Dex", () => {
 
   it("swapWithExactTarget works", async () => {
     let pool_0 = await dex.getLiquidityPool(ADDRESS.ACA, ADDRESS.AUSD);
-    expect(await dex.swapWithExactTarget([ADDRESS.ACA, ADDRESS.AUSD], 1, 1000, { value: 5000, gasLimit: 2_000_000 })).to.be.ok;
+    expect(await dex.swapWithExactTarget([ADDRESS.ACA, ADDRESS.AUSD], 1, 1_000_000_000_000, { value: 1_000_000_000_000, gasLimit: 2_000_000 })).to.be.ok;
 
     let pool_1 = await dex.getLiquidityPool(ADDRESS.ACA, ADDRESS.AUSD);
-    expect((pool_1[0] - pool_0[0])).to.equal(1);
+    expect((pool_1[0].sub(pool_0[0]))).to.equal(1);
 
     let pool_2 = await dex.getLiquidityPool(ADDRESS.ACA, ADDRESS.AUSD);
-    expect(await dex.swapWithExactTarget([ADDRESS.ACA, ADDRESS.AUSD, ADDRESS.ACA], 1, 1000, { value: 5000, gasLimit: 2_000_000 })).to.be.ok;
+    expect(await dex.swapWithExactTarget([ADDRESS.ACA, ADDRESS.AUSD, ADDRESS.ACA], 1, 1_000_000_000_000, { value: 1_000_000_000_000, gasLimit: 2_000_000 })).to.be.ok;
     let pool_3 = await dex.getLiquidityPool(ADDRESS.ACA, ADDRESS.AUSD);
-    expect((pool_3[0] - pool_2[0])).to.equal(1);
+    expect((pool_3[0].sub( pool_2[0]))).to.equal(1);
   });
 
   it("swapWithExactTarget should not works", async () => {
@@ -119,17 +118,17 @@ describe("Dex", () => {
 
   it("addLiquidity and removeLiquidity works", async () => {
     let pool_0 = await dex.getLiquidityPool(ADDRESS.ACA, ADDRESS.AUSD);
-    expect(await dex.swapWithExactTarget([ADDRESS.ACA, ADDRESS.AUSD], 1000, 1000, { value: 5000, gasLimit: 2_000_000 })).to.be.ok;
+    expect(await dex.swapWithExactTarget([ADDRESS.ACA, ADDRESS.AUSD], 1_000_000_000_000, 1_000_000_000_000, { value: 1_000_000_000_000, gasLimit: 2_000_000 })).to.be.ok;
 
     let pool_1 = await dex.getLiquidityPool(ADDRESS.ACA, ADDRESS.AUSD);
-    expect((pool_1[1] - pool_0[1])).to.equal(-1000);
+    expect((pool_1[1].sub(pool_0[1]))).to.equal(-1_000_000_000_000);
 
-    expect(await dex.addLiquidity(ADDRESS.ACA, ADDRESS.AUSD, 100, 100, 0, { value: 5000, gasLimit: 2_000_000 })).to.be.ok;
+    expect(await dex.addLiquidity(ADDRESS.ACA, ADDRESS.AUSD, 1_000_000_000_000, 1_000_000_000_000, 0, { value: 1_000_000_000_000, gasLimit: 2_000_000 })).to.be.ok;
 
     let pool_2 = await dex.getLiquidityPool(ADDRESS.ACA, ADDRESS.AUSD);
-    expect((pool_2[1] - pool_1[1])).to.equal(100);
+    expect((pool_2[1].sub(pool_1[1]))).to.equal(1_000_000_000_000);
 
-    expect(await dex.removeLiquidity(ADDRESS.ACA, ADDRESS.AUSD, 100, 0, 0, { value: 5000, gasLimit: 2_000_000 })).to.be.ok;
+    expect(await dex.removeLiquidity(ADDRESS.ACA, ADDRESS.AUSD, 100_000_000_000, 0, 0, { value: 1_000_000_000_000, gasLimit: 2_000_000 })).to.be.ok;
   });
 
   it("addLiquidity should not works", async () => {
