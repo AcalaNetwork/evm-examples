@@ -10,6 +10,8 @@ import { createTestPairs } from "@polkadot/keyring/testingPairs";
 use(solidity)
 use(evmChai);
 
+const testPairs = createTestPairs();
+
 const provider = new TestProvider({
   provider: new WsProvider("ws://127.0.0.1:9944"),
 });
@@ -50,6 +52,11 @@ describe("BasicToken", () => {
   });
 
   it("Can not transfer from empty account", async () => {
+    if (!process.argv.includes("--with-ethereum-compatibility")) {
+        // If it is not called by the maintainer, developer, or contract, it needs to be deployed first
+        await provider.api.tx.evm.deploy(token.address).signAndSend(testPairs.alice.address);
+    }
+
     const tokenFromOtherWallet = token.connect(emptyWallet);
     await expect(tokenFromOtherWallet.transfer(await wallet.getAddress(), 1)).to
       .be.reverted;

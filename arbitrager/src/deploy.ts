@@ -14,6 +14,7 @@ use(evmChai);
 const main = async () => {
     const { wallet, provider, pair } = await setup();
     const deployerAddress = await wallet.getAddress();
+    const tokenACA = new Contract(ADDRESS.ACA, IERC20.abi, wallet);
     const tokenAUSD = new Contract(ADDRESS.AUSD, IERC20.abi, wallet);
     const tokenDOT = new Contract(ADDRESS.DOT, IERC20.abi, wallet);
 
@@ -59,6 +60,12 @@ const main = async () => {
     
     const arbitrager = await ContractFactory.fromSolidity(Arbitrager).connect(wallet)
         .deploy(factory.address, router.address, ADDRESS.AUSD, ADDRESS.DOT, 1);
+
+    if (!process.argv.includes("--with-ethereum-compatibility")) {
+        // The contract is charged by the Scheduler for handling fees and needs to be transferred first
+        await tokenACA.transfer(arbitrager.address, BigNumber.from(10).pow(13));
+    }
+    await arbitrager.initialize();
 
     await tokenAUSD.transfer(arbitrager.address, BigNumber.from(10).pow(13));
     await tokenDOT.transfer(arbitrager.address, BigNumber.from(10).pow(13));
