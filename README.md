@@ -23,6 +23,12 @@ Or you can build & run from the Acala repo.
 
 Follow the setup instruction at https://github.com/AcalaNetwork/Acala
 
+Start the chain:
+
+```bash
+$ make run
+```
+
 Start the chain with evm compatibility mode:
 
 ```bash
@@ -35,6 +41,6 @@ $ make run-eth
 - Install dependencies with `yarn`
 - Compile contract with `yarn build`
   - You can find your contract ABI in the build directory. You can upload these ABI files to [acala evm playground](https://evm.acala.network/#/upload) for testing.
-- Run the tests with `yarn test`
+- Run the tests with `yarn test` or `yarn test --with-ethereum-compatibility` with the chain which enable evm compatibility mode.
 
 The test cases are written with with [ethers.js](https://docs.ethers.io/v5/) and [waffle](https://ethereum-waffle.readthedocs.io/en/latest/)
