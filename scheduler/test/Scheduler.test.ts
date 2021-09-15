@@ -124,10 +124,7 @@ describe("Schedule", () => {
     const transferTo = await ethers.Wallet.createRandom().getAddress();
 
     const recurringPayment = await deployContract(wallet as any, RecurringPayment, [3, 4, dollar.mul(1000), transferTo], { gasLimit: 2_000_000 });
-    if (!process.argv.includes("--with-ethereum-compatibility")) {
-        // The contract is charged by the Scheduler for handling fees and needs to be transferred first
-        await erc20.transfer(recurringPayment.address, dollar.mul(5000));
-    }
+    await erc20.transfer(recurringPayment.address, dollar.mul(5000));
     const inital_block_number = Number(await provider.api.query.system.number());
     await recurringPayment.initialize();
 
