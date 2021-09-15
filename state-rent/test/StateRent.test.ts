@@ -42,25 +42,45 @@ describe("StateRent", () => {
   });
 
   it("stateRent works", async () => {
-    expect(
+    if (!process.argv.includes("--with-ethereum-compatibility")) {
+      expect(
       await stateRent.newContractExtraBytes()
-    ).to.equal(0);
+      ).to.equal(10000);
 
-    expect(
+      expect(
       await stateRent.storageDepositPerByte()
-    ).to.equal(0);
+      ).to.equal(100000000);
+
+      expect(
+      await stateRent.developerDeposit()
+      ).to.equal(1000000000000);
+
+      expect(
+      await stateRent.deploymentFee()
+      ).to.equal(1000000000000);
+
+      await provider.api.tx.evm.deploy(stateRent.address).signAndSend(testPairs.alice.address);
+  } else {
+      expect(
+        await stateRent.newContractExtraBytes()
+      ).to.equal(0);
+
+      expect(
+        await stateRent.storageDepositPerByte()
+      ).to.equal(0);
+
+      expect(
+        await stateRent.developerDeposit()
+      ).to.equal(0);
+
+      expect(
+        await stateRent.deploymentFee()
+      ).to.equal(0);
+    }
 
     expect(
       await stateRent.maintainerOf(stateRent.address)
     ).to.equal(await wallet.getAddress());
-
-    expect(
-      await stateRent.developerDeposit()
-    ).to.equal(0);
-
-    expect(
-      await stateRent.deploymentFee()
-    ).to.equal(0);
 
     // The contract created by the user cannot be transferred through the contract,
     // only through the evm dispatch call `transfer_maintainer`.

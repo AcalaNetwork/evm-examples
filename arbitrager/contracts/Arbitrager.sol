@@ -21,6 +21,8 @@ contract Arbitrager is ADDRESS {
 
     uint256 constant MAX_INT = uint256(-1);
 
+    bool private initialized;
+
     /// @notice Constructor sets the global variables and schedules execution of trigger with Scheduler
     /// @param factory_ address Address of the Uniswap Factory
     /// @param router_ address Address of the Uniswap V2 Router 01 smart contract
@@ -28,7 +30,6 @@ contract Arbitrager is ADDRESS {
     /// @param tokenB_ address Address of the second token's smart contract 
     /// @param period_ uint The amount of time to elapse from deploying this contract to having Scheduler trigger the trigger() function
     /// @dev The constructor sets the approval of both tokens to maximum available value (2^256 - 1)
-    /// @dev Scheduler is called with hardcoded values for now, with only period_ being dynamic
     constructor(
         address factory_,
         IUniswapV2Router01 router_,
@@ -48,6 +49,13 @@ contract Arbitrager is ADDRESS {
         // Set approval amount for tokens at maximum possible value
         tokenA_.approve(address(router_), MAX_INT);
         tokenB_.approve(address(router_), MAX_INT);
+    }
+
+    /// @notice The contract is charged by the Scheduler for handling fees and needs to be transferred first.
+    /// @dev It schedules another call with Scheduler using the initial period
+    function initialize() public {
+	require(!initialized, "Contract instance has already been initialized");
+        initialized = true;
 
         // Call Scheduler smart contract and schedule a call of trigger() function
         ISchedule(ADDRESS.Schedule).scheduleCall(
@@ -55,7 +63,7 @@ contract Arbitrager is ADDRESS {
                                         0,
                                         1000000,
                                         5000,
-                                        period_,
+                                        period,
                                         abi.encodeWithSignature("trigger()")
                                     );
     }

@@ -8,17 +8,22 @@ contract RecurringPayment is ADDRESS {
     uint remainingCount;
     uint amount;
     address payable to;
+    bool private initialized;
     ISchedule scheduler = ISchedule(ADDRESS.Schedule);
 
-    constructor(uint _period, uint _count, uint _amount, address payable _to) public payable {
-        require(msg.value >= _count * _amount);
-
+    constructor(uint _period, uint _count, uint _amount, address payable _to) public {
         period = _period;
         remainingCount = _count;
         amount = _amount;
         to = _to;
+    }
 
-        scheduler.scheduleCall(address(this), 0, 100000, 100, _period, abi.encodeWithSignature("pay()"));
+    function initialize() public {
+        require(!initialized, "Contract instance has already been initialized");
+        initialized = true;
+        require(address(this).balance >= remainingCount * amount, "Balance not enough");
+
+        scheduler.scheduleCall(address(this), 0, 100000, 100, period, abi.encodeWithSignature("pay()"));
     }
 
     function pay() public {
