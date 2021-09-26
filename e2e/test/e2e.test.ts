@@ -1,14 +1,11 @@
 import { expect, use } from "chai";
-import { ethers, Contract } from "ethers";
-import { deployContract, solidity } from "ethereum-waffle";
+import { ethers } from "ethers";
+import { deployContract } from "ethereum-waffle";
 import { evmChai } from "@acala-network/bodhi/evmChai";
 import { TestAccountSigningKey, TestProvider, Signer } from "@acala-network/bodhi";
 import { WsProvider } from "@polkadot/api";
 import { createTestPairs } from "@polkadot/keyring/testingPairs";
-import RecurringPayment from "../build/RecurringPayment.json";
-import Subscription from "../build/Subscription.json";
-import BlockNumberTest from "../build/BlcokNumberTest.json";
-import ADDRESS from "@acala-network/contracts/utils/Address";
+import Storage from "../build/Storage.json"
 
 use(evmChai);
 
@@ -41,9 +38,17 @@ describe("e2e test", () => {
   });
 
   it("evm block number", async () => {
-    let contract = await deployContract(wallet as any, BlockNumberTest);
-    let current_block_number = Number(await provider.api.query.system.number());
-    let height = await contract.currentBlock();
-    expect(await height.toString()).to.eq(current_block_number.toString());
+   let [ alice ] = await provider.getWallets();
+
+   const contract = await deployContract(alice as any, Storage);
+
+
+   console.log(await contract.getStorage("0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc"));
+   //console.log(await provider.getStorageAt(contract.address, "0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc"));
+
+   //await contract.setStorage("0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc", "0x0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef");
+   //console.log(await contract.getStorage("0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc"));
+
+   //console.log(await provider.getStorageAt(contract.address, "0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc"));
   });
 });
