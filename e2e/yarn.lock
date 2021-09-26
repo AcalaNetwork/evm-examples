@@ -24,10 +24,10 @@
     "@polkadot/api" "^5.6.2-5"
     "@polkadot/rpc-core" "^5.6.2-5"
 
-"@acala-network/bodhi@1.0.2-13":
-  version "1.0.2-13"
-  resolved "https://registry.yarnpkg.com/@acala-network/bodhi/-/bodhi-1.0.2-13.tgz#9ac6bdcfc491517e3451300804a061bd61c8c116"
-  integrity sha512-wmSPXW1oVjXrb/sxIt7Yy06F2Kw6Ivcv4U4rEJQt8eX8ibP2zC6ooAQgdtv5aWVVZOQraoaLnlGS2yhMxmpn7A==
+"@acala-network/bodhi@1.0.2-14":
+  version "1.0.2-14"
+  resolved "https://registry.yarnpkg.com/@acala-network/bodhi/-/bodhi-1.0.2-14.tgz#52fd7774887b886b10b23b63e405e003705ce3ae"
+  integrity sha512-lW4sK0ahyf+bcjmDkgK2uwZ1kgNNRq/xhuwtBS+TOeC5Tt+48L0/JEORFXjpDHg5Rcz+2nL75Q/3ZkmEGRMG9A==
   dependencies:
     "@open-web3/scanner" "^0.9.4-19"
     blakejs "^1.1.0"
