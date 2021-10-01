@@ -89,7 +89,7 @@ describe("Schedule", () => {
       console.log("task_id:" + decode_log.args.task_id);
       await schedule.cancelCall(ethers.utils.hexlify(decode_log.args.task_id));
     } else {
-      expect(false).to.not.be.ok;
+      expect(false).to.be.ok;
     }
   });
 
@@ -115,7 +115,7 @@ describe("Schedule", () => {
       console.log("task_id:" + decode_log.args.task_id);
       await schedule.rescheduleCall(5, ethers.utils.hexlify(decode_log.args.task_id));
     } else {
-      expect(false).to.not.be.ok;
+      expect(false).to.be.ok;
     }
   });
 
