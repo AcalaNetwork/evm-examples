@@ -80,7 +80,7 @@ describe("Schedule", () => {
     const data = await provider.api.derive.tx.events(block_hash);
 
     let event = data.events.filter(item => provider.api.events.evm.Log.is(item.event));
-    expect(event.length).to.above(0);
+    expect(event.length).to.equal(1);
 
     let decode_log = await iface.parseLog(event[0].event.data.toJSON()[0]);
     console.log("task_id:" + decode_log.args.task_id);
@@ -101,7 +101,7 @@ describe("Schedule", () => {
     const data = await provider.api.derive.tx.events(block_hash);
 
     let event = data.events.filter(item => provider.api.events.evm.Log.is(item.event));
-    expect(event.length).to.above(0);
+    expect(event.length).to.equal(1);
 
     let decode_log = await iface.parseLog(event[0].event.data.toJSON()[0]);
     console.log("task_id:" + decode_log.args.task_id);
