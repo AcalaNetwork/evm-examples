@@ -51,7 +51,7 @@ describe("Schedule", () => {
 
     const erc20 = new ethers.Contract(ADDRESS.DOT, ERC20_ABI, walletTo as any);
     const tx = await erc20.populateTransaction.transfer(walletTo.getAddress(), 1_000_000);
-    console.log(tx, ethers.utils.hexlify(tx.data as string));
+    // console.log(tx, ethers.utils.hexlify(tx.data as string));
 
     await schedule.scheduleCall(ADDRESS.DOT, 0, 300000, 10000, 1, ethers.utils.hexlify(tx.data as string));
 
@@ -69,7 +69,7 @@ describe("Schedule", () => {
   it("CancelCall works", async () => {
     const erc20 = new ethers.Contract(ADDRESS.DOT, ERC20_ABI, walletTo as any);
     const tx = await erc20.populateTransaction.transfer(walletTo.getAddress(), 1_000_000);
-    console.log(tx, ethers.utils.hexlify(tx.data as string));
+    // console.log(tx, ethers.utils.hexlify(tx.data as string));
 
     let iface = new ethers.utils.Interface(SCHEDULE_CALL_ABI);
 
@@ -82,17 +82,16 @@ describe("Schedule", () => {
     let event = data.events.filter(item => provider.api.events.evm.Log.is(item.event));
     expect(event.length).to.equal(1);
 
-    let decode_log = await iface.parseLog(event[0].event.data.toJSON()[0]);
-    console.log("task_id:" + decode_log.args.task_id);
+    let decode_log = iface.parseLog(event[0].event.data.toJSON()[0]);
     await expect(schedule.cancelCall(ethers.utils.hexlify(decode_log.args.task_id)))
-       .to.emit(schedule, "CancelledCall")
-       .withArgs(await wallet.getAddress(), ethers.utils.hexlify(decode_log.args.task_id)));
+       .to.emit(schedule, "CanceledCall")
+       .withArgs(await wallet.getAddress(), ethers.utils.hexlify(decode_log.args.task_id));
   });
 
   it("RescheduleCall works", async () => {
     const erc20 = new ethers.Contract(ADDRESS.DOT, ERC20_ABI, walletTo as any);
     const tx = await erc20.populateTransaction.transfer(walletTo.getAddress(), 1_000_000);
-    console.log(tx, ethers.utils.hexlify(tx.data as string));
+    // console.log(tx, ethers.utils.hexlify(tx.data as string));
 
     let iface = new ethers.utils.Interface(SCHEDULE_CALL_ABI);
 
@@ -105,8 +104,7 @@ describe("Schedule", () => {
     let event = data.events.filter(item => provider.api.events.evm.Log.is(item.event));
     expect(event.length).to.equal(1);
 
-    let decode_log = await iface.parseLog(event[0].event.data.toJSON()[0]);
-    console.log("task_id:" + decode_log.args.task_id);
+    let decode_log = iface.parseLog(event[0].event.data.toJSON()[0]);
     await expect(schedule.rescheduleCall(5, ethers.utils.hexlify(decode_log.args.task_id)))
       .to.emit(schedule, "RescheduledCall")
       .withArgs(await wallet.getAddress(), ethers.utils.hexlify(decode_log.args.task_id));
