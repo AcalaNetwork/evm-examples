@@ -24,10 +24,10 @@
     "@polkadot/api" "^5.8.3"
     "@polkadot/rpc-core" "^5.8.3"
 
-"@acala-network/bodhi@^1.0.2-2":
-  version "1.0.2-2"
-  resolved "https://registry.yarnpkg.com/@acala-network/bodhi/-/bodhi-1.0.2-2.tgz#6ac927d11f4858c935520cac1ca1a4f31dd755d2"
-  integrity sha512-4FzAycTOt1Bokk4MsAkOM5ui4dO6MRUtyxmgeU1kcyzgWWG2UjgHpPhPOLKLAanzMPC/rUXemLyAjti74Z5f1g==
+"@acala-network/bodhi@^1.0.2-15":
+  version "1.0.2-15"
+  resolved "https://registry.yarnpkg.com/@acala-network/bodhi/-/bodhi-1.0.2-15.tgz#25b0f4dcf03fc69563b6e5c7a3649aa5f61be431"
+  integrity sha512-GzTUyswj927L5fgZEOIQagCppQutTlBCFZ62gduKXL0+gsvjy7G2/xNkc6tYDkaDjAfndJK+Nnp902ywyxy+Bw==
   dependencies:
     "@open-web3/scanner" "^0.9.4-19"
     blakejs "^1.1.0"
@@ -3801,7 +3801,7 @@ ethereumjs-wallet@0.6.5:
     utf8 "^3.0.0"
     uuid "^3.3.2"
 
-ethers@^5.0.0, ethers@^5.0.1, ethers@^5.0.2, ethers@^5.0.21:
+ethers@^5.0.0, ethers@^5.0.1, ethers@^5.0.2:
   version "5.0.32"
   resolved "https://registry.yarnpkg.com/ethers/-/ethers-5.0.32.tgz#f009970be31d96a589bf0ce597a39c10c7e297a6"
   integrity sha512-rORfGWR0HsA4pjKMMcWZorw12DHsXqfIAuPVHJsXt+vI24jvXcVqx+rLsSvgOoLdaCMdxiN5qlIq2+4axKG31g==

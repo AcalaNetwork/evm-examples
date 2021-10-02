@@ -17,14 +17,14 @@
     "@types/mocha": "^9.0.0",
     "chai": "^4.3.4",
     "ethereum-waffle": "3.4.0",
-    "ethers": "^5.4.5",
+    "ethers": "^5.4.6",
     "mocha": "^9.1.0",
     "ts-node": "^10.2.1",
     "typescript": "^4.3.5"
   },
   "dependencies": {
     "@acala-network/api": "^2.2.2-1",
-    "@acala-network/bodhi": "^1.0.2-2",
+    "@acala-network/bodhi": "^1.0.2-15",
     "@acala-network/contracts": "^1.0.23",
     "@uniswap/v2-core": "^1.0.1",
     "@uniswap/v2-periphery": "^1.1.0-beta.0"
