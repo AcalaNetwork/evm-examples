@@ -84,7 +84,9 @@ describe("Schedule", () => {
 
     let decode_log = await iface.parseLog(event[0].event.data.toJSON()[0]);
     console.log("task_id:" + decode_log.args.task_id);
-    await schedule.cancelCall(ethers.utils.hexlify(decode_log.args.task_id));
+    await expect(schedule.cancelCall(ethers.utils.hexlify(decode_log.args.task_id)))
+       .to.emit(schedule, "CancelledCall")
+       .withArgs(await wallet.getAddress(), ethers.utils.hexlify(decode_log.args.task_id)));
   });
 
   it("RescheduleCall works", async () => {
@@ -105,7 +107,9 @@ describe("Schedule", () => {
 
     let decode_log = await iface.parseLog(event[0].event.data.toJSON()[0]);
     console.log("task_id:" + decode_log.args.task_id);
-    await schedule.rescheduleCall(5, ethers.utils.hexlify(decode_log.args.task_id));
+    await expect(schedule.rescheduleCall(5, ethers.utils.hexlify(decode_log.args.task_id)))
+      .to.emit(schedule, "RescheduledCall")
+      .withArgs(await wallet.getAddress(), ethers.utils.hexlify(decode_log.args.task_id));
   });
 
   it("works with RecurringPayment", async () => {
