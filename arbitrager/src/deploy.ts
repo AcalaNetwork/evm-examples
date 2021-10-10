@@ -3,8 +3,6 @@ import { Contract, ContractFactory, BigNumber, ethers } from "ethers";
 import { evmChai } from "@acala-network/bodhi/evmChai";
 import ADDRESS from "@acala-network/contracts/utils/Address";
 
-import UniswapFactory from "../artifacts/UniswapV2Factory.json";
-import UniswapRouter from "../artifacts/UniswapV2Router02.json";
 import Arbitrager from "../build/Arbitrager.json";
 import ISchedule from "../build/ISchedule.json";
 import IERC20 from "../artifacts/IERC20.json";
