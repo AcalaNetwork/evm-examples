@@ -1,4 +1,4 @@
-import { TestProvider, Signer, TestAccountSigningKey } from "@acala-network/bodhi";
+import { TestProvider } from "@acala-network/bodhi";
 import { evmChai } from "@acala-network/bodhi/evmChai";
 import { WsProvider } from "@polkadot/api";
 import { createTestPairs } from "@polkadot/keyring/testingPairs";
@@ -17,7 +17,7 @@ const provider = new TestProvider({
 
 const testPairs = createTestPairs();
 
-const feedValues = async (token: string, price: number) => {
+const feedValues = async (token: string, price: string) => {
   return new Promise((resolve) => {
     provider.api.tx.acalaOracle
       .feedValues([[{ Token: token }, price]])
@@ -30,54 +30,51 @@ const feedValues = async (token: string, price: number) => {
 };
 
 describe("Prices", () => {
-  let prices: Contract;
+  let oracleContract: Contract;
 
   before(async () => {
     const [wallet] = await provider.getWallets();
-    prices = await deployContract(wallet as any, Prices);
+    oracleContract = await deployContract(wallet as any, Prices);
   });
 
   after(async () => {
-    provider.api.disconnect()
+    provider.api.disconnect();
   });
 
-  it("getPrice works", async () => {
-      await feedValues("RENBTC", BigNumber.from(34_500).mul(BigNumber.from(10).pow(18)).toString());
-      expect(
-        await prices.getPrice(ADDRESS.RENBTC)
-      ).to.equal(BigNumber.from(34_500).mul(BigNumber.from(10).pow(18)).toString());
+  it("feed/get price RENBTC", async () => {
+    const TOKEN = "RENBTC";
+    const price = BigNumber.from(34_500)
+      .mul(BigNumber.from(10).pow(18))
+      .toString();
+    await feedValues(TOKEN, price);
+    expect(await oracleContract.getPrice(ADDRESS.RENBTC)).to.equal(price);
+  });
 
-      await feedValues("RENBTC", BigNumber.from(33_800).mul(BigNumber.from(10).pow(18)).toString());
-      expect(
-        await prices.getPrice(ADDRESS.RENBTC)
-      ).to.equal(BigNumber.from(33_800).mul(BigNumber.from(10).pow(18)).toString());
+  it("feed/get price DOT", async () => {
+    const TOKEN = "RENBTC";
+    const price = BigNumber.from(34_500)
+      .mul(BigNumber.from(10).pow(18))
+      .toString();
+    await feedValues(TOKEN, price);
+    expect(await oracleContract.getPrice(ADDRESS.RENBTC)).to.equal(price);
+  });
 
-      await feedValues("DOT", BigNumber.from(15).mul(BigNumber.from(10).pow(18)).toString());
-      expect(
-        await prices.getPrice(ADDRESS.DOT)
-      ).to.equal(BigNumber.from(15).mul(BigNumber.from(10).pow(18)).toString());
+  it("get price AUSD/KUSD", async () => {
+    expect(await oracleContract.getPrice(ADDRESS.AUSD)).to.equal(
+      BigNumber.from(1).mul(BigNumber.from(10).pow(18)).toString()
+    );
 
-      await feedValues("DOT", BigNumber.from(16).mul(BigNumber.from(10).pow(18)).toString());
-      expect(
-        await prices.getPrice(ADDRESS.DOT)
-      ).to.equal(BigNumber.from(16).mul(BigNumber.from(10).pow(18)).toString());
-
-      expect(
-        await prices.getPrice(ADDRESS.AUSD)
-      ).to.equal(BigNumber.from(1).mul(BigNumber.from(10).pow(18)).toString());
-
-      expect(
-        await prices.getPrice(ADDRESS.KUSD)
-      ).to.equal(0);
+    expect(await oracleContract.getPrice(ADDRESS.KUSD)).to.equal(0);
   });
 
   it("ignores invalid address", async () => {
     // not system contract
     await expect(
-      prices.getPrice("0x1000000000000000000000000000000000000000")
+      oracleContract.getPrice("0x1000000000000000000000000000000000000000")
     ).to.be.reverted;
     // not MultiCurrency token
-    await expect(prices.getPrice("0x0000000000000000000000000000000000000000"))
-      .to.be.reverted;
+    await expect(
+      oracleContract.getPrice("0x0000000000000000000000000000000000000000")
+    ).to.be.reverted;
   });
 });
