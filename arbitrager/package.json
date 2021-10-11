@@ -9,8 +9,8 @@
     "test": "export NODE_ENV=test && mocha -r ts-node/register/transpile-only --timeout 50000 --no-warnings test/**/*.test.{js,ts}"
   },
   "resolutions": {
-    "@polkadot/api": "^6.2.1",
-    "@polkadot/types": "^6.2.1"
+    "@polkadot/api": "^5.9.1",
+    "@polkadot/types": "^5.9.1"
   },
   "devDependencies": {
     "@openzeppelin/contracts": "^4.3.2",
@@ -25,7 +25,7 @@
     "typescript": "^4.3.5"
   },
   "dependencies": {
-    "@acala-network/api": "^2.2.2-1",
+    "@acala-network/api": "^2.3.2-10",
     "@acala-network/bodhi": "^1.0.2-15",
     "@acala-network/contracts": "^1.0.23",
     "@uniswap/v3-core": "^1.0.0",

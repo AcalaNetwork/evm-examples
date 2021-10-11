@@ -22,7 +22,6 @@
     "typescript": "^4.2.4"
   },
   "dependencies": {
-    "@acala-network/api": "^2.3.2-9",
     "@acala-network/bodhi": "^1.0.3",
     "@acala-network/contracts": "^1.2.1"
   }
