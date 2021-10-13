@@ -8,7 +8,7 @@
     "build": "waffle waffle.json"
   },
   "resolutions": {
-    "@polkadot/api": "^5.9.1",
+    "@polkadot/api": "^6.3.1",
     "@polkadot/types": "^5.9.1"
   },
   "devDependencies": {
