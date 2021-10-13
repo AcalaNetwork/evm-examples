@@ -12,7 +12,7 @@
     "@polkadot/types": "^5.2.1"
   },
   "devDependencies": {
-    "@openzeppelin/contracts": "^3.4.2",
+    "@openzeppelin/contracts": "^4.3.2",
     "@types/chai": "^4.2.22",
     "@types/mocha": "^9.0.0",
     "chai": "^4.3.4",
