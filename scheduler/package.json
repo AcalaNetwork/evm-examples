@@ -8,8 +8,8 @@
     "build": "waffle waffle.json"
   },
   "resolutions": {
-    "@polkadot/api": "^5.2.1",
-    "@polkadot/types": "^5.2.1"
+    "@polkadot/api": "^6.3.1",
+    "@polkadot/types": "^6.3.1"
   },
   "devDependencies": {
     "@openzeppelin/contracts": "^4.3.2",
