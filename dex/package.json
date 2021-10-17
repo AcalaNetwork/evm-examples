@@ -12,9 +12,9 @@
     "@polkadot/types": "^5.2.1"
   },
   "devDependencies": {
-    "@types/chai": "^4.2.3",
+    "@types/chai": "^4.2.22",
     "@types/mocha": "^5.2.7",
-    "chai": "^4.2.0",
+    "chai": "^4.3.4",
     "ethereum-waffle": "3.0.0",
     "ethers": "^5.4.6",
     "mocha": "^7.1.2",
