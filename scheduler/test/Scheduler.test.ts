@@ -114,7 +114,7 @@ describe("Schedule", () => {
     // await expect(schedule.cancelCall(ethers.utils.hexlify(decode_log.args.task_id)))
     // await schedule.cancelCall(task_id);
     await expect(schedule.cancelCall(task_id))
-      .to.emit(schedule, "CancelledCall")
+      .to.emit(schedule, "CanceledCall")
       .withArgs(await wallet.getAddress(), task_id);
 
     let current_block_number = initial_block_number;
