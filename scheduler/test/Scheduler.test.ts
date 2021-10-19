@@ -82,7 +82,7 @@ describe("Schedule", () => {
     let event = data.events.filter(item => provider.api.events.evm.Executed.is(item.event));
     expect(event.length).above(0);
 
-    let decode_log = iface.parseLog(event[event.length-1].event.data.toJSON()[2][0]);
+    let decode_log = iface.parseLog((event[event.length-1].event.data.toJSON() as any)[2][0]);
     await expect(schedule.cancelCall(ethers.utils.hexlify(decode_log.args.task_id)))
        .to.emit(schedule, "CanceledCall")
        .withArgs(await wallet.getAddress(), ethers.utils.hexlify(decode_log.args.task_id));
@@ -104,7 +104,7 @@ describe("Schedule", () => {
     let event = data.events.filter(item => provider.api.events.evm.Executed.is(item.event));
     expect(event.length).above(0);
 
-    let decode_log = iface.parseLog(event[event.length-1].event.data.toJSON()[2][0]);
+    let decode_log = iface.parseLog((event[event.length-1].event.data.toJSON() as any)[2][0]);
     await expect(schedule.rescheduleCall(5, ethers.utils.hexlify(decode_log.args.task_id)))
       .to.emit(schedule, "RescheduledCall")
       .withArgs(await wallet.getAddress(), ethers.utils.hexlify(decode_log.args.task_id));
