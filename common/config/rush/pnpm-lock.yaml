@@ -1,6 +1,7 @@
 lockfileVersion: 5.3
 
 specifiers:
+  '@acala-network/bodhi': ~2.1.1-beta
   '@rush-temp/evm-example-arbitrager': file:./projects/evm-example-arbitrager.tgz
   '@rush-temp/evm-example-dex': file:./projects/evm-example-dex.tgz
   '@rush-temp/evm-example-e2e': file:./projects/evm-example-e2e.tgz
@@ -14,6 +15,7 @@ specifiers:
   ethers: ^5.4.6
 
 dependencies:
+  '@acala-network/bodhi': 2.1.1-beta
   '@rush-temp/evm-example-arbitrager': file:projects/evm-example-arbitrager.tgz
   '@rush-temp/evm-example-dex': file:projects/evm-example-dex.tgz
   '@rush-temp/evm-example-e2e': file:projects/evm-example-e2e.tgz
@@ -28,28 +30,30 @@ dependencies:
 
 packages:
 
-  /@acala-network/api-derive/2.3.1_@polkadot+api@5.9.1:
-    resolution: {integrity: sha512-EBCsCg/i4DGVBLvt3AqEy0bu4hU51tn78hFaf+mnF2GpgXn+Io8nla2X6f6D7a7Iq3zcofYxCpRse7RCbYitzA==}
+  /@acala-network/api-derive/3.0.2-4_@polkadot+api@6.4.2:
+    resolution: {integrity: sha512-5ZV0d2wAk8fLoXa2JPi8UT09bzBLYhBan0oC/cTtE8Ln4v1899NFjmroMBsapS9GWa1rX4820ZFs5gqEnpUf5g==}
     dependencies:
-      '@acala-network/types': 2.3.1
+      '@acala-network/types': 3.0.2-4
       '@babel/runtime': 7.15.4
-      '@open-web3/orml-types': 0.9.4-38_@polkadot+api@5.9.1
-      '@polkadot/api-derive': 5.9.1
+      '@open-web3/orml-types': 1.0.2-0_@polkadot+api@6.4.2
+      '@polkadot/api-derive': 6.4.2
     transitivePeerDependencies:
       - '@polkadot/api'
       - '@polkadot/typegen'
       - supports-color
     dev: false
 
-  /@acala-network/api/2.3.1:
-    resolution: {integrity: sha512-N0mdYKcx1Kj01QEkoil2VwrC7z+uqWOyLCf1pKjbaK0aFihLVCyUNJxQAGrtrdOsiTaLG3oPcZ4oAQnPeCh0LQ==}
+  /@acala-network/api/3.0.2-4:
+    resolution: {integrity: sha512-mACnH8SNi9P/JX7As+D0RNYfqk1ZR1iMAKTedstlT76+mFZvS+APjpLVNABNeYpt3f6mOlLjkSWeQ+pvTlPXuQ==}
+    peerDependencies:
+      '@polkadot/types': ^6.3.1
     dependencies:
-      '@acala-network/api-derive': 2.3.1_@polkadot+api@5.9.1
-      '@acala-network/types': 2.3.1
+      '@acala-network/api-derive': 3.0.2-4_@polkadot+api@6.4.2
+      '@acala-network/types': 3.0.2-4
       '@babel/runtime': 7.15.4
-      '@open-web3/orml-api-derive': 0.9.4-38_@polkadot+api@5.9.1
-      '@polkadot/api': 5.9.1
-      '@polkadot/rpc-core': 5.9.1
+      '@open-web3/orml-api-derive': 1.0.2-0_@polkadot+api@6.4.2
+      '@polkadot/api': 6.4.2
+      '@polkadot/rpc-core': 6.4.2
     transitivePeerDependencies:
       - '@polkadot/typegen'
       - supports-color
@@ -90,30 +94,16 @@ packages:
     resolution: {integrity: sha512-i40CiTnj6vWvZUgMjeENjhNu9+3GuTB9ZDXDDZ7aokE5es6Q3/wG9zVM8aaZeLH9iNiU9xPf8j6fH7LaorgZzg==}
     dev: false
 
-  /@acala-network/type-definitions/2.3.1:
-    resolution: {integrity: sha512-qEnOZj/569pCfWEO/Vo8j4Dx00DFxrYrPhYjeysLu062LludkwgqNNlnpwR4/QJdMpMtezei40CM64bVA44WmQ==}
-    dependencies:
-      '@open-web3/orml-type-definitions': 0.9.4-38
-    dev: false
-
   /@acala-network/type-definitions/3.0.1:
     resolution: {integrity: sha512-lkedZURwMFTt4OhNnX6aV1PISeBYblndI3LZNqkO2KZYB2ZeoQPfcmXTvo2v+R4Nen1rX1Tz9bxI1wt4JlY3Og==}
     dependencies:
       '@open-web3/orml-type-definitions': 1.0.1
     dev: false
 
-  /@acala-network/types/2.3.1:
-    resolution: {integrity: sha512-HvSV5bExrJ2gk8NL5tycuaieTlZaBEj2ryi0eP1AoqVyQmw7enW2i4YTGIlGDZTAo/aQKd2ePluftreN6zSscQ==}
+  /@acala-network/type-definitions/3.0.2-4:
+    resolution: {integrity: sha512-Z0WZLBWB7yHvZbHp1AMYm8OUgPYfTw5C6U4EMxs3Xhz2RY+VfpMmQmV2uwD87kWcqJkCm/fLF5fO7eS5to/y8Q==}
     dependencies:
-      '@acala-network/type-definitions': 2.3.1
-      '@babel/runtime': 7.15.4
-      '@open-web3/api-mobx': 0.9.4-38_@polkadot+api@5.9.1
-      '@open-web3/orml-types': 0.9.4-38_967dad493fb073e0f1f71cfdca349b05
-      '@polkadot/api': 5.9.1
-      '@polkadot/typegen': 5.9.1
-      '@polkadot/types': 5.9.1
-    transitivePeerDependencies:
-      - supports-color
+      '@open-web3/orml-type-definitions': 1.0.2-0
     dev: false
 
   /@acala-network/types/3.0.1:
@@ -123,6 +113,20 @@ packages:
       '@babel/runtime': 7.15.4
       '@open-web3/api-mobx': 1.0.1_@polkadot+api@6.4.2
       '@open-web3/orml-types': 1.0.1_1516a530d9bfd60dd2b9c1c8ae95f90c
+      '@polkadot/api': 6.4.2
+      '@polkadot/typegen': 6.4.2
+      '@polkadot/types': 6.4.2
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
+  /@acala-network/types/3.0.2-4:
+    resolution: {integrity: sha512-3oAapcY0DJi4nBWBR/L+EeFdjEjR2SHr+JWBBOmMOfAswUW7Y1aM7owZBCLmvlYmZM81eMa+f0WQzK4l9HireA==}
+    dependencies:
+      '@acala-network/type-definitions': 3.0.2-4
+      '@babel/runtime': 7.15.4
+      '@open-web3/api-mobx': 1.0.2-0_@polkadot+api@6.4.2
+      '@open-web3/orml-types': 1.0.2-0_1516a530d9bfd60dd2b9c1c8ae95f90c
       '@polkadot/api': 6.4.2
       '@polkadot/typegen': 6.4.2
       '@polkadot/types': 6.4.2
@@ -1102,16 +1106,6 @@ packages:
       '@ethersproject/strings': 5.5.0
     dev: false
 
-  /@open-web3/api-mobx/0.9.4-38_@polkadot+api@5.9.1:
-    resolution: {integrity: sha512-qH+Elwo8gXWsFRxtzMTnjvokG2i30pescZU+gVQB+YgLSOZoTbRf0nIovJ5CEym6g5jfOnAo201rRt6HHH3ulQ==}
-    peerDependencies:
-      '@polkadot/api': 5.*
-    dependencies:
-      '@polkadot/api': 5.9.1
-      mobx: 5.15.7
-      mobx-utils: 5.6.2_mobx@5.15.7
-    dev: false
-
   /@open-web3/api-mobx/1.0.1_@polkadot+api@6.4.2:
     resolution: {integrity: sha512-aI6387GhfWvTApKmfZwVIellDrh/qWjvhe5BxyhFnJmVcnP1Rc7wZl69ZxhewF5Vo9qH2WG6RDaFziKj4bIM+Q==}
     peerDependencies:
@@ -1122,20 +1116,24 @@ packages:
       mobx-utils: 5.6.2_mobx@5.15.7
     dev: false
 
-  /@open-web3/orml-api-derive/0.9.4-38_@polkadot+api@5.9.1:
-    resolution: {integrity: sha512-FbRP91i0qFhuUkd8bTgPJtVnnWNSiCHZ9VzBqIfjHj4mmlpoDSBzpkEylBh9lrofSrc54HWsGehPrdvFpfF/DA==}
+  /@open-web3/api-mobx/1.0.2-0_@polkadot+api@6.4.2:
+    resolution: {integrity: sha512-1G8muaIwbDOBx5jqfMUtvyJO5y7ZHp36acJpvAbHq4c/c1BdVC0SPHiPAAaav1uQ9zyhGQkGvzdj8gGytyb7fA==}
     peerDependencies:
-      '@polkadot/api': 5.*
+      '@polkadot/api': ^6.3.1
     dependencies:
-      '@polkadot/api': 5.9.1
-      memoizee: 0.4.15
-      rxjs: 7.4.0
+      '@polkadot/api': 6.4.2
+      mobx: 5.15.7
+      mobx-utils: 5.6.2_mobx@5.15.7
     dev: false
 
-  /@open-web3/orml-type-definitions/0.9.4-38:
-    resolution: {integrity: sha512-kV0++JlRLEf7Z1y+Jm+792zqx6Q7dzpGP73rJJmQrBaeTML5mQzu4veZ24TVtcLV6hsGjUU/ixrJODNj6CCuZQ==}
+  /@open-web3/orml-api-derive/1.0.2-0_@polkadot+api@6.4.2:
+    resolution: {integrity: sha512-AXlqZ3aKmXBGeDcTxJLgNpqERqifzWGtmdAKHW/B08QiqOuyMIvzXZMz0STHy4UlcPd4Io8RRUbSa4608UMvwQ==}
+    peerDependencies:
+      '@polkadot/api': ^6.3.1
     dependencies:
-      lodash.merge: 4.6.2
+      '@polkadot/api': 6.4.2
+      memoizee: 0.4.15
+      rxjs: 7.4.0
     dev: false
 
   /@open-web3/orml-type-definitions/1.0.1:
@@ -1144,25 +1142,10 @@ packages:
       lodash.merge: 4.6.2
     dev: false
 
-  /@open-web3/orml-types/0.9.4-38_967dad493fb073e0f1f71cfdca349b05:
-    resolution: {integrity: sha512-QC3tGlPAdeU7PW+UVeWp6zo/vBKbo1HlWNs3z1bRvSFP/84D9oY7D+FpfHKf3kWvbRDDfCNtObUI5oFUyOm31g==}
-    peerDependencies:
-      '@polkadot/api': 5.*
-      '@polkadot/typegen': 5.*
+  /@open-web3/orml-type-definitions/1.0.2-0:
+    resolution: {integrity: sha512-HwSWh4BwF/U3Fo6G2ZuQn6tNxoFfnBLtLyX0Z73eeII0g7OlYfWGr7bNzflO26Jb8EfBtZE5UNhPzZXTQUY1cw==}
     dependencies:
-      '@open-web3/orml-type-definitions': 0.9.4-38
-      '@polkadot/api': 5.9.1
-      '@polkadot/typegen': 5.9.1
-    dev: false
-
-  /@open-web3/orml-types/0.9.4-38_@polkadot+api@5.9.1:
-    resolution: {integrity: sha512-QC3tGlPAdeU7PW+UVeWp6zo/vBKbo1HlWNs3z1bRvSFP/84D9oY7D+FpfHKf3kWvbRDDfCNtObUI5oFUyOm31g==}
-    peerDependencies:
-      '@polkadot/api': 5.*
-      '@polkadot/typegen': 5.*
-    dependencies:
-      '@open-web3/orml-type-definitions': 0.9.4-38
-      '@polkadot/api': 5.9.1
+      lodash.merge: 4.6.2
     dev: false
 
   /@open-web3/orml-types/1.0.1_1516a530d9bfd60dd2b9c1c8ae95f90c:
@@ -1174,6 +1157,27 @@ packages:
       '@open-web3/orml-type-definitions': 1.0.1
       '@polkadot/api': 6.4.2
       '@polkadot/typegen': 6.4.2
+    dev: false
+
+  /@open-web3/orml-types/1.0.2-0_1516a530d9bfd60dd2b9c1c8ae95f90c:
+    resolution: {integrity: sha512-ETIVeKf+UIdsoegEyXeZgR4Fn7izQQUNou2iVuS1/t5JyIa4zXO8uHIHMHhOLNzDKTusrCdHLdGO5WFY6R5kwQ==}
+    peerDependencies:
+      '@polkadot/api': ^6.3.1
+      '@polkadot/typegen': ^6.3.1
+    dependencies:
+      '@open-web3/orml-type-definitions': 1.0.2-0
+      '@polkadot/api': 6.4.2
+      '@polkadot/typegen': 6.4.2
+    dev: false
+
+  /@open-web3/orml-types/1.0.2-0_@polkadot+api@6.4.2:
+    resolution: {integrity: sha512-ETIVeKf+UIdsoegEyXeZgR4Fn7izQQUNou2iVuS1/t5JyIa4zXO8uHIHMHhOLNzDKTusrCdHLdGO5WFY6R5kwQ==}
+    peerDependencies:
+      '@polkadot/api': ^6.3.1
+      '@polkadot/typegen': ^6.3.1
+    dependencies:
+      '@open-web3/orml-type-definitions': 1.0.2-0
+      '@polkadot/api': 6.4.2
     dev: false
 
   /@open-web3/scanner/0.9.4-38_@polkadot+api@6.4.2:
@@ -1192,19 +1196,6 @@ packages:
     resolution: {integrity: sha512-AybF1cesONZStg5kWf6ao9OlqTZuPqddvprc0ky7lrUVOjXeKpmQ2Y9FK+6ygxasb+4aic4O5pneFBfwVsRRRg==}
     dev: false
 
-  /@polkadot/api-derive/5.9.1:
-    resolution: {integrity: sha512-iMrVKnYIS3UQciDlFqww6AFyXgG+iN8UqWu8QbTuZecri3qrSmM3Nn8Jkvju3meZIacwWIMSmBcnj8+zef3rkQ==}
-    engines: {node: '>=14.0.0'}
-    dependencies:
-      '@babel/runtime': 7.15.4
-      '@polkadot/api': 5.9.1
-      '@polkadot/rpc-core': 5.9.1
-      '@polkadot/types': 5.9.1
-      '@polkadot/util': 7.5.1
-      '@polkadot/util-crypto': 7.5.1
-      rxjs: 7.4.0
-    dev: false
-
   /@polkadot/api-derive/6.4.2:
     resolution: {integrity: sha512-vz/ruz9NXPmr753nA3a6eCgif+Ftp8rrpwn9183mJImEgeZ3P95a90kQGHjiFf+KTxmt0mhU5FvBc3Cit8pxRw==}
     engines: {node: '>=14.0.0'}
@@ -1215,23 +1206,6 @@ packages:
       '@polkadot/types': 6.4.2
       '@polkadot/util': 7.5.1
       '@polkadot/util-crypto': 7.5.1
-      rxjs: 7.4.0
-    dev: false
-
-  /@polkadot/api/5.9.1:
-    resolution: {integrity: sha512-POpIXn/Ao+NLB0uMldXdXU44dVbRr6+6Ax77Z0R285M8Z2EiF5jl2K3SPvlowLo4SntxiCSaHQxCekYhUcJKlw==}
-    engines: {node: '>=14.0.0'}
-    dependencies:
-      '@babel/runtime': 7.15.4
-      '@polkadot/api-derive': 5.9.1
-      '@polkadot/keyring': 7.5.1
-      '@polkadot/rpc-core': 5.9.1
-      '@polkadot/rpc-provider': 5.9.1
-      '@polkadot/types': 5.9.1
-      '@polkadot/types-known': 5.9.1
-      '@polkadot/util': 7.5.1
-      '@polkadot/util-crypto': 7.5.1
-      eventemitter3: 4.0.7
       rxjs: 7.4.0
     dev: false
 
@@ -1268,17 +1242,6 @@ packages:
       '@babel/runtime': 7.15.4
     dev: false
 
-  /@polkadot/rpc-core/5.9.1:
-    resolution: {integrity: sha512-5fXiICAcjp7ow81DnIl2Dq/xuCtJUqyjJkxe9jNHJWBluBxOouqYDb8bYPPGSdckiaVyYe0l8lA9fBUFMdEt6w==}
-    engines: {node: '>=14.0.0'}
-    dependencies:
-      '@babel/runtime': 7.15.4
-      '@polkadot/rpc-provider': 5.9.1
-      '@polkadot/types': 5.9.1
-      '@polkadot/util': 7.5.1
-      rxjs: 7.4.0
-    dev: false
-
   /@polkadot/rpc-core/6.4.2:
     resolution: {integrity: sha512-CseygtMZhrvROieOtQhaB7SHz7LYmCtscGevHR8JtbKyoR9erAxD9LXHlWL427U9hVzLgdtLnIKp/h5wxa2y0A==}
     engines: {node: '>=14.0.0'}
@@ -1288,20 +1251,6 @@ packages:
       '@polkadot/types': 6.4.2
       '@polkadot/util': 7.5.1
       rxjs: 7.4.0
-    dev: false
-
-  /@polkadot/rpc-provider/5.9.1:
-    resolution: {integrity: sha512-9zamxfnsY7iCswXIK22W0Ji1XHLprm97js3WLw3lP2hr/uSim4Cv4y07zY/z4dDQyF0gJtjKwR27Wo9CZqdr6A==}
-    engines: {node: '>=14.0.0'}
-    dependencies:
-      '@babel/runtime': 7.15.4
-      '@polkadot/types': 5.9.1
-      '@polkadot/util': 7.5.1
-      '@polkadot/util-crypto': 7.5.1
-      '@polkadot/x-fetch': 7.5.1
-      '@polkadot/x-global': 7.5.1
-      '@polkadot/x-ws': 7.5.1
-      eventemitter3: 4.0.7
     dev: false
 
   /@polkadot/rpc-provider/6.4.2:
@@ -1316,26 +1265,6 @@ packages:
       '@polkadot/x-global': 7.5.1
       '@polkadot/x-ws': 7.5.1
       eventemitter3: 4.0.7
-    dev: false
-
-  /@polkadot/typegen/5.9.1:
-    resolution: {integrity: sha512-eyVVlHRKqPtXYkd793++LRnvSzxpjfVGD4p7HnBEyRoViCCtGmVZGWGUhqd/YBBnF9telO28e+ind+nMyfN0Fg==}
-    engines: {node: '>=14.0.0'}
-    hasBin: true
-    dependencies:
-      '@babel/core': 7.15.8
-      '@babel/register': 7.15.3_@babel+core@7.15.8
-      '@babel/runtime': 7.15.4
-      '@polkadot/api': 5.9.1
-      '@polkadot/rpc-provider': 5.9.1
-      '@polkadot/types': 5.9.1
-      '@polkadot/types-support': 5.9.1
-      '@polkadot/util': 7.5.1
-      handlebars: 4.7.7
-      websocket: 1.0.34
-      yargs: 17.2.1
-    transitivePeerDependencies:
-      - supports-color
     dev: false
 
   /@polkadot/typegen/6.4.2:
@@ -1358,16 +1287,6 @@ packages:
       - supports-color
     dev: false
 
-  /@polkadot/types-known/5.9.1:
-    resolution: {integrity: sha512-7lpLuIVGaKziQRzPMnTxyjlYy3spL6WqUg3CcEzmJUKQeUonHglOliQh8JSSz1bcP+YuNHGXK1cKsTjHb+GYxA==}
-    engines: {node: '>=14.0.0'}
-    dependencies:
-      '@babel/runtime': 7.15.4
-      '@polkadot/networks': 7.5.1
-      '@polkadot/types': 5.9.1
-      '@polkadot/util': 7.5.1
-    dev: false
-
   /@polkadot/types-known/6.4.2:
     resolution: {integrity: sha512-Oz8wk100TlToa2PD1lUzllksys3XjDS93Pg/gi7MBvpn896iFQbdn487ra9e9fj5m+jAfkFoOUusnSPk38VylA==}
     engines: {node: '>=14.0.0'}
@@ -1378,30 +1297,12 @@ packages:
       '@polkadot/util': 7.5.1
     dev: false
 
-  /@polkadot/types-support/5.9.1:
-    resolution: {integrity: sha512-2FGVfcIYBnMPHw+cPDTMnD+ecu/izNf+r8ASuouo8F5SOVKYF6isAdvBt7J4F8PCpWhwbyoLDiMrhnhbwlyt/Q==}
-    engines: {node: '>=14.0.0'}
-    dependencies:
-      '@babel/runtime': 7.15.4
-      '@polkadot/util': 7.5.1
-    dev: false
-
   /@polkadot/types-support/6.4.2:
     resolution: {integrity: sha512-nHDMr3Um4/qcm+q3pmEXUcojhwgM9+wlRVKioq+Ipz7uZ70r8iiXbO0H7hrrAVE+V/TwLWwkPTB5MuhubPa7ig==}
     engines: {node: '>=14.0.0'}
     dependencies:
       '@babel/runtime': 7.15.4
       '@polkadot/util': 7.5.1
-    dev: false
-
-  /@polkadot/types/5.9.1:
-    resolution: {integrity: sha512-30vcSlNBxPyWYZaxKDr/BoMhfLCRKB265XxpnnNJmbdZZsL+N4Zp2mJR9/UbA6ypmJBkUjD7b1s9AYsLwUs+8w==}
-    engines: {node: '>=14.0.0'}
-    dependencies:
-      '@babel/runtime': 7.15.4
-      '@polkadot/util': 7.5.1
-      '@polkadot/util-crypto': 7.5.1
-      rxjs: 7.4.0
     dev: false
 
   /@polkadot/types/6.4.2:
@@ -3931,6 +3832,7 @@ packages:
 
   /ethereumjs-wallet/0.6.5:
     resolution: {integrity: sha512-MDwjwB9VQVnpp/Dc1XzA6J1a3wgHQ4hSvA1uWNatdpOrtCbPVuQSKSyRnjLvS0a+KKMw2pvQ9Ybqpb3+eW8oNA==}
+    requiresBuild: true
     dependencies:
       aes-js: 3.1.2
       bs58check: 2.1.2
@@ -4373,6 +4275,7 @@ packages:
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
     os: [darwin]
     deprecated: '"Please update to latest v2.3 or v2.2"'
+    requiresBuild: true
     dev: false
     optional: true
 
@@ -4380,6 +4283,7 @@ packages:
     resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
     os: [darwin]
+    requiresBuild: true
     dev: false
     optional: true
 
@@ -7873,6 +7777,7 @@ packages:
     resolution: {integrity: sha512-rtPMlmcO4agTUfz10CbgJ1k6UAoXM2gWb3GoMPPZB/+/Ackf8lNWk11K4rYi2D0apgoFRLtQOZhb+/iGNJq26A==}
     engines: {node: '>=0.8.0'}
     hasBin: true
+    requiresBuild: true
     dev: false
     optional: true
 
@@ -8690,11 +8595,11 @@ packages:
     dev: false
 
   file:projects/evm-example-arbitrager.tgz:
-    resolution: {integrity: sha512-78rqBBVxgLRnTqW6B3h5pJ3ZxGKtYGe9+B5VW8saClSgsic+yjtga/2X4uqjPTKfFjEcIhyfBLsuG3a+hy6mDQ==, tarball: file:projects/evm-example-arbitrager.tgz}
+    resolution: {integrity: sha512-LfPox7L/yZn7Qeb4QIBVnKuNozChYHFxGqbzRps24I/DarRq+tp6ActZVw2d53DWP2NXnyTqyBvAefRibtSfpg==, tarball: file:projects/evm-example-arbitrager.tgz}
     name: '@rush-temp/evm-example-arbitrager'
     version: 0.0.0
     dependencies:
-      '@acala-network/api': 2.3.1
+      '@acala-network/api': 3.0.2-4
       '@acala-network/bodhi': 2.1.1-beta
       '@acala-network/contracts': 1.2.1
       '@openzeppelin/contracts': 3.4.2
@@ -8710,6 +8615,7 @@ packages:
       typescript: 4.4.4
     transitivePeerDependencies:
       - '@polkadot/typegen'
+      - '@polkadot/types'
       - '@swc/core'
       - '@swc/wasm'
       - '@types/node'
@@ -8719,11 +8625,11 @@ packages:
     dev: false
 
   file:projects/evm-example-dex.tgz:
-    resolution: {integrity: sha512-OGVUKCBEzyEsSoafyg7aIISa2bkRjbwrv6mUoL/kRisiKulrosgDCxcQAP2kAjZUKJ51T1j/CnupV1QLGsabJw==, tarball: file:projects/evm-example-dex.tgz}
+    resolution: {integrity: sha512-ID4umnEGTthXPpPKVLtFsyam51D7G0DdU2Ivkiu+HU4SYQzr0IKC0aMoPtDfQlUX5NmxPTLfiEydJU9+HkDoaQ==, tarball: file:projects/evm-example-dex.tgz}
     name: '@rush-temp/evm-example-dex'
     version: 0.0.0
     dependencies:
-      '@acala-network/api': 2.3.1
+      '@acala-network/api': 3.0.2-4
       '@acala-network/bodhi': 2.1.1-beta
       '@acala-network/contracts': 1.2.1
       '@types/chai': 4.2.22
@@ -8736,17 +8642,18 @@ packages:
       typescript: 4.4.4
     transitivePeerDependencies:
       - '@polkadot/typegen'
+      - '@polkadot/types'
       - bufferutil
       - supports-color
       - utf-8-validate
     dev: false
 
   file:projects/evm-example-e2e.tgz:
-    resolution: {integrity: sha512-ybhHSCMzuu6/nI9N7lblk5aofFPPK1bKggetXqnc/pl64/JVdXPrYSPOr9tZVnrAd/4CH1EzTo9EXEziD9fSPQ==, tarball: file:projects/evm-example-e2e.tgz}
+    resolution: {integrity: sha512-cnmz2UnOYH7W+yrNV79zet8hlshWzZuBa8anX2KG+oPba6HRH6g0QFzwry+d3RxkhtVfYiveCx+v2/jQmM5yDQ==, tarball: file:projects/evm-example-e2e.tgz}
     name: '@rush-temp/evm-example-e2e'
     version: 0.0.0
     dependencies:
-      '@acala-network/api': 2.3.1
+      '@acala-network/api': 3.0.2-4
       '@acala-network/bodhi': 2.1.1-beta
       '@acala-network/contracts': 1.2.1
       '@types/chai': 4.2.22
@@ -8759,17 +8666,18 @@ packages:
       typescript: 4.4.4
     transitivePeerDependencies:
       - '@polkadot/typegen'
+      - '@polkadot/types'
       - bufferutil
       - supports-color
       - utf-8-validate
     dev: false
 
   file:projects/evm-example-erc20.tgz:
-    resolution: {integrity: sha512-WGw3NRzyR+CNaRinSNZ7iE3emeSMOb7Dfr753aH5DTD56RU3WAvuo8H2dzEDeVkwXC08flrmNUP20m9QEUSozQ==, tarball: file:projects/evm-example-erc20.tgz}
+    resolution: {integrity: sha512-koA/+CX9L5CGcFoIm0TRjjfweHCR2BFTyefWqg8BrJIj/bV0qd4QPiXMH0KBFbhgKcAQMR46jds2sLCN9H54JQ==, tarball: file:projects/evm-example-erc20.tgz}
     name: '@rush-temp/evm-example-erc20'
     version: 0.0.0
     dependencies:
-      '@acala-network/api': 2.3.1
+      '@acala-network/api': 3.0.2-4
       '@acala-network/bodhi': 2.1.1-beta
       '@acala-network/contracts': 1.2.1
       '@openzeppelin/contracts': 4.3.2
@@ -8783,17 +8691,18 @@ packages:
       typescript: 4.4.4
     transitivePeerDependencies:
       - '@polkadot/typegen'
+      - '@polkadot/types'
       - bufferutil
       - supports-color
       - utf-8-validate
     dev: false
 
   file:projects/evm-example-oracle.tgz:
-    resolution: {integrity: sha512-ZpQa8kl71BsAYnGZ1HJIfIwt96ppHv/HUw7ryebeB8+Dn+sGJ9niNN/47UUVLMA6cY1bRbnq9H8MvQBnJWx+gA==, tarball: file:projects/evm-example-oracle.tgz}
+    resolution: {integrity: sha512-Cern/bQVBLASvO2F/V2xMyM5RpD/uKxkKmViajtUYjbxPb42CdoFdtDbby9BuW8LhU7RfYVpdXSQ2S/Hua50rw==, tarball: file:projects/evm-example-oracle.tgz}
     name: '@rush-temp/evm-example-oracle'
     version: 0.0.0
     dependencies:
-      '@acala-network/api': 2.3.1
+      '@acala-network/api': 3.0.2-4
       '@acala-network/bodhi': 2.1.1-beta
       '@acala-network/contracts': 1.2.1
       '@types/chai': 4.2.22
@@ -8806,17 +8715,18 @@ packages:
       typescript: 4.4.4
     transitivePeerDependencies:
       - '@polkadot/typegen'
+      - '@polkadot/types'
       - bufferutil
       - supports-color
       - utf-8-validate
     dev: false
 
   file:projects/evm-example-scheduler.tgz:
-    resolution: {integrity: sha512-dOCIUCyvhIHTuy/xKYvJP4qZqQsJ39PumIv/PTP9otPQCBX3PSVWSZ4b8BsqSGM3y7Lk9ShiK8rnbY7OydH8Gg==, tarball: file:projects/evm-example-scheduler.tgz}
+    resolution: {integrity: sha512-ObCwLJL+8qOjNyr8SoSjWUuulZzBs4dX6XItzsbB95ITasNywWOWtFGv5PpekHmrcJF9V2F7QDbxcvMqOueIgw==, tarball: file:projects/evm-example-scheduler.tgz}
     name: '@rush-temp/evm-example-scheduler'
     version: 0.0.0
     dependencies:
-      '@acala-network/api': 2.3.1
+      '@acala-network/api': 3.0.2-4
       '@acala-network/bodhi': 2.1.1-beta
       '@acala-network/contracts': 1.2.1
       '@openzeppelin/contracts': 3.4.2
@@ -8830,17 +8740,18 @@ packages:
       typescript: 4.4.4
     transitivePeerDependencies:
       - '@polkadot/typegen'
+      - '@polkadot/types'
       - bufferutil
       - supports-color
       - utf-8-validate
     dev: false
 
   file:projects/evm-example-state-rent.tgz:
-    resolution: {integrity: sha512-yd+/u7n3xgaERtyRAUd0upOtjwRI4ge2tl2qWqQ2TOWzLl3X+moJSyu6bdyeIatx3glHbWZcpayE/bjoq3YqQg==, tarball: file:projects/evm-example-state-rent.tgz}
+    resolution: {integrity: sha512-Fqe/o6XciasZ7OzXSoyN56e+3uc6tPVVXyhkEvVMwA660+YmxOX0/uTuTR4bM0oX7TnUUke6ccV081lQzdTsxQ==, tarball: file:projects/evm-example-state-rent.tgz}
     name: '@rush-temp/evm-example-state-rent'
     version: 0.0.0
     dependencies:
-      '@acala-network/api': 2.3.1
+      '@acala-network/api': 3.0.2-4
       '@acala-network/bodhi': 2.1.1-beta
       '@acala-network/contracts': 1.2.1
       '@types/chai': 4.2.22
@@ -8853,17 +8764,18 @@ packages:
       typescript: 4.4.4
     transitivePeerDependencies:
       - '@polkadot/typegen'
+      - '@polkadot/types'
       - bufferutil
       - supports-color
       - utf-8-validate
     dev: false
 
   file:projects/evm-example-uniswap.tgz:
-    resolution: {integrity: sha512-TwIQM5ntxC7XPibEy9zMWB8ZYb1o+C1I+DWJGYU0YBH+8S8VZcjpg7uS0WpBlWhqq897yNBswyIBWnNQC+xEKw==, tarball: file:projects/evm-example-uniswap.tgz}
+    resolution: {integrity: sha512-Ue8Y7J1sZF2uYA5/o7G8bC23NlrsP1nbQFp3x5WZM8ppJ1PEsKtV17pmD5A8SJmLZM0/TJT3t3ReTwHYoX4joQ==, tarball: file:projects/evm-example-uniswap.tgz}
     name: '@rush-temp/evm-example-uniswap'
     version: 0.0.0
     dependencies:
-      '@acala-network/api': 2.3.1
+      '@acala-network/api': 3.0.2-4
       '@acala-network/bodhi': 2.1.1-beta
       '@acala-network/contracts': 1.2.1
       '@openzeppelin/contracts': 3.4.2
@@ -8877,6 +8789,7 @@ packages:
       typescript: 4.4.4
     transitivePeerDependencies:
       - '@polkadot/typegen'
+      - '@polkadot/types'
       - bufferutil
       - supports-color
       - utf-8-validate
