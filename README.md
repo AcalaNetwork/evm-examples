@@ -48,12 +48,18 @@ rush update
 
 compile and build all contracts
 ```
-rushx build:all
+rushx build    # only rebuild if source file changed
+rushx rebuild  # force rebuild all
 ```
 
 run all tests
 ```
-rushx test:all
+rushx test
+```
+
+build and run together
+```
+rushx run
 ```
 
 or we can run tests for a single example:
