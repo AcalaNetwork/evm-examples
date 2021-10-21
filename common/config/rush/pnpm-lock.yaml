@@ -1,6 +1,7 @@
 lockfileVersion: 5.3
 
 specifiers:
+  '@acala-network/api': ^3.0.2-1
   '@acala-network/bodhi': ~2.1.1-beta
   '@rush-temp/evm-example-arbitrager': file:./projects/evm-example-arbitrager.tgz
   '@rush-temp/evm-example-dex': file:./projects/evm-example-dex.tgz
@@ -12,9 +13,9 @@ specifiers:
   '@rush-temp/evm-example-uniswap': file:./projects/evm-example-uniswap.tgz
   '@uniswap/v2-core': ^1.0.1
   '@uniswap/v2-periphery': ^1.1.0-beta.0
-  ethers: ^5.4.6
 
 dependencies:
+  '@acala-network/api': 3.0.2-4
   '@acala-network/bodhi': 2.1.1-beta
   '@rush-temp/evm-example-arbitrager': file:projects/evm-example-arbitrager.tgz
   '@rush-temp/evm-example-dex': file:projects/evm-example-dex.tgz
@@ -26,7 +27,6 @@ dependencies:
   '@rush-temp/evm-example-uniswap': file:projects/evm-example-uniswap.tgz
   '@uniswap/v2-core': 1.0.1
   '@uniswap/v2-periphery': 1.1.0-beta.0
-  ethers: 5.5.1
 
 packages:
 
@@ -88,6 +88,10 @@ packages:
       - bufferutil
       - supports-color
       - utf-8-validate
+    dev: false
+
+  /@acala-network/contracts/1.0.23:
+    resolution: {integrity: sha512-mMa7ApJ3gb54AEptvAYYeHB3MYr/wPcHPIvawfFKwutwLJSRxTDciqATnoU+1win3rsL5m5Z4Zt0ReSpCKWiYw==}
     dev: false
 
   /@acala-network/contracts/1.2.1:
@@ -8595,13 +8599,13 @@ packages:
     dev: false
 
   file:projects/evm-example-arbitrager.tgz:
-    resolution: {integrity: sha512-LfPox7L/yZn7Qeb4QIBVnKuNozChYHFxGqbzRps24I/DarRq+tp6ActZVw2d53DWP2NXnyTqyBvAefRibtSfpg==, tarball: file:projects/evm-example-arbitrager.tgz}
+    resolution: {integrity: sha512-4gcztjOQMeNKXWxgHl6iasdSvGEARQms7lCNdVYOF63J81N4rjdAdtj88aUpYGpgEayLWSzEQr9Vd8YSn/N5cg==, tarball: file:projects/evm-example-arbitrager.tgz}
     name: '@rush-temp/evm-example-arbitrager'
     version: 0.0.0
     dependencies:
       '@acala-network/api': 3.0.2-4
       '@acala-network/bodhi': 2.1.1-beta
-      '@acala-network/contracts': 1.2.1
+      '@acala-network/contracts': 1.0.23
       '@openzeppelin/contracts': 3.4.2
       '@types/chai': 4.2.22
       '@types/mocha': 9.0.0
@@ -8625,7 +8629,7 @@ packages:
     dev: false
 
   file:projects/evm-example-dex.tgz:
-    resolution: {integrity: sha512-ID4umnEGTthXPpPKVLtFsyam51D7G0DdU2Ivkiu+HU4SYQzr0IKC0aMoPtDfQlUX5NmxPTLfiEydJU9+HkDoaQ==, tarball: file:projects/evm-example-dex.tgz}
+    resolution: {integrity: sha512-sC8jXJTdtyuryeWfdN5BgoqVdlfGx/f/qZO8Wrt8aDZ1eDICOn/pZ2dbvqHOtzPrfWIpxbmGgqK3rvLL9sS8lg==, tarball: file:projects/evm-example-dex.tgz}
     name: '@rush-temp/evm-example-dex'
     version: 0.0.0
     dependencies:
@@ -8633,16 +8637,19 @@ packages:
       '@acala-network/bodhi': 2.1.1-beta
       '@acala-network/contracts': 1.2.1
       '@types/chai': 4.2.22
-      '@types/mocha': 5.2.7
+      '@types/mocha': 9.0.0
       chai: 4.3.4
-      ethereum-waffle: 3.0.0_typescript@4.4.4
+      ethereum-waffle: 3.4.0_typescript@4.4.4
       ethers: 5.5.1
-      mocha: 7.2.0
-      ts-node: 8.10.2_typescript@4.4.4
+      mocha: 9.1.3
+      ts-node: 10.3.0_typescript@4.4.4
       typescript: 4.4.4
     transitivePeerDependencies:
       - '@polkadot/typegen'
       - '@polkadot/types'
+      - '@swc/core'
+      - '@swc/wasm'
+      - '@types/node'
       - bufferutil
       - supports-color
       - utf-8-validate
@@ -8673,7 +8680,7 @@ packages:
     dev: false
 
   file:projects/evm-example-erc20.tgz:
-    resolution: {integrity: sha512-koA/+CX9L5CGcFoIm0TRjjfweHCR2BFTyefWqg8BrJIj/bV0qd4QPiXMH0KBFbhgKcAQMR46jds2sLCN9H54JQ==, tarball: file:projects/evm-example-erc20.tgz}
+    resolution: {integrity: sha512-KNWuoBV5yUicNu3FTgngwSDuymWgjTOHk2r0ykL+tKKYWX00ZK9PZ32ib0DxtRGChBDel8gh6/LxM6b4UWVa7A==, tarball: file:projects/evm-example-erc20.tgz}
     name: '@rush-temp/evm-example-erc20'
     version: 0.0.0
     dependencies:
@@ -8682,23 +8689,26 @@ packages:
       '@acala-network/contracts': 1.2.1
       '@openzeppelin/contracts': 4.3.2
       '@types/chai': 4.2.22
-      '@types/mocha': 5.2.7
+      '@types/mocha': 9.0.0
       chai: 4.3.4
-      ethereum-waffle: 3.0.0_typescript@4.4.4
+      ethereum-waffle: 3.4.0_typescript@4.4.4
       ethers: 5.5.1
-      mocha: 7.2.0
-      ts-node: 8.10.2_typescript@4.4.4
+      mocha: 9.1.3
+      ts-node: 10.3.0_typescript@4.4.4
       typescript: 4.4.4
     transitivePeerDependencies:
       - '@polkadot/typegen'
       - '@polkadot/types'
+      - '@swc/core'
+      - '@swc/wasm'
+      - '@types/node'
       - bufferutil
       - supports-color
       - utf-8-validate
     dev: false
 
   file:projects/evm-example-oracle.tgz:
-    resolution: {integrity: sha512-Cern/bQVBLASvO2F/V2xMyM5RpD/uKxkKmViajtUYjbxPb42CdoFdtDbby9BuW8LhU7RfYVpdXSQ2S/Hua50rw==, tarball: file:projects/evm-example-oracle.tgz}
+    resolution: {integrity: sha512-zkzlScXebhOJTLjSjA3SddB3y6dKrv8zDTLFIhPbBKtWCPogrP3BDMD2rGYwtR6YMrfHxMCW79G+eX84KpWmqw==, tarball: file:projects/evm-example-oracle.tgz}
     name: '@rush-temp/evm-example-oracle'
     version: 0.0.0
     dependencies:
@@ -8706,29 +8716,32 @@ packages:
       '@acala-network/bodhi': 2.1.1-beta
       '@acala-network/contracts': 1.2.1
       '@types/chai': 4.2.22
-      '@types/mocha': 5.2.7
+      '@types/mocha': 9.0.0
       chai: 4.3.4
-      ethereum-waffle: 3.0.0_typescript@4.4.4
+      ethereum-waffle: 3.4.0_typescript@4.4.4
       ethers: 5.5.1
-      mocha: 7.2.0
-      ts-node: 8.10.2_typescript@4.4.4
+      mocha: 9.1.3
+      ts-node: 10.3.0_typescript@4.4.4
       typescript: 4.4.4
     transitivePeerDependencies:
       - '@polkadot/typegen'
       - '@polkadot/types'
+      - '@swc/core'
+      - '@swc/wasm'
+      - '@types/node'
       - bufferutil
       - supports-color
       - utf-8-validate
     dev: false
 
   file:projects/evm-example-scheduler.tgz:
-    resolution: {integrity: sha512-ObCwLJL+8qOjNyr8SoSjWUuulZzBs4dX6XItzsbB95ITasNywWOWtFGv5PpekHmrcJF9V2F7QDbxcvMqOueIgw==, tarball: file:projects/evm-example-scheduler.tgz}
+    resolution: {integrity: sha512-2r4tIFW1hPVdoKJtDuzkAvQj8zDBwL4lkpnY7F+a864QH4lQQtQfe1OFCjuoqCLG1ugTKbrU+hLLjQS8mherjQ==, tarball: file:projects/evm-example-scheduler.tgz}
     name: '@rush-temp/evm-example-scheduler'
     version: 0.0.0
     dependencies:
       '@acala-network/api': 3.0.2-4
       '@acala-network/bodhi': 2.1.1-beta
-      '@acala-network/contracts': 1.2.1
+      '@acala-network/contracts': 1.0.23
       '@openzeppelin/contracts': 3.4.2
       '@types/chai': 4.2.22
       '@types/mocha': 5.2.7
@@ -8747,7 +8760,7 @@ packages:
     dev: false
 
   file:projects/evm-example-state-rent.tgz:
-    resolution: {integrity: sha512-Fqe/o6XciasZ7OzXSoyN56e+3uc6tPVVXyhkEvVMwA660+YmxOX0/uTuTR4bM0oX7TnUUke6ccV081lQzdTsxQ==, tarball: file:projects/evm-example-state-rent.tgz}
+    resolution: {integrity: sha512-sawagTqggJ/pTui8Pi57jvm2PtpYgVPKklHb9gUO3X0Av2kQXPQQR8hWfT9QOnZ8IdzD+ZI+KUDeRbpKA+TflQ==, tarball: file:projects/evm-example-state-rent.tgz}
     name: '@rush-temp/evm-example-state-rent'
     version: 0.0.0
     dependencies:
@@ -8755,29 +8768,32 @@ packages:
       '@acala-network/bodhi': 2.1.1-beta
       '@acala-network/contracts': 1.2.1
       '@types/chai': 4.2.22
-      '@types/mocha': 5.2.7
+      '@types/mocha': 9.0.0
       chai: 4.3.4
-      ethereum-waffle: 3.0.0_typescript@4.4.4
+      ethereum-waffle: 3.4.0_typescript@4.4.4
       ethers: 5.5.1
-      mocha: 7.2.0
-      ts-node: 8.10.2_typescript@4.4.4
+      mocha: 9.1.3
+      ts-node: 10.3.0_typescript@4.4.4
       typescript: 4.4.4
     transitivePeerDependencies:
       - '@polkadot/typegen'
       - '@polkadot/types'
+      - '@swc/core'
+      - '@swc/wasm'
+      - '@types/node'
       - bufferutil
       - supports-color
       - utf-8-validate
     dev: false
 
   file:projects/evm-example-uniswap.tgz:
-    resolution: {integrity: sha512-Ue8Y7J1sZF2uYA5/o7G8bC23NlrsP1nbQFp3x5WZM8ppJ1PEsKtV17pmD5A8SJmLZM0/TJT3t3ReTwHYoX4joQ==, tarball: file:projects/evm-example-uniswap.tgz}
+    resolution: {integrity: sha512-uycKHUMi5n+EO40lIvVT543+2ccQb5SeHSlEz+YQ1qFQ4s5AluoLeON9pQO0Kola2qbfW07Img7oIsD5l6CQnw==, tarball: file:projects/evm-example-uniswap.tgz}
     name: '@rush-temp/evm-example-uniswap'
     version: 0.0.0
     dependencies:
       '@acala-network/api': 3.0.2-4
       '@acala-network/bodhi': 2.1.1-beta
-      '@acala-network/contracts': 1.2.1
+      '@acala-network/contracts': 1.0.23
       '@openzeppelin/contracts': 3.4.2
       '@types/chai': 4.2.22
       '@types/mocha': 5.2.7

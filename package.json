@@ -4,7 +4,7 @@
   "description": "some Acala EVM+ examples",
   "main": "index.js",
   "scripts": {
-    "build:all": "rush build -t evm-example-dex -t evm-example-e2e -t evm-example-erc20 -t evm-example-oracle -t evm-example-state-rent",
+    "build:all": "rush build -t evm-example-dex -t evm-example-e2e -t evm-example-erc20 -t evm-example-oracle -t evm-example-state-rent -t evm-example-arbitrager -t evm-example-scheduler",
     "test:all": "./scripts/run-all-tests.sh"
   },
   "repository": "git@github.com:AcalaNetwork/evm-examples.git",

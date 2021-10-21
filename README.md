@@ -36,6 +36,11 @@ $ make run-eth
 ```
 
 ### Build and Run an example
+install rush if not already
+```
+npm install -g @microsoft/rush
+```
+
 install all dependencies
 ```
 rush update

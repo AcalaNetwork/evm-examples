@@ -4,8 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "deploy": "node -r ts-node/register/transpile-only src/deploy.ts",
-    "trade": "node -r ts-node/register/transpile-only src/trade.ts"
+    "deploy": "ts-node --transpile-only src/deploy.ts",
+    "trade": "ts-node --transpile-only src/trade.ts"
   },
   "devDependencies": {
     "@openzeppelin/contracts": "^3.4.2",
@@ -21,6 +21,6 @@
   "dependencies": {
     "@acala-network/api": "^3.0.2-1",
     "@acala-network/bodhi": "~2.1.1-beta",
-    "@acala-network/contracts": "^1.0.22"
+    "@acala-network/contracts": "~1.0.23"
   }
 }
