@@ -1,5 +1,4 @@
-import { TestProvider, Signer, TestAccountSigningKey } from "@acala-network/bodhi";
-import { evmChai } from "@acala-network/bodhi/evmChai";
+import { TestProvider, Signer, TestAccountSigningKey, evmChai } from "@acala-network/bodhi";
 import { WsProvider } from "@polkadot/api";
 import { createTestPairs } from "@polkadot/keyring/testingPairs";
 import { expect, use } from "chai";

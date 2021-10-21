@@ -1,6 +1,6 @@
 import { expect, use } from "chai";
 import { Contract, ContractFactory, BigNumber } from "ethers";
-import { evmChai } from "@acala-network/bodhi/evmChai";
+import { evmChai } from "@acala-network/bodhi";
 import ADDRESS from "@acala-network/contracts/utils/Address";
 
 import UniswapFactory from "../artifacts/UniswapV2Factory.json";
