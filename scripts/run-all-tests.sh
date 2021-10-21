@@ -5,6 +5,8 @@ examples=(
   "state-rent"
   "e2e"
   "scheduler"
+  "arbitrager"
+  "uniswap"
 )
 
 root=$(pwd)

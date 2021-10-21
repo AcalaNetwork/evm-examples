@@ -4,8 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "deploy": "ts-node --transpile-only src/deploy.ts",
-    "trade": "ts-node --transpile-only src/trade.ts"
+    "test": "ts-node --transpile-only src/deploy-and-trade.ts"
   },
   "devDependencies": {
     "@openzeppelin/contracts": "^3.4.2",

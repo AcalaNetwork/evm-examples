@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "deploy": "ts-node --transpile-only src/deploy.ts",
+    "test": "ts-node --transpile-only src/deploy.ts",
     "build": "waffle waffle.json"
   },
   "devDependencies": {
