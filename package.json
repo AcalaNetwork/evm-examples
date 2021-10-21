@@ -1,0 +1,13 @@
+{
+  "name": "acala-evm-examples",
+  "version": "1.0.0",
+  "description": "some Acala EVM+ examples",
+  "main": "index.js",
+  "scripts": {
+    "build:all": "rush build -t evm-example-dex -t evm-example-e2e -t evm-example-erc20 -t evm-example-oracle -t evm-example-state-rent",
+    "test:all": "./scripts/run-all-tests.sh"
+  },
+  "repository": "git@github.com:AcalaNetwork/evm-examples.git",
+  "author": "Acala Team",
+  "license": "MIT"
+}
