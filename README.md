@@ -40,6 +40,10 @@ install rush if not already
 ```
 npm install -g @microsoft/rush
 ```
+or
+```
+yarn global add @microsoft/rush
+```
 
 install all dependencies
 ```
