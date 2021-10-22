@@ -69,7 +69,7 @@ rushx run
 or we can run tests for a single example:
 - cd into one of the example project
   - You can find your contract ABI in the build directory. You can upload these ABI files to [acala evm playground](https://evm.acala.network/#/upload) for testing.
-  - Run the tests with `rushx test` or `rushx test --with-ethereum-compatibility` with the chain which enable evm compatibility mode.
+  - Run the tests with `rushx test`.
 
 ## Development
 update dep package version for all examples
