@@ -9,14 +9,6 @@ Developer Guide [here](https://wiki.acala.network/build/development-guide/smart-
 
 ## Run
 ### Start a development chain
-#### Use Docker
-
-You can use docker to run a development Acala Mandala chain
-
-```bash
-$ docker run --rm -p 9944:9944 acala/mandala-node:latest --dev --ws-external --rpc-methods=unsafe --instant-sealing  -levm=trace
-```
-
 #### Build & Run from source code
 
 Or you can build & run from the Acala repo.
@@ -35,7 +27,14 @@ Start the chain with evm compatibility mode:
 $ make run-eth
 ```
 
-### Build and Run an example
+#### Use Docker (not recommended)
+You can use docker to run a development Acala Mandala chain, not recommended since docker image is not always up-to-date.
+
+```bash
+$ docker run --rm -p 9944:9944 acala/mandala-node:latest --dev --ws-external --rpc-methods=unsafe --instant-sealing  -levm=trace
+```
+
+### Build and Run Examples
 install rush if not already
 ```
 npm install -g @microsoft/rush
