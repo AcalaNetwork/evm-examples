@@ -52,7 +52,7 @@ you need to have `nodejs` and `yarn` installed. Your node version has to be at l
 
 To install the required dependencies for this example, run:
 ```
-yarn
+rush update
 ```
 
 To build the **Arbitrager** example, use:

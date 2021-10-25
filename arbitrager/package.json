@@ -4,12 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "deploy": "node -r ts-node/register/transpile-only src/deploy.ts",
+    "test": "ts-node --transpile-only src/deploy.ts",
     "build": "waffle waffle.json"
-  },
-  "resolutions": {
-    "@polkadot/api": "^6.3.1",
-    "@polkadot/types": "^6.3.1"
   },
   "devDependencies": {
     "@openzeppelin/contracts": "^3.4.2",
@@ -24,8 +20,8 @@
   },
   "dependencies": {
     "@acala-network/api": "^3.0.2-1",
-    "@acala-network/bodhi": "^1.0.4-1",
-    "@acala-network/contracts": "^1.0.23",
+    "@acala-network/bodhi": "~2.1.1-beta",
+    "@acala-network/contracts": "~1.0.23",
     "@uniswap/v2-core": "^1.0.1",
     "@uniswap/v2-periphery": "^1.1.0-beta.0"
   }

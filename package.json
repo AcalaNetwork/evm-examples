@@ -1,0 +1,15 @@
+{
+  "name": "acala-evm-examples",
+  "version": "1.0.0",
+  "description": "some Acala EVM+ examples",
+  "main": "index.js",
+  "scripts": {
+    "build": "./run.sh build",
+    "rebuild": "./run.sh rebuild",
+    "test": "./run.sh test",
+    "run": "./run.sh"
+  },
+  "repository": "git@github.com:AcalaNetwork/evm-examples.git",
+  "author": "Acala Team",
+  "license": "MIT"
+}
