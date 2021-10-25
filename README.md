@@ -74,6 +74,7 @@ or we can run tests for a single example:
 update dep package version for all examples
 ```
 rush add -p <package> --all
+rush add -p @acala-network/bodhi@latest --all
 ```
 
 update dep package version for a single example
