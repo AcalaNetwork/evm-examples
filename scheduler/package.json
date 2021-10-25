@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@acala-network/api": "^3.0.2-1",
-    "@acala-network/bodhi": "~2.1.6-beta",
+    "@acala-network/bodhi": "~2.1.8-beta",
     "@acala-network/contracts": "~1.0.23"
   }
 }
