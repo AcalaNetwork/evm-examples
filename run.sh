@@ -8,7 +8,7 @@ build_all() {
     -t evm-example-oracle \
     -t evm-example-state-rent \
     -t evm-example-arbitrager \
-    -t evm-example-scheduler \'
+    -t evm-example-scheduler'
 }
 
 rebuild_all() {
@@ -19,7 +19,7 @@ rebuild_all() {
     -t evm-example-oracle \
     -t evm-example-state-rent \
     -t evm-example-arbitrager \
-    -t evm-example-scheduler \'
+    -t evm-example-scheduler'
 }
 
 test_all() {

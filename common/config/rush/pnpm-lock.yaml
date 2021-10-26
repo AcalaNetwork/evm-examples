@@ -2,7 +2,7 @@ lockfileVersion: 5.3
 
 specifiers:
   '@acala-network/api': ^3.0.2-1
-  '@acala-network/bodhi': ~2.1.1-beta
+  '@acala-network/bodhi': ~2.1.8-beta
   '@rush-temp/evm-example-arbitrager': file:./projects/evm-example-arbitrager.tgz
   '@rush-temp/evm-example-dex': file:./projects/evm-example-dex.tgz
   '@rush-temp/evm-example-e2e': file:./projects/evm-example-e2e.tgz
@@ -16,7 +16,7 @@ specifiers:
 
 dependencies:
   '@acala-network/api': 3.0.2-4
-  '@acala-network/bodhi': 2.1.1-beta
+  '@acala-network/bodhi': 2.1.8-beta
   '@rush-temp/evm-example-arbitrager': file:projects/evm-example-arbitrager.tgz
   '@rush-temp/evm-example-dex': file:projects/evm-example-dex.tgz
   '@rush-temp/evm-example-e2e': file:projects/evm-example-e2e.tgz
@@ -30,6 +30,19 @@ dependencies:
 
 packages:
 
+  /@acala-network/api-derive/3.0.1_@polkadot+api@6.4.2:
+    resolution: {integrity: sha512-q/7nV6ildQM4iWjW4KQuL7EiC7zlTdPK0Y9yZexPh0Kkr1YnMCo6fUQHDOpGvOvWMuIb8O9461Ksz0RIYbMw1A==}
+    dependencies:
+      '@acala-network/types': 3.0.1
+      '@babel/runtime': 7.15.4
+      '@open-web3/orml-types': 1.0.1_@polkadot+api@6.4.2
+      '@polkadot/api-derive': 6.4.2
+    transitivePeerDependencies:
+      - '@polkadot/api'
+      - '@polkadot/typegen'
+      - supports-color
+    dev: false
+
   /@acala-network/api-derive/3.0.2-4_@polkadot+api@6.4.2:
     resolution: {integrity: sha512-5ZV0d2wAk8fLoXa2JPi8UT09bzBLYhBan0oC/cTtE8Ln4v1899NFjmroMBsapS9GWa1rX4820ZFs5gqEnpUf5g==}
     dependencies:
@@ -39,6 +52,23 @@ packages:
       '@polkadot/api-derive': 6.4.2
     transitivePeerDependencies:
       - '@polkadot/api'
+      - '@polkadot/typegen'
+      - supports-color
+    dev: false
+
+  /@acala-network/api/3.0.1_@polkadot+types@6.4.2:
+    resolution: {integrity: sha512-YRfRfFl7NK3Dawz/2tPM7oHHK4dbbtGNH83lqsi3ZIHI1PP6DN5jQ3KsUyLJgP/qPsHtggR44hjslm4NgcVtyQ==}
+    peerDependencies:
+      '@polkadot/types': ^6.3.1
+    dependencies:
+      '@acala-network/api-derive': 3.0.1_@polkadot+api@6.4.2
+      '@acala-network/types': 3.0.1
+      '@babel/runtime': 7.15.4
+      '@open-web3/orml-api-derive': 1.0.1_@polkadot+api@6.4.2
+      '@polkadot/api': 6.4.2
+      '@polkadot/rpc-core': 6.4.2
+      '@polkadot/types': 6.4.2
+    transitivePeerDependencies:
       - '@polkadot/typegen'
       - supports-color
     dev: false
@@ -59,9 +89,10 @@ packages:
       - supports-color
     dev: false
 
-  /@acala-network/bodhi/2.1.1-beta:
-    resolution: {integrity: sha512-A+xFyDnkGKTceVA6AQJBbyYRzzhZ8EqL9/X7uwASzJzqpdn1y0e36S6r2wKNzjSSRMW0Btr2hKI7RCYmChCl8A==}
+  /@acala-network/bodhi/2.1.1-1:
+    resolution: {integrity: sha512-YNrhupWtkEnj44QcApdhD4Ce2oLrucOeqErmBdkwakooHZdb9tBQmJ5RLyrdNFILacmfRf2eX3u1jb305K8aNA==}
     dependencies:
+      '@acala-network/eth-providers': 2.1.1-1
       '@acala-network/types': 3.0.1
       '@ethersproject/abstract-provider': 5.4.1
       '@ethersproject/abstract-signer': 5.4.1
@@ -85,6 +116,40 @@ packages:
       bn.js: 5.2.0
       ethers: 5.4.7
     transitivePeerDependencies:
+      - '@polkadot/typegen'
+      - bufferutil
+      - supports-color
+      - utf-8-validate
+    dev: false
+
+  /@acala-network/bodhi/2.1.8-beta:
+    resolution: {integrity: sha512-vSvCW351z5kGcVRhffM91MNKJjfqXk8r8UFirWheVOc/ocVMYYxq+aBTbkXDlKidJzyrML+VdcBDwRqjuDRCvw==}
+    dependencies:
+      '@acala-network/eth-providers': 2.1.8-beta
+      '@acala-network/types': 3.0.1
+      '@ethersproject/abstract-provider': 5.4.1
+      '@ethersproject/abstract-signer': 5.4.1
+      '@ethersproject/address': 5.4.0
+      '@ethersproject/bignumber': 5.4.2
+      '@ethersproject/bytes': 5.4.0
+      '@ethersproject/logger': 5.4.1
+      '@ethersproject/networks': 5.4.2
+      '@ethersproject/properties': 5.4.1
+      '@ethersproject/strings': 5.4.0
+      '@ethersproject/transactions': 5.4.0
+      '@open-web3/scanner': 0.9.4-38_@polkadot+api@6.4.2
+      '@polkadot/api': 6.4.2
+      '@polkadot/keyring': 7.5.1
+      '@polkadot/rpc-provider': 6.4.2
+      '@polkadot/types': 6.4.2
+      '@polkadot/util': 7.5.1
+      '@polkadot/util-crypto': 7.5.1
+      '@types/bn.js': 5.1.0
+      blakejs: 1.1.1
+      bn.js: 5.2.0
+      ethers: 5.4.7
+    transitivePeerDependencies:
+      - '@polkadot/typegen'
       - bufferutil
       - supports-color
       - utf-8-validate
@@ -96,6 +161,59 @@ packages:
 
   /@acala-network/contracts/1.2.1:
     resolution: {integrity: sha512-i40CiTnj6vWvZUgMjeENjhNu9+3GuTB9ZDXDDZ7aokE5es6Q3/wG9zVM8aaZeLH9iNiU9xPf8j6fH7LaorgZzg==}
+    dev: false
+
+  /@acala-network/eth-providers/2.1.1-1:
+    resolution: {integrity: sha512-x3X7q/luibRS4hZCdFCcRutWQodqB8ewAvCy5hPNlRZ/eLzZgi4KbDb/7c2VG8lcdeLWA2FyVgDT3XSlysLytg==}
+    dependencies:
+      '@acala-network/api': 3.0.1_@polkadot+types@6.4.2
+      '@acala-network/types': 3.0.1
+      '@ethersproject/abstract-provider': 5.4.1
+      '@ethersproject/address': 5.4.0
+      '@ethersproject/bignumber': 5.4.2
+      '@ethersproject/bytes': 5.4.0
+      '@ethersproject/logger': 5.4.1
+      '@ethersproject/networks': 5.4.2
+      '@ethersproject/properties': 5.4.1
+      '@ethersproject/transactions': 5.4.0
+      '@polkadot/api': 6.4.2
+      '@polkadot/api-derive': 6.4.2
+      '@polkadot/types': 6.4.2
+      '@polkadot/util': 7.5.1
+      '@polkadot/util-crypto': 7.5.1
+      bn.js: 5.2.0
+      ethers: 5.4.7
+    transitivePeerDependencies:
+      - '@polkadot/typegen'
+      - bufferutil
+      - supports-color
+      - utf-8-validate
+    dev: false
+
+  /@acala-network/eth-providers/2.1.8-beta:
+    resolution: {integrity: sha512-I56GCjtJc+wGA2dzabDb5hLXl/iZoXCIDVVLlA/isW6+4wXE2OwHcdoy7kZppLxU71+1HaUODR8TzzvamJDuoA==}
+    dependencies:
+      '@acala-network/api': 3.0.1_@polkadot+types@6.4.2
+      '@acala-network/types': 3.0.1
+      '@ethersproject/abstract-provider': 5.4.1
+      '@ethersproject/bignumber': 5.4.2
+      '@ethersproject/bytes': 5.4.0
+      '@ethersproject/logger': 5.4.1
+      '@ethersproject/networks': 5.4.2
+      '@ethersproject/properties': 5.4.1
+      '@ethersproject/transactions': 5.4.0
+      '@polkadot/api': 6.4.2
+      '@polkadot/api-derive': 6.4.2
+      '@polkadot/types': 6.4.2
+      '@polkadot/util': 7.5.1
+      '@polkadot/util-crypto': 7.5.1
+      bn.js: 5.2.0
+      ethers: 5.4.7
+    transitivePeerDependencies:
+      - '@polkadot/typegen'
+      - bufferutil
+      - supports-color
+      - utf-8-validate
     dev: false
 
   /@acala-network/type-definitions/3.0.1:
@@ -1130,6 +1248,16 @@ packages:
       mobx-utils: 5.6.2_mobx@5.15.7
     dev: false
 
+  /@open-web3/orml-api-derive/1.0.1_@polkadot+api@6.4.2:
+    resolution: {integrity: sha512-Z78k5juJcg1RzyZYOrk4bLDTVzLaeRB1FTK6erld3ywJEaewr0BPYmG3CLEFVdVYd0RyFIXcXZJBMVSVp7YhAg==}
+    peerDependencies:
+      '@polkadot/api': ^6.3.1
+    dependencies:
+      '@polkadot/api': 6.4.2
+      memoizee: 0.4.15
+      rxjs: 7.4.0
+    dev: false
+
   /@open-web3/orml-api-derive/1.0.2-0_@polkadot+api@6.4.2:
     resolution: {integrity: sha512-AXlqZ3aKmXBGeDcTxJLgNpqERqifzWGtmdAKHW/B08QiqOuyMIvzXZMz0STHy4UlcPd4Io8RRUbSa4608UMvwQ==}
     peerDependencies:
@@ -1161,6 +1289,16 @@ packages:
       '@open-web3/orml-type-definitions': 1.0.1
       '@polkadot/api': 6.4.2
       '@polkadot/typegen': 6.4.2
+    dev: false
+
+  /@open-web3/orml-types/1.0.1_@polkadot+api@6.4.2:
+    resolution: {integrity: sha512-A7XimIY15ZkgixvSPyBE7GXZW1XgH9TdCkKAEUXgpS6doerh4fiX1rqKjsqzjJjmJMiietg0asNJVVJ6iDF+3w==}
+    peerDependencies:
+      '@polkadot/api': ^6.3.1
+      '@polkadot/typegen': ^6.3.1
+    dependencies:
+      '@open-web3/orml-type-definitions': 1.0.1
+      '@polkadot/api': 6.4.2
     dev: false
 
   /@open-web3/orml-types/1.0.2-0_1516a530d9bfd60dd2b9c1c8ae95f90c:
@@ -8599,12 +8737,12 @@ packages:
     dev: false
 
   file:projects/evm-example-arbitrager.tgz:
-    resolution: {integrity: sha512-4gcztjOQMeNKXWxgHl6iasdSvGEARQms7lCNdVYOF63J81N4rjdAdtj88aUpYGpgEayLWSzEQr9Vd8YSn/N5cg==, tarball: file:projects/evm-example-arbitrager.tgz}
+    resolution: {integrity: sha512-wfLsVq1s2MUtSMAigURjXjreYX9GgSq1qS0HbRAXSfrHa1RMs2JqyJReVTV8J0fRYfjI4A/nrSyrOqxHXANxkg==, tarball: file:projects/evm-example-arbitrager.tgz}
     name: '@rush-temp/evm-example-arbitrager'
     version: 0.0.0
     dependencies:
       '@acala-network/api': 3.0.2-4
-      '@acala-network/bodhi': 2.1.1-beta
+      '@acala-network/bodhi': 2.1.1-1
       '@acala-network/contracts': 1.0.23
       '@openzeppelin/contracts': 3.4.2
       '@types/chai': 4.2.22
@@ -8629,12 +8767,12 @@ packages:
     dev: false
 
   file:projects/evm-example-dex.tgz:
-    resolution: {integrity: sha512-sC8jXJTdtyuryeWfdN5BgoqVdlfGx/f/qZO8Wrt8aDZ1eDICOn/pZ2dbvqHOtzPrfWIpxbmGgqK3rvLL9sS8lg==, tarball: file:projects/evm-example-dex.tgz}
+    resolution: {integrity: sha512-Byl3c0S852GSVPdrdMDIT/4kSgrUbIWkL/BXs8NZd99hpTjfzKMn0d7X9/WWhv72ZrV/JwB1npKuLrWxBbSdZw==, tarball: file:projects/evm-example-dex.tgz}
     name: '@rush-temp/evm-example-dex'
     version: 0.0.0
     dependencies:
       '@acala-network/api': 3.0.2-4
-      '@acala-network/bodhi': 2.1.1-beta
+      '@acala-network/bodhi': 2.1.1-1
       '@acala-network/contracts': 1.2.1
       '@types/chai': 4.2.22
       '@types/mocha': 9.0.0
@@ -8656,12 +8794,12 @@ packages:
     dev: false
 
   file:projects/evm-example-e2e.tgz:
-    resolution: {integrity: sha512-cnmz2UnOYH7W+yrNV79zet8hlshWzZuBa8anX2KG+oPba6HRH6g0QFzwry+d3RxkhtVfYiveCx+v2/jQmM5yDQ==, tarball: file:projects/evm-example-e2e.tgz}
+    resolution: {integrity: sha512-Wu/cGtY88zHylYE8dFmoPMEY8BZbmFfKT43mRLMZ6YEcuUsuQgLsPiE4mYaate11mwv/1emDYt91GlLL162CEQ==, tarball: file:projects/evm-example-e2e.tgz}
     name: '@rush-temp/evm-example-e2e'
     version: 0.0.0
     dependencies:
       '@acala-network/api': 3.0.2-4
-      '@acala-network/bodhi': 2.1.1-beta
+      '@acala-network/bodhi': 2.1.1-1
       '@acala-network/contracts': 1.2.1
       '@types/chai': 4.2.22
       '@types/mocha': 5.2.7
@@ -8680,12 +8818,12 @@ packages:
     dev: false
 
   file:projects/evm-example-erc20.tgz:
-    resolution: {integrity: sha512-KNWuoBV5yUicNu3FTgngwSDuymWgjTOHk2r0ykL+tKKYWX00ZK9PZ32ib0DxtRGChBDel8gh6/LxM6b4UWVa7A==, tarball: file:projects/evm-example-erc20.tgz}
+    resolution: {integrity: sha512-QReCsv98sUcFII+MHj+Th9sXh8DgUF0BLswlxB9y9ukF7t1AeuPxFJ89NfFnghZXAVfH1vLIkMXAiaVDrQQvSg==, tarball: file:projects/evm-example-erc20.tgz}
     name: '@rush-temp/evm-example-erc20'
     version: 0.0.0
     dependencies:
       '@acala-network/api': 3.0.2-4
-      '@acala-network/bodhi': 2.1.1-beta
+      '@acala-network/bodhi': 2.1.1-1
       '@acala-network/contracts': 1.2.1
       '@openzeppelin/contracts': 4.3.2
       '@types/chai': 4.2.22
@@ -8708,12 +8846,12 @@ packages:
     dev: false
 
   file:projects/evm-example-oracle.tgz:
-    resolution: {integrity: sha512-zkzlScXebhOJTLjSjA3SddB3y6dKrv8zDTLFIhPbBKtWCPogrP3BDMD2rGYwtR6YMrfHxMCW79G+eX84KpWmqw==, tarball: file:projects/evm-example-oracle.tgz}
+    resolution: {integrity: sha512-FmGF7Ls+/9si5lPPDyu79B/2B3ij9bsBPal2qepwRNJ3bKnaHYHKPD59SM/bifKryi6F24oyvGesekARSnPA6g==, tarball: file:projects/evm-example-oracle.tgz}
     name: '@rush-temp/evm-example-oracle'
     version: 0.0.0
     dependencies:
       '@acala-network/api': 3.0.2-4
-      '@acala-network/bodhi': 2.1.1-beta
+      '@acala-network/bodhi': 2.1.1-1
       '@acala-network/contracts': 1.2.1
       '@types/chai': 4.2.22
       '@types/mocha': 9.0.0
@@ -8735,12 +8873,12 @@ packages:
     dev: false
 
   file:projects/evm-example-scheduler.tgz:
-    resolution: {integrity: sha512-2r4tIFW1hPVdoKJtDuzkAvQj8zDBwL4lkpnY7F+a864QH4lQQtQfe1OFCjuoqCLG1ugTKbrU+hLLjQS8mherjQ==, tarball: file:projects/evm-example-scheduler.tgz}
+    resolution: {integrity: sha512-RX30ldgx5iwdvGiR4Mz4wtqiVhEvZvBcyWUfIJPJIyv54xUyXgRZ5jHNUDBlTsaGwpILsBhZzwh96zVUtKadJA==, tarball: file:projects/evm-example-scheduler.tgz}
     name: '@rush-temp/evm-example-scheduler'
     version: 0.0.0
     dependencies:
       '@acala-network/api': 3.0.2-4
-      '@acala-network/bodhi': 2.1.1-beta
+      '@acala-network/bodhi': 2.1.1-1
       '@acala-network/contracts': 1.0.23
       '@openzeppelin/contracts': 3.4.2
       '@types/chai': 4.2.22
@@ -8760,12 +8898,12 @@ packages:
     dev: false
 
   file:projects/evm-example-state-rent.tgz:
-    resolution: {integrity: sha512-sawagTqggJ/pTui8Pi57jvm2PtpYgVPKklHb9gUO3X0Av2kQXPQQR8hWfT9QOnZ8IdzD+ZI+KUDeRbpKA+TflQ==, tarball: file:projects/evm-example-state-rent.tgz}
+    resolution: {integrity: sha512-Oy+MCvzQC2cQzQL3eayVFNNfrJedhrt1VjkvjYc7KYhZpkMQuR+41IbRGN/8w66+TYyDd4+rkn+nWsJT7XKbGQ==, tarball: file:projects/evm-example-state-rent.tgz}
     name: '@rush-temp/evm-example-state-rent'
     version: 0.0.0
     dependencies:
       '@acala-network/api': 3.0.2-4
-      '@acala-network/bodhi': 2.1.1-beta
+      '@acala-network/bodhi': 2.1.1-1
       '@acala-network/contracts': 1.2.1
       '@types/chai': 4.2.22
       '@types/mocha': 9.0.0
@@ -8787,12 +8925,12 @@ packages:
     dev: false
 
   file:projects/evm-example-uniswap.tgz:
-    resolution: {integrity: sha512-uycKHUMi5n+EO40lIvVT543+2ccQb5SeHSlEz+YQ1qFQ4s5AluoLeON9pQO0Kola2qbfW07Img7oIsD5l6CQnw==, tarball: file:projects/evm-example-uniswap.tgz}
+    resolution: {integrity: sha512-vebHFLBF8HJCvBQyTWgjlsUsdzqN60o2UJDogk/SAmid5FfcsxitqIDEqdYp5brtGa+mey0kMuIU4j+NAqysZw==, tarball: file:projects/evm-example-uniswap.tgz}
     name: '@rush-temp/evm-example-uniswap'
     version: 0.0.0
     dependencies:
       '@acala-network/api': 3.0.2-4
-      '@acala-network/bodhi': 2.1.1-beta
+      '@acala-network/bodhi': 2.1.1-1
       '@acala-network/contracts': 1.0.23
       '@openzeppelin/contracts': 3.4.2
       '@types/chai': 4.2.22
