@@ -1,3 +1,5 @@
+## **Migration to https://github.com/AcalaNetwork/bodhi.js/tree/master/examples**
+
 # Acala EVM Examples
 
 ETHDenver Workshop Link: https://www.crowdcast.io/e/acala-ethdenver-2021
